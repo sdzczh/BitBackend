@@ -1,6 +1,6 @@
-package com.xyg.st.service;
+package com.zh.service;
 
-import com.xyg.st.dto.User;
+import com.zh.dto.User;
 
 public interface UserService {
     User findUser(Integer id);

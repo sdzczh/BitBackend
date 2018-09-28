@@ -1,6 +1,6 @@
 package mybatis.mapper;
 
-import com.xyg.st.dto.Admin;
+import com.zh.dto.Admin;
 
 public interface AdminMapper {
     int deleteByPrimaryKey(Integer id);

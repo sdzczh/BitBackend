@@ -1,6 +1,6 @@
-package com.xyg.st.dao;
+package com.zh.dao;
 
-import com.xyg.st.dto.User;
+import com.zh.dto.User;
 import org.springframework.stereotype.Repository;
 
 @Repository

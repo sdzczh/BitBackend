@@ -1,4 +1,4 @@
-package com.xyg.st.dto;
+package com.zh.dto;
 
 public class Admin {
     private Integer id;

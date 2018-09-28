@@ -1,8 +1,8 @@
-package com.xyg.st.service.impl;
+package com.zh.service.impl;
 
-import com.xyg.st.dao.UserDAO;
-import com.xyg.st.dto.User;
-import com.xyg.st.service.UserService;
+import com.zh.dao.UserDAO;
+import com.zh.dto.User;
+import com.zh.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
