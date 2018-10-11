@@ -1,4 +1,4 @@
-package mybatis.mapper;
+package com.zh.dao;
 
 import com.zh.dto.Admin;
 

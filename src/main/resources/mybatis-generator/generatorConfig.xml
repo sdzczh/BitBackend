@@ -22,13 +22,13 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mybatis"
+        <sqlMapGenerator targetPackage="mybatis.mapper"
                          targetProject="I:\MyWork\ssm-demo\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator targetPackage="mybatis.mapper"
-                             targetProject="I:\MyWork\ssm-demo\src\main\resources" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.zh.dao"
+                             targetProject="I:\MyWork\ssm-demo\src\main\java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

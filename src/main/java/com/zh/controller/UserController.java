@@ -1,6 +1,8 @@
 package com.zh.controller;
 
+import com.zh.dto.Admin;
 import com.zh.dto.User;
+import com.zh.service.AdminService;
 import com.zh.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,9 @@ public class UserController {
     private static Logger logger = Logger.getLogger(UserController.class);
 
     @Autowired
-    @Qualifier("userService")
     private UserService userService;
+    @Autowired
+    private AdminService adminService;
 
 
     @RequestMapping(value = "/helloworld", method = {RequestMethod.GET, RequestMethod.POST})
@@ -31,6 +34,12 @@ public class UserController {
     public User findUser(Integer id) {
         return userService.findUser(id);
     }
+    @ResponseBody
+    @RequestMapping(value = "/findAdmin", method = {RequestMethod.GET, RequestMethod.POST})
+    public Admin findAdmin(Integer id) {
+        return adminService.findAdmin(id);
+    }
+
 
 
 
