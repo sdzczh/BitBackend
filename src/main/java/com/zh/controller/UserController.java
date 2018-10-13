@@ -34,6 +34,7 @@ public class UserController {
     public User findUser(Integer id) {
         return userService.findUser(id);
     }
+
     @ResponseBody
     @RequestMapping(value = "/findAdmin", method = {RequestMethod.GET, RequestMethod.POST})
     public Admin findAdmin(Integer id) {
