@@ -4,7 +4,9 @@
          xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-
+<welcome-file-list>
+  <welcome-file>login.jsp</welcome-file>
+</welcome-file-list>
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
@@ -12,7 +14,7 @@
   </context-param>
   <context-param>
     <param-name>log4jConfigLocation</param-name>
-    <param-value>classpath:log4j.properties</param-value>
+    <param-value>classpath:log4j2.xml</param-value>
   </context-param>
 
   <listener>
