@@ -14,7 +14,7 @@
 <!--[if IE 7]>
 <link href="http://www.bootcss.com/p/font-awesome/assets/css/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
 <![endif]-->
-<title>添加用户</title>
+<title>修改信息</title>
 </head>
 <body>
 <div class="pd-20">
@@ -22,17 +22,14 @@
     <form action="/" method="post">
       <table class="table table-bg">
         <tbody>
+            <input type="hidden" value="${manager.id}" name="id" id="id">
           <tr>
-            <th width="120" class="text-r"><span class="c-red">*</span> 姓名：</th>
-            <td><input type="text" style="width:200px" class="input-text" value="" placeholder="" id="userName" name="userName" datatype="*2-16" nullmsg="姓名不能为空"></td>
+            <th class="text-r"><span class="c-red">*</span> 账号：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="${manager.account}" placeholder="" id="account" name="account"></td>
           </tr>
           <tr>
-            <th class="text-r"><span class="c-red">*</span> 手机：</th>
-            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="phone" name="phone"></td>
-          </tr>
-          <tr>
-            <th class="text-r"><span class="c-red">*</span>用户密码</th>
-            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="userPassword" name="userPassword"></td>
+            <th class="text-r"><span class="c-red">*</span> 新密码</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="password" name="password"></td>
           </tr>
           <tr>
             <th></th>
@@ -50,12 +47,12 @@ $(".Huiform").Validform();
 </script>
 <script>
     function sub() {
-        var phone = $("#phone").val();
-        var userName = $("#userName").val();
-        var userPassword = $("#userPassword").val();
-        $.post("${pageContext.request.contextPath}/user/addUser.action", {'phone' : phone, 'username' : userName, 'userpassword' : userPassword},
+        var id = $("#id").val();
+        var account = $("#account").val();
+        var password = $("#password").val();
+        $.post("${pageContext.request.contextPath}/admin/updateAdmin.action", {id : id,'account' : account, 'password' : password},
         function (result) {
-            layer.msg('添加成功');
+            layer.msg('修改成功');
         })
     }
 </script>

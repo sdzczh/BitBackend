@@ -18,7 +18,7 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
-  <form action="/user/getUserList" method="get">
+  <form action="/user/getUserList.action" method="get">
   <div class="text-c">
     <input type="text" class="input-text" style="width:250px" placeholder="输入会员手机号" id="phone" name="phone">
     <button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜用户</button>
@@ -77,12 +77,12 @@
     pageNavObj.afterClick(pageNavCallBack);
 
     function pageNavCallBack(clickpage){
-        window.location.href = "${pageContext.request.contextPath}/user/getUserList?page="+(clickpage - 1)+"&rows=10&phone="+$("#phone").val()
+        window.location.href = "${pageContext.request.contextPath}/user/getUserList.action?page="+(clickpage - 1)+"&rows=10&phone="+$("#phone").val()
     }
 
     function delUser(id){
         layer.confirm('确定要删除？', function(){
-            $.post("${pageContext.request.contextPath}/user/delUser",{id : id}, function(result){
+            $.post("${pageContext.request.contextPath}/user/delUser.action",{id : id}, function(result){
                 layer.msg('删除成功');
                 setTimeout(function(){window.location.reload();},1000)
             })

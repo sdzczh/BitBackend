@@ -55,7 +55,7 @@ $(".Huiform").Validform();
         var phone = $("#phone").val();
         var userName = $("#userName").val();
         var userPassword = $("#userPassword").val();
-        $.post("${pageContext.request.contextPath}/user/updateUser", {id : id, 'phone' : phone, 'username' : userName, 'userpassword' : userPassword},
+        $.post("${pageContext.request.contextPath}/user/updateUser.action", {id : id, 'phone' : phone, 'username' : userName, 'userpassword' : userPassword},
         function (result) {
             layer.msg('修改成功');
         })

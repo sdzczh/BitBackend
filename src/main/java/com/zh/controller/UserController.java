@@ -49,6 +49,7 @@ public class UserController {
             session.setAttribute("result", "用户名或密码错误");
             return "login";
         }
+        session.setAttribute("adminName", "admin");
         session.removeAttribute("result");
         return "index";
     }
@@ -112,6 +113,7 @@ public class UserController {
     public String toAddUser() {
         return "user/user-add";
     }
+
     @RequestMapping(value = "toUpdateUser", method = {RequestMethod.GET})
     public String toUpdateUser(Integer id, Map<String, Object> map) {
         User user = userService.selectByPrimaryKey(id);
@@ -119,7 +121,16 @@ public class UserController {
         return "user/user-update";
     }
 
-
+    /**
+     * 管理员退出
+     * @param session
+     * @return
+     */
+    @RequestMapping(value="exit",method=RequestMethod.GET)
+    public String exit(HttpSession session){
+        session.invalidate();
+        return "login";
+    }
 
 
 }
