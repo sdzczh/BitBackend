@@ -63,7 +63,11 @@ public class UserController {
         param.put("firstResult", page * rows);
         param.put("maxResult", rows);
         List<User> list = userService.selectPaging(param);
+        Integer count = userService.selectCount(param);
         map.put("data", list);
+        map.put("count", count);
+        map.put("page", page);
+        map.put("rows",rows);
         return "user/user-list";
     }
 
