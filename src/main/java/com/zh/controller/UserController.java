@@ -4,10 +4,12 @@ import com.zh.entity.Manager;
 import com.zh.entity.User;
 import com.zh.service.ManagerService;
 import com.zh.service.UserService;
+import com.zh.util.MD5;
 import com.zh.util.StrUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,20 +58,67 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "getUserList", method = {RequestMethod.GET})
-    public String getUserList(Map<String, Object> map, Integer page, Integer rows) {
+    public String getUserList(User user, Map<String, Object> map, Integer page, Integer rows) {
         Map<Object, Object> param = new HashMap();
+        Map<Object, Object> params = new HashMap();
         page = page == null ? 0 : page;
         rows = rows == null ? 10 : rows;
         param.put("firstResult", page * rows);
         param.put("maxResult", rows);
+        param.put("phone", user.getPhone());
+        params.put("phone", user.getPhone());
         List<User> list = userService.selectPaging(param);
-        Integer count = userService.selectCount(param);
+        Integer count = userService.selectCount(params);
         map.put("data", list);
         map.put("count", count);
         map.put("page", page);
         map.put("rows",rows);
         return "user/user-list";
     }
+
+    /**
+     * 删除
+     * @param user
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "delUser", method = {RequestMethod.POST})
+    public String delUser(User user) {
+        userService.deleteByPrimaryKey(user.getId());
+        return "true";
+    }
+    @ResponseBody
+    @RequestMapping(value = "updateUser", method = {RequestMethod.POST})
+    public String updateUser(User user) throws Exception{
+        user.setUserpassword(MD5.getMd5(user.getUserpassword()));
+        userService.updateByPrimaryKeySelective(user);
+        return "true";
+    }
+    @ResponseBody
+    @RequestMapping(value = "addUser", method = {RequestMethod.POST})
+    public String addUser(User user) throws Exception {
+        user.setUserpassword(MD5.getMd5(user.getUserpassword()));
+        user.setState(new Byte("0"));
+        userService.insertSelective(user);
+        return "true";
+    }
+    @RequestMapping(value = "queryUserById", method = {RequestMethod.GET})
+    public String queryUserById(Integer id, Map<String, Object> map) {
+        User user = userService.selectByPrimaryKey(id);
+        map.put("user", user);
+        return "true";
+    }
+    @RequestMapping(value = "toAddUser", method = {RequestMethod.GET})
+    public String toAddUser() {
+        return "user/user-add";
+    }
+    @RequestMapping(value = "toUpdateUser", method = {RequestMethod.GET})
+    public String toUpdateUser(Integer id, Map<String, Object> map) {
+        User user = userService.selectByPrimaryKey(id);
+        map.put("user", user);
+        return "user/user-update";
+    }
+
 
 
 
