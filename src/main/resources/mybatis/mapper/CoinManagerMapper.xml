@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.dao.CoinManagerMapper">
+  <resultMap id="BaseResultMap" type="com.zh.entity.CoinManager">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="website_slug" jdbcType="VARCHAR" property="websiteSlug" />
+    <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="url_transaction" jdbcType="VARCHAR" property="urlTransaction" />
+    <result column="url_addressInfo" jdbcType="VARCHAR" property="urlAddressinfo" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, symbol, website_slug, logo_url, url_transaction, url_addressInfo, createTime, 
+    updateTime
+  </sql>
+  <insert id="insert" parameterType="com.zh.entity.CoinManager">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into coin_manager (name, symbol, website_slug, 
+      logo_url, url_transaction, url_addressInfo, 
+      createTime, updateTime)
+    values (#{name,jdbcType=VARCHAR}, #{symbol,jdbcType=VARCHAR}, #{websiteSlug,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{urlTransaction,jdbcType=VARCHAR}, #{urlAddressinfo,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zh.entity.CoinManager">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into coin_manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="websiteSlug != null">
+        website_slug,
+      </if>
+      <if test="logoUrl != null">
+        logo_url,
+      </if>
+      <if test="urlTransaction != null">
+        url_transaction,
+      </if>
+      <if test="urlAddressinfo != null">
+        url_addressInfo,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteSlug != null">
+        #{websiteSlug,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="urlTransaction != null">
+        #{urlTransaction,jdbcType=VARCHAR},
+      </if>
+      <if test="urlAddressinfo != null">
+        #{urlAddressinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zh.entity.CoinManager">
+    update coin_manager
+    set name = #{name,jdbcType=VARCHAR},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      website_slug = #{websiteSlug,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      url_transaction = #{urlTransaction,jdbcType=VARCHAR},
+      url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.CoinManager">
+    update coin_manager
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="symbol != null">
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="websiteSlug != null">
+        website_slug = #{websiteSlug,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="urlTransaction != null">
+        url_transaction = #{urlTransaction,jdbcType=VARCHAR},
+      </if>
+      <if test="urlAddressinfo != null">
+        url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coin_manager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coin_manager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coin_manager
+    where 1=1 
+    <if test="name != null">
+       and  name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="symbol != null">
+       and  symbol = #{symbol,jdbcType=VARCHAR}
+    </if>
+    <if test="websiteSlug != null">
+       and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
+    </if>
+    <if test="logoUrl != null">
+       and  logo_url = #{logoUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="urlTransaction != null">
+       and  url_transaction = #{urlTransaction,jdbcType=VARCHAR}
+    </if>
+    <if test="urlAddressinfo != null">
+       and  url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR}
+    </if>
+    <if test="createtime != null">
+       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatetime != null">
+       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    </if>
+     order by id desc 
+  </select>
+  <select id="selectPaging" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coin_manager
+    where 1=1 
+    <if test="name != null">
+       and  name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="symbol != null">
+       and  symbol = #{symbol,jdbcType=VARCHAR}
+    </if>
+    <if test="websiteSlug != null">
+       and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
+    </if>
+    <if test="logoUrl != null">
+       and  logo_url = #{logoUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="urlTransaction != null">
+       and  url_transaction = #{urlTransaction,jdbcType=VARCHAR}
+    </if>
+    <if test="urlAddressinfo != null">
+       and  url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR}
+    </if>
+    <if test="createtime != null">
+       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatetime != null">
+       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    from coin_manager 
+    where 1=1 
+    <if test="name != null">
+       and  name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="symbol != null">
+       and  symbol = #{symbol,jdbcType=VARCHAR}
+    </if>
+    <if test="websiteSlug != null">
+       and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
+    </if>
+    <if test="logoUrl != null">
+       and  logo_url = #{logoUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="urlTransaction != null">
+       and  url_transaction = #{urlTransaction,jdbcType=VARCHAR}
+    </if>
+    <if test="urlAddressinfo != null">
+       and  url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR}
+    </if>
+    <if test="createtime != null">
+       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatetime != null">
+       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>
