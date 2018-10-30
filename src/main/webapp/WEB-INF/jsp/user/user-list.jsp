@@ -70,7 +70,6 @@
     var page = parseInt("${page}") == 0 ? 1 : (parseInt("${page}") + 1);
     pageNavObj = new PageNavCreate("PageNavId",{ pageCount:count/10+1, currentPage:page, perPageNum:5, });
     pageNavObj.afterClick(pageNavCallBack);
-
     function pageNavCallBack(clickpage){
         window.location.href = "${pageContext.request.contextPath}/user/getUserList?page="+(clickpage - 1)+"&rows=10"
     }
