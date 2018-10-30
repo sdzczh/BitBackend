@@ -58,11 +58,19 @@
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
 
-		<dl id="menu-member">
-			<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a data-href="${pageContext.request.contextPath}/user/getUserList.action" data-title="会员列表" href="javascript:;">会员列表</a></li>
+	<dl id="menu-member">
+		<dt><i class="Hui-iconfont">&#xe60d;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dd>
+			<ul>
+				<li><a data-href="${pageContext.request.contextPath}/user/getUserList.action" data-title="会员列表" href="javascript:;">会员列表</a></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl id="menu-coin">
+		<dt><i class="Hui-iconfont">&#xe60d;</i> 币种管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dd>
+			<ul>
+				<li><a data-href="${pageContext.request.contextPath}/coin/getCoinList.action" data-title="币种列表" href="javascript:;">会员列表</a></li>
 			</ul>
 		</dd>
 	</dl>
