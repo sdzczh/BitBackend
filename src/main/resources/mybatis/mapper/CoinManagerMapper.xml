@@ -9,12 +9,30 @@
     <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
     <result column="url_transaction" jdbcType="VARCHAR" property="urlTransaction" />
     <result column="url_addressInfo" jdbcType="VARCHAR" property="urlAddressinfo" />
+    <result column="circulating_supply" jdbcType="VARCHAR" property="circulatingSupply" />
+    <result column="market_cap" jdbcType="VARCHAR" property="marketCap" />
+    <result column="volume_24h" jdbcType="VARCHAR" property="volume24h" />
+    <result column="max_supply" jdbcType="VARCHAR" property="maxSupply" />
+    <result column="markey_ratio" jdbcType="VARCHAR" property="markeyRatio" />
+    <result column="turnover_rate" jdbcType="VARCHAR" property="turnoverRate" />
+    <result column="circulation_rate" jdbcType="VARCHAR" property="circulationRate" />
+    <result column="team_info" jdbcType="VARCHAR" property="teamInfo" />
+    <result column="github" jdbcType="VARCHAR" property="github" />
+    <result column="reddit" jdbcType="VARCHAR" property="reddit" />
+    <result column="twitter" jdbcType="VARCHAR" property="twitter" />
+    <result column="facebook" jdbcType="VARCHAR" property="facebook" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="white_paper" jdbcType="VARCHAR" property="whitePaper" />
+    <result column="explorer" jdbcType="VARCHAR" property="explorer" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="info" jdbcType="LONGVARCHAR" property="info" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, symbol, website_slug, logo_url, url_transaction, url_addressInfo, createTime, 
-    updateTime
+    id, name, symbol, website_slug, logo_url, url_transaction, url_addressInfo, circulating_supply, 
+    market_cap, volume_24h, max_supply, markey_ratio, turnover_rate, circulation_rate, 
+    team_info, github, reddit, twitter, facebook, website, white_paper, explorer, createTime, 
+    updateTime, info
   </sql>
   <insert id="insert" parameterType="com.zh.entity.CoinManager">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -22,10 +40,22 @@
     </selectKey>
     insert into coin_manager (name, symbol, website_slug, 
       logo_url, url_transaction, url_addressInfo, 
-      createTime, updateTime)
+      circulating_supply, market_cap, volume_24h, 
+      max_supply, markey_ratio, turnover_rate, 
+      circulation_rate, team_info, github, 
+      reddit, twitter, facebook, 
+      website, white_paper, explorer, 
+      createTime, updateTime, info
+      )
     values (#{name,jdbcType=VARCHAR}, #{symbol,jdbcType=VARCHAR}, #{websiteSlug,jdbcType=VARCHAR}, 
       #{logoUrl,jdbcType=VARCHAR}, #{urlTransaction,jdbcType=VARCHAR}, #{urlAddressinfo,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+      #{circulatingSupply,jdbcType=VARCHAR}, #{marketCap,jdbcType=VARCHAR}, #{volume24h,jdbcType=VARCHAR}, 
+      #{maxSupply,jdbcType=VARCHAR}, #{markeyRatio,jdbcType=VARCHAR}, #{turnoverRate,jdbcType=VARCHAR}, 
+      #{circulationRate,jdbcType=VARCHAR}, #{teamInfo,jdbcType=VARCHAR}, #{github,jdbcType=VARCHAR}, 
+      #{reddit,jdbcType=VARCHAR}, #{twitter,jdbcType=VARCHAR}, #{facebook,jdbcType=VARCHAR}, 
+      #{website,jdbcType=VARCHAR}, #{whitePaper,jdbcType=VARCHAR}, #{explorer,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{info,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zh.entity.CoinManager">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -51,11 +81,59 @@
       <if test="urlAddressinfo != null">
         url_addressInfo,
       </if>
+      <if test="circulatingSupply != null">
+        circulating_supply,
+      </if>
+      <if test="marketCap != null">
+        market_cap,
+      </if>
+      <if test="volume24h != null">
+        volume_24h,
+      </if>
+      <if test="maxSupply != null">
+        max_supply,
+      </if>
+      <if test="markeyRatio != null">
+        markey_ratio,
+      </if>
+      <if test="turnoverRate != null">
+        turnover_rate,
+      </if>
+      <if test="circulationRate != null">
+        circulation_rate,
+      </if>
+      <if test="teamInfo != null">
+        team_info,
+      </if>
+      <if test="github != null">
+        github,
+      </if>
+      <if test="reddit != null">
+        reddit,
+      </if>
+      <if test="twitter != null">
+        twitter,
+      </if>
+      <if test="facebook != null">
+        facebook,
+      </if>
+      <if test="website != null">
+        website,
+      </if>
+      <if test="whitePaper != null">
+        white_paper,
+      </if>
+      <if test="explorer != null">
+        explorer,
+      </if>
       <if test="createtime != null">
         createTime,
       </if>
       <if test="updatetime != null">
         updateTime,
+      </if>
+      <if test="info != null">
+        info,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -77,11 +155,59 @@
       <if test="urlAddressinfo != null">
         #{urlAddressinfo,jdbcType=VARCHAR},
       </if>
+      <if test="circulatingSupply != null">
+        #{circulatingSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCap != null">
+        #{marketCap,jdbcType=VARCHAR},
+      </if>
+      <if test="volume24h != null">
+        #{volume24h,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSupply != null">
+        #{maxSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="markeyRatio != null">
+        #{markeyRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="turnoverRate != null">
+        #{turnoverRate,jdbcType=VARCHAR},
+      </if>
+      <if test="circulationRate != null">
+        #{circulationRate,jdbcType=VARCHAR},
+      </if>
+      <if test="teamInfo != null">
+        #{teamInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="github != null">
+        #{github,jdbcType=VARCHAR},
+      </if>
+      <if test="reddit != null">
+        #{reddit,jdbcType=VARCHAR},
+      </if>
+      <if test="twitter != null">
+        #{twitter,jdbcType=VARCHAR},
+      </if>
+      <if test="facebook != null">
+        #{facebook,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="whitePaper != null">
+        #{whitePaper,jdbcType=VARCHAR},
+      </if>
+      <if test="explorer != null">
+        #{explorer,jdbcType=VARCHAR},
+      </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null">
         #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -93,8 +219,24 @@
       logo_url = #{logoUrl,jdbcType=VARCHAR},
       url_transaction = #{urlTransaction,jdbcType=VARCHAR},
       url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR},
+      circulating_supply = #{circulatingSupply,jdbcType=VARCHAR},
+      market_cap = #{marketCap,jdbcType=VARCHAR},
+      volume_24h = #{volume24h,jdbcType=VARCHAR},
+      max_supply = #{maxSupply,jdbcType=VARCHAR},
+      markey_ratio = #{markeyRatio,jdbcType=VARCHAR},
+      turnover_rate = #{turnoverRate,jdbcType=VARCHAR},
+      circulation_rate = #{circulationRate,jdbcType=VARCHAR},
+      team_info = #{teamInfo,jdbcType=VARCHAR},
+      github = #{github,jdbcType=VARCHAR},
+      reddit = #{reddit,jdbcType=VARCHAR},
+      twitter = #{twitter,jdbcType=VARCHAR},
+      facebook = #{facebook,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      white_paper = #{whitePaper,jdbcType=VARCHAR},
+      explorer = #{explorer,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      info = #{info,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.CoinManager">
@@ -118,11 +260,59 @@
       <if test="urlAddressinfo != null">
         url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR},
       </if>
+      <if test="circulatingSupply != null">
+        circulating_supply = #{circulatingSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCap != null">
+        market_cap = #{marketCap,jdbcType=VARCHAR},
+      </if>
+      <if test="volume24h != null">
+        volume_24h = #{volume24h,jdbcType=VARCHAR},
+      </if>
+      <if test="maxSupply != null">
+        max_supply = #{maxSupply,jdbcType=VARCHAR},
+      </if>
+      <if test="markeyRatio != null">
+        markey_ratio = #{markeyRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="turnoverRate != null">
+        turnover_rate = #{turnoverRate,jdbcType=VARCHAR},
+      </if>
+      <if test="circulationRate != null">
+        circulation_rate = #{circulationRate,jdbcType=VARCHAR},
+      </if>
+      <if test="teamInfo != null">
+        team_info = #{teamInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="github != null">
+        github = #{github,jdbcType=VARCHAR},
+      </if>
+      <if test="reddit != null">
+        reddit = #{reddit,jdbcType=VARCHAR},
+      </if>
+      <if test="twitter != null">
+        twitter = #{twitter,jdbcType=VARCHAR},
+      </if>
+      <if test="facebook != null">
+        facebook = #{facebook,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="whitePaper != null">
+        white_paper = #{whitePaper,jdbcType=VARCHAR},
+      </if>
+      <if test="explorer != null">
+        explorer = #{explorer,jdbcType=VARCHAR},
+      </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null">
         updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -160,11 +350,59 @@
     <if test="urlAddressinfo != null">
        and  url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR}
     </if>
+    <if test="circulatingSupply != null">
+       and  circulating_supply = #{circulatingSupply,jdbcType=VARCHAR}
+    </if>
+    <if test="marketCap != null">
+       and  market_cap = #{marketCap,jdbcType=VARCHAR}
+    </if>
+    <if test="volume24h != null">
+       and  volume_24h = #{volume24h,jdbcType=VARCHAR}
+    </if>
+    <if test="maxSupply != null">
+       and  max_supply = #{maxSupply,jdbcType=VARCHAR}
+    </if>
+    <if test="markeyRatio != null">
+       and  markey_ratio = #{markeyRatio,jdbcType=VARCHAR}
+    </if>
+    <if test="turnoverRate != null">
+       and  turnover_rate = #{turnoverRate,jdbcType=VARCHAR}
+    </if>
+    <if test="circulationRate != null">
+       and  circulation_rate = #{circulationRate,jdbcType=VARCHAR}
+    </if>
+    <if test="teamInfo != null">
+       and  team_info = #{teamInfo,jdbcType=VARCHAR}
+    </if>
+    <if test="github != null">
+       and  github = #{github,jdbcType=VARCHAR}
+    </if>
+    <if test="reddit != null">
+       and  reddit = #{reddit,jdbcType=VARCHAR}
+    </if>
+    <if test="twitter != null">
+       and  twitter = #{twitter,jdbcType=VARCHAR}
+    </if>
+    <if test="facebook != null">
+       and  facebook = #{facebook,jdbcType=VARCHAR}
+    </if>
+    <if test="website != null">
+       and  website = #{website,jdbcType=VARCHAR}
+    </if>
+    <if test="whitePaper != null">
+       and  white_paper = #{whitePaper,jdbcType=VARCHAR}
+    </if>
+    <if test="explorer != null">
+       and  explorer = #{explorer,jdbcType=VARCHAR}
+    </if>
     <if test="createtime != null">
        and  createTime = #{createtime,jdbcType=TIMESTAMP}
     </if>
     <if test="updatetime != null">
        and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="info != null">
+       and  info = #{info,jdbcType=LONGVARCHAR}
     </if>
      order by id desc 
   </select>
@@ -173,11 +411,11 @@
     <include refid="Base_Column_List" />
     from coin_manager
     where 1=1 
-    <if test="name != null and name != ''">
-       and  name like '%' #{name,jdbcType=VARCHAR} '%'
+    <if test="name != null">
+       and  name = #{name,jdbcType=VARCHAR}
     </if>
-    <if test="symbol != null and symbol != ''">
-       and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
+    <if test="symbol != null">
+       and  symbol = #{symbol,jdbcType=VARCHAR}
     </if>
     <if test="websiteSlug != null">
        and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
@@ -191,23 +429,71 @@
     <if test="urlAddressinfo != null">
        and  url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR}
     </if>
+    <if test="circulatingSupply != null">
+       and  circulating_supply = #{circulatingSupply,jdbcType=VARCHAR}
+    </if>
+    <if test="marketCap != null">
+       and  market_cap = #{marketCap,jdbcType=VARCHAR}
+    </if>
+    <if test="volume24h != null">
+       and  volume_24h = #{volume24h,jdbcType=VARCHAR}
+    </if>
+    <if test="maxSupply != null">
+       and  max_supply = #{maxSupply,jdbcType=VARCHAR}
+    </if>
+    <if test="markeyRatio != null">
+       and  markey_ratio = #{markeyRatio,jdbcType=VARCHAR}
+    </if>
+    <if test="turnoverRate != null">
+       and  turnover_rate = #{turnoverRate,jdbcType=VARCHAR}
+    </if>
+    <if test="circulationRate != null">
+       and  circulation_rate = #{circulationRate,jdbcType=VARCHAR}
+    </if>
+    <if test="teamInfo != null">
+       and  team_info = #{teamInfo,jdbcType=VARCHAR}
+    </if>
+    <if test="github != null">
+       and  github = #{github,jdbcType=VARCHAR}
+    </if>
+    <if test="reddit != null">
+       and  reddit = #{reddit,jdbcType=VARCHAR}
+    </if>
+    <if test="twitter != null">
+       and  twitter = #{twitter,jdbcType=VARCHAR}
+    </if>
+    <if test="facebook != null">
+       and  facebook = #{facebook,jdbcType=VARCHAR}
+    </if>
+    <if test="website != null">
+       and  website = #{website,jdbcType=VARCHAR}
+    </if>
+    <if test="whitePaper != null">
+       and  white_paper = #{whitePaper,jdbcType=VARCHAR}
+    </if>
+    <if test="explorer != null">
+       and  explorer = #{explorer,jdbcType=VARCHAR}
+    </if>
     <if test="createtime != null">
        and  createTime = #{createtime,jdbcType=TIMESTAMP}
     </if>
     <if test="updatetime != null">
        and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
     </if>
-     order by id asc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+    <if test="info != null">
+       and  info = #{info,jdbcType=LONGVARCHAR}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
   </select>
   <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
     select count(*) 
     from coin_manager 
-    where 1=1
-    <if test="name != null and name != ''">
-      and  name like '%' #{name,jdbcType=VARCHAR} '%'
+    where 1=1 
+    <if test="name != null">
+       and  name = #{name,jdbcType=VARCHAR}
     </if>
-    <if test="symbol != null and symbol != ''">
-      and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
+    <if test="symbol != null">
+       and  symbol = #{symbol,jdbcType=VARCHAR}
     </if>
     <if test="websiteSlug != null">
        and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
@@ -221,11 +507,59 @@
     <if test="urlAddressinfo != null">
        and  url_addressInfo = #{urlAddressinfo,jdbcType=VARCHAR}
     </if>
+    <if test="circulatingSupply != null">
+       and  circulating_supply = #{circulatingSupply,jdbcType=VARCHAR}
+    </if>
+    <if test="marketCap != null">
+       and  market_cap = #{marketCap,jdbcType=VARCHAR}
+    </if>
+    <if test="volume24h != null">
+       and  volume_24h = #{volume24h,jdbcType=VARCHAR}
+    </if>
+    <if test="maxSupply != null">
+       and  max_supply = #{maxSupply,jdbcType=VARCHAR}
+    </if>
+    <if test="markeyRatio != null">
+       and  markey_ratio = #{markeyRatio,jdbcType=VARCHAR}
+    </if>
+    <if test="turnoverRate != null">
+       and  turnover_rate = #{turnoverRate,jdbcType=VARCHAR}
+    </if>
+    <if test="circulationRate != null">
+       and  circulation_rate = #{circulationRate,jdbcType=VARCHAR}
+    </if>
+    <if test="teamInfo != null">
+       and  team_info = #{teamInfo,jdbcType=VARCHAR}
+    </if>
+    <if test="github != null">
+       and  github = #{github,jdbcType=VARCHAR}
+    </if>
+    <if test="reddit != null">
+       and  reddit = #{reddit,jdbcType=VARCHAR}
+    </if>
+    <if test="twitter != null">
+       and  twitter = #{twitter,jdbcType=VARCHAR}
+    </if>
+    <if test="facebook != null">
+       and  facebook = #{facebook,jdbcType=VARCHAR}
+    </if>
+    <if test="website != null">
+       and  website = #{website,jdbcType=VARCHAR}
+    </if>
+    <if test="whitePaper != null">
+       and  white_paper = #{whitePaper,jdbcType=VARCHAR}
+    </if>
+    <if test="explorer != null">
+       and  explorer = #{explorer,jdbcType=VARCHAR}
+    </if>
     <if test="createtime != null">
        and  createTime = #{createtime,jdbcType=TIMESTAMP}
     </if>
     <if test="updatetime != null">
        and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="info != null">
+       and  info = #{info,jdbcType=LONGVARCHAR}
     </if>
   </select>
 </mapper>
