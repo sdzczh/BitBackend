@@ -173,11 +173,11 @@
     <include refid="Base_Column_List" />
     from coin_manager
     where 1=1 
-    <if test="name != null">
-       and  name = #{name,jdbcType=VARCHAR}
+    <if test="name != null and name != ''">
+       and  name like '%' #{name,jdbcType=VARCHAR} '%'
     </if>
-    <if test="symbol != null">
-       and  symbol = #{symbol,jdbcType=VARCHAR}
+    <if test="symbol != null and symbol != ''">
+       and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
     </if>
     <if test="websiteSlug != null">
        and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
@@ -197,17 +197,17 @@
     <if test="updatetime != null">
        and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
     </if>
-     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+     order by id asc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
   </select>
   <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
     select count(*) 
     from coin_manager 
-    where 1=1 
-    <if test="name != null">
-       and  name = #{name,jdbcType=VARCHAR}
+    where 1=1
+    <if test="name != null and name != ''">
+      and  name like '%' #{name,jdbcType=VARCHAR} '%'
     </if>
-    <if test="symbol != null">
-       and  symbol = #{symbol,jdbcType=VARCHAR}
+    <if test="symbol != null and symbol != ''">
+      and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
     </if>
     <if test="websiteSlug != null">
        and  website_slug = #{websiteSlug,jdbcType=VARCHAR}

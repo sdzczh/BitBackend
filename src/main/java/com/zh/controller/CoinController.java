@@ -9,13 +9,18 @@ import com.zh.service.UserService;
 import com.zh.util.MD5;
 import com.zh.util.StrUtils;
 import org.apache.log4j.Logger;
+import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,12 +47,17 @@ public class CoinController {
         param.put("firstResult", page * rows);
         param.put("maxResult", rows);
         param.put("name", coinManager.getName());
+        param.put("symbol", coinManager.getSymbol());
+        params.put("name", coinManager.getName());
+        params.put("symbol", coinManager.getSymbol());
         List<CoinManager> list = coinManagerService.selectPaging(param);
         Integer count = coinManagerService.selectCount(params);
         map.put("data", list);
         map.put("count", count);
         map.put("page", page);
         map.put("rows",rows);
+        map.put("name",coinManager.getName());
+        map.put("symbol", coinManager.getSymbol());
         return "coin/coin-list";
     }
 
@@ -63,15 +73,13 @@ public class CoinController {
     }
     @ResponseBody
     @RequestMapping(value = "updateCoin", method = {RequestMethod.POST})
-    public String updateUser(CoinManager coinManager) throws Exception{
+    public String updateUser(@RequestParam("file") CommonsMultipartFile file, CoinManager coinManager) throws IOException{
+        String path="E:/"+new Date().getTime()+file.getOriginalFilename();
+        coinManager.setLogoUrl(path);
+        File newFile=new File(path);
+        file.transferTo(newFile);
         coinManagerService.updateByPrimaryKeySelective(coinManager);
-        return "true";
-    }
-    @ResponseBody
-    @RequestMapping(value = "addCoin", method = {RequestMethod.POST})
-    public String addUser(CoinManager coinManager) throws Exception {
-        coinManagerService.insertSelective(coinManager);
-        return "true";
+        return "<center>SUCCESS</center>";
     }
     @RequestMapping(value = "queryCoinById", method = {RequestMethod.GET})
     public String queryUserById(Integer id, Map<String, Object> map) {
@@ -83,6 +91,10 @@ public class CoinController {
     public String toAddUser() {
         return "coin/coin-add";
     }
+ @RequestMapping(value = "toa", method = {RequestMethod.GET})
+    public String toa() {
+        return "coin/a";
+    }
 
     @RequestMapping(value = "toUpdateCoin", method = {RequestMethod.GET})
     public String toUpdateUser(Integer id, Map<String, Object> map) {
@@ -90,5 +102,14 @@ public class CoinController {
         map.put("coin", coinManager);
         return "coin/coin-update";
     }
-
+    @ResponseBody
+    @RequestMapping("addCoin")
+    public String  fileUpload2(@RequestParam("file") CommonsMultipartFile file, CoinManager coinManager) throws IOException {
+        String path="E:/"+new Date().getTime()+file.getOriginalFilename();
+        coinManager.setLogoUrl(path);
+        File newFile=new File(path);
+        file.transferTo(newFile);
+        coinManagerService.insertSelective(coinManager);
+        return "<center>SUCCESS</center>";
+    }
 }

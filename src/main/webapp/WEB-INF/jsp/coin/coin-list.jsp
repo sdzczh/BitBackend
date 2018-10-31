@@ -20,7 +20,8 @@
 <div class="pd-20">
   <form action="/coin/getCoinList.action" method="get">
   <div class="text-c">
-    <input type="text" class="input-text" style="width:250px" placeholder="输入币种名称" id="name" name="name">
+    <input type="text" class="input-text" style="width:250px" placeholder="输入币种名称" value="${name}" id="name" name="name">
+    <input type="text" class="input-text" style="width:250px" placeholder="输入币种d代码" value="${symbol}" id="symbol" name="symbol">
     <button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜币</button>
 
   </div>
@@ -34,6 +35,7 @@
         <th width="80">ID</th>
         <th width="100">币种名称</th>
         <th width="40">币种代码</th>
+        <th width="40">站点名称</th>
         <th width="150">币种logo图片地址</th>
         <th width="90">获取交易信息</th>
         <th width="90">获取地址信息（余额）</th>
@@ -47,10 +49,10 @@
         <td>${list.id}</td>
         <td>${list.name}</td>
         <td>${list.symbol}</td>
-        <td>${list.website_slug}</td>
-        <td>${list.logo_url}</td>
-        <td>${list.url_transaction}</td>
-        <td>${list.url_addressInfo}</td>
+        <td>${list.websiteSlug}</td>
+        <td><img src="${list.logoUrl}"></td>
+        <td>${list.urlTransaction}</td>
+        <td>${list.urlAddressinfo}</td>
         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.createtime}" /></td>
         <td>
           <a href="javascript:;" onclick="delUser(${list.id})" class="btn btn-danger radius">删除</a>
@@ -76,7 +78,7 @@
     pageNavObj.afterClick(pageNavCallBack);
 
     function pageNavCallBack(clickpage){
-        window.location.href = "${pageContext.request.contextPath}/coin/getCoinList.action?page="+(clickpage - 1)+"&rows=10&name="+$("#name").val()
+        window.location.href = "${pageContext.request.contextPath}/coin/getCoinList.action?page="+(clickpage - 1)+"&rows=10&name="+$("#name").val()+"&symbol="+$("#symbol").val();
     }
 
     function delUser(id){
@@ -108,7 +110,7 @@
             shadeClose: true,
             shade: 0.8,
             area: ['550px','450px'],
-            content: '${pageContext.request.contextPath}/user/toUpdateUser.action?id=' + id,
+            content: '${pageContext.request.contextPath}/coin/toUpdateCoin.action?id=' + id,
             end: function () {
                 location.reload();
             }

@@ -19,7 +19,7 @@
 <body>
 <div class="pd-20">
   <div class="Huiform">
-    <form action="/" method="post">
+    <form action="${pageContext.request.contextPath}/coin/updateCoin.action" method="post"  enctype="multipart/form-data">
       <table class="table table-bg">
         <tbody>
             <input type="hidden" value="${coin.id}" name="id" id="id">
@@ -32,20 +32,24 @@
               <td><input type="text" style="width:300px" class="input-text" value="${coin.symbol}" placeholder="" id="symbol" name="symbol"></td>
             </tr>
             <tr>
+                <th class="text-r">新图片logo：</th>
+                <td><input type="file" class="" id="file" name="file" multiple></td>
+            </tr>
+            <tr>
               <th class="text-r"><span class="c-red">*</span>站点名称：</th>
-              <td><input type="text" style="width:300px" class="input-text" value="${coin.website_slug}" placeholder="" id="website_slug" name="website_slug"></td>
+              <td><input type="text" style="width:300px" class="input-text" value="${coin.websiteSlug}" placeholder="" id="websiteSlug" name="websiteSlug"></td>
             </tr>
             <tr>
               <th class="text-r"><span class="c-red">*</span>获取交易信息URL：</th>
-              <td><input type="text" style="width:300px" class="input-text" value="${coin.url_transaction}" placeholder="" id="url_transaction" name="url_transaction"></td>
+              <td><input type="text" style="width:300px" class="input-text" value="${coin.urlTransaction}" placeholder="" id="urlTransaction" name="urlTransaction"></td>
             </tr>
             <tr>
               <th class="text-r"><span class="c-red">*</span>获取地址信息URL：</th>
-              <td><input type="text" style="width:300px" class="input-text" value="${coin.url_addressInfo}" placeholder="" id="url_addressInfo" name="url_addressInfo"></td>
+              <td><input type="text" style="width:300px" class="input-text" value="${coin.urlAddressinfo}" placeholder="" id="urlAddressinfo" name="urlAddressinfo"></td>
             </tr>
           <tr>
             <th></th>
-            <td><button class="btn btn-success radius" onclick="sub()" type="button"><i class="icon-ok"></i> 确定</button></td>
+            <td><button class="btn btn-success radius"  type="submit"><i class="icon-ok"></i> 确定</button></td>
           </tr>
         </tbody>
       </table>
@@ -53,29 +57,9 @@
   </div>
 </div>
 <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/Validform_v5.3.2_min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/Validform_v5.3.2_min.js"></script>
 <script type="text/javascript">
 $(".Huiform").Validform(); 
-</script>
-<script>
-    function sub() {
-        var name = $("#name").val();
-        var symbol = $("#symbol").val();
-        var website_slug = $("#website_slug").val();
-        var url_transaction = $("url_transaction").val();
-        var url_addressInfo = $("#url_addressInfo").val();
-        $.post("${pageContext.request.contextPath}/coin/updateCoin.action", {
-                id : id,
-                'name' : name,
-                'symbol' : symbol,
-                'website_slug' : website_slug,
-                'url_transaction' : url_transaction,
-                'url_addressInfo' : url_addressInfo
-            },
-        function (result) {
-            layer.msg('修改成功');
-        })
-    }
 </script>
 </body>
 </html>
