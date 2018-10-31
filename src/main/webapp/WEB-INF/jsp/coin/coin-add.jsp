@@ -24,7 +24,7 @@
         <tbody>
           <tr>
             <th width="120" class="text-r"><span class="c-red">*</span> 币种名称：</th>
-            <td><input type="text" style="width:200px" class="input-text" value="" placeholder="" id="name" name="name" datatype="*2-16" nullmsg="姓名不能为空"></td>
+            <td><input type="text" style="width:200px" class="input-text" value="" placeholder="" id="name" name="name" datatype="*2-16" nullmsg="币种不能为空"></td>
           </tr>
           <tr>
             <th class="text-r"><span class="c-red">*</span> 币种代码：</th>
@@ -43,8 +43,68 @@
             <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="urlTransaction" name="urlTransaction"></td>
           </tr>
           <tr>
-            <th class="text-r"><span class="c-red">*</span>获取地址信息URL：</th>
-            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="urlAddressinfo" name="urlAddressinfo"></td>
+            <th class="text-r"><span class="c-red">*</span>流通量：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="circulatingSupply" name="circulatingSupply"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>市值：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="marketCap" name="marketCap"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>总发行量：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="maxSupply" name="maxSupply"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>24成交量：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="volume24h" name="volume24h"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>全数字货币占比：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="markeyRatio" name="markeyRatio"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>换手率：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="turnoverRate" name="turnoverRate"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>流通率：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="circulationRate" name="circulationRate"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>团队信息：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="teamInfo" name="teamInfo"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>源码信息：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="github" name="github"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>reddit：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="reddit" name="reddit"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>twitter：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="twitter" name="twitter"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>facebook：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="facebook" name="facebook"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>主页：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="website" name="website"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>白皮书：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="whitePaper" name="whitePaper"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>区块浏览器：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="explorer" name="explorer"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>币种介绍：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="info" name="info"></td>
           </tr>
           <tr>
             <th></th>

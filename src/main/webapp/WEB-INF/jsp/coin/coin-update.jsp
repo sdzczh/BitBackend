@@ -47,6 +47,70 @@
               <th class="text-r"><span class="c-red">*</span>获取地址信息URL：</th>
               <td><input type="text" style="width:300px" class="input-text" value="${coin.urlAddressinfo}" placeholder="" id="urlAddressinfo" name="urlAddressinfo"></td>
             </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>流通量：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.circulatingSupply}" placeholder="" id="circulatingSupply" name="circulatingSupply"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>市值：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.marketCap}" placeholder="" id="marketCap" name="marketCap"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>总发行量：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.maxSupply}" placeholder="" id="maxSupply" name="maxSupply"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>24成交量：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.volume24h}" placeholder="" id="volume24h" name="volume24h"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>全数字货币占比：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.markeyRatio}" placeholder="" id="markeyRatio" name="markeyRatio"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>换手率：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.turnoverRate}" placeholder="" id="turnoverRate" name="turnoverRate"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>流通率：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.circulationRate}" placeholder="" id="circulationRate" name="circulationRate"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>团队信息：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.teamInfo}" placeholder="" id="teamInfo" name="teamInfo"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>源码信息：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.github}" placeholder="" id="github" name="github"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>reddit：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.reddit}" placeholder="" id="reddit" name="reddit"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>twitter：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.twitter}" placeholder="" id="twitter" name="twitter"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>facebook：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.facebook}" placeholder="" id="facebook" name="facebook"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>主页：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.website}" placeholder="" id="website" name="website"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>白皮书：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.whitePaper}" placeholder="" id="whitePaper" name="whitePaper"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>区块浏览器：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.explorer}" placeholder="" id="explorer" name="explorer"></td>
+            </tr>
+            <tr>
+                <th class="text-r"><span class="c-red">*</span>币种介绍：</th>
+                <td><input type="text" style="width:300px" class="input-text" value="${coin.info}" placeholder="" id="info" name="info"></td>
+            </tr>
           <tr>
             <th></th>
             <td><button class="btn btn-success radius"  type="submit"><i class="icon-ok"></i> 确定</button></td>

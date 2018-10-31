@@ -39,7 +39,23 @@
         <th width="150">币种logo图片地址</th>
         <th width="90">获取交易信息</th>
         <th width="90">获取地址信息（余额）</th>
-        <th width="130">创建时间</th>
+        <th width="90">流通量</th>
+        <th width="90">市值</th>
+        <th width="90">24成交量</th>
+        <th width="90">总发行量</th>
+        <th width="90">全数字货币占比</th>
+        <th width="90">换手率</th>
+        <th width="90">流通率</th>
+        <th width="90">团队信息</th>
+        <th width="90">源码信息</th>
+        <th width="90">reddit</th>
+        <th width="90">twitter</th>
+        <th width="90">facebook</th>
+        <th width="90">主页</th>
+        <th width="90">白皮书</th>
+        <th width="90">区块浏览器</th>
+        <th width="90">币种介绍</th>
+        <th width="130">创建时间</th>、
         <th width="100">操作</th>
       </tr>
     </thead>
@@ -53,6 +69,22 @@
         <td><img src="${list.logoUrl}"></td>
         <td>${list.urlTransaction}</td>
         <td>${list.urlAddressinfo}</td>
+        <td>${list.circulatingSupply}</td>
+        <td>${list.marketCap}</td>
+        <td>${list.volume24h}</td>
+        <td>${list.maxSupply}</td>
+        <td>${list.markeyRatio}</td>
+        <td>${list.turnoverRate}</td>
+        <td>${list.circulationRate}</td>
+        <td>${list.teamInfo}</td>
+        <td>${list.github}</td>
+        <td>${list.reddit}</td>
+        <td>${list.twitter}</td>
+        <td>${list.facebook}</td>
+        <td>${list.website}</td>
+        <td>${list.whitePaper}</td>
+        <td>${list.explorer}</td>
+        <td>${list.info}</td>
         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.createtime}" /></td>
         <td>
           <a href="javascript:;" onclick="delUser(${list.id})" class="btn btn-danger radius">删除</a>
