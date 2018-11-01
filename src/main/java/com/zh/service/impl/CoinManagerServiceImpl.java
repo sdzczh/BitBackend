@@ -1,6 +1,8 @@
 package com.zh.service.impl;
 
+import com.zh.dao.CoinInfoMapper;
 import com.zh.dao.CoinManagerMapper;
+import com.zh.entity.CoinInfo;
 import com.zh.entity.CoinManager;
 import com.zh.service.CoinManagerService;
 import java.util.List;
@@ -13,12 +15,14 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * @author: autogeneration
- * @date: 2018-10-31 15:30:37
+ * @date: 2018-11-01 09:48:51
  **/ 
 @Service("coinManagerService")
 public class CoinManagerServiceImpl implements CoinManagerService {
     @Resource
     private CoinManagerMapper coinManagerMapper;
+    @Resource
+    private CoinInfoMapper coinInfoMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(CoinManagerServiceImpl.class);
 
@@ -65,5 +69,12 @@ public class CoinManagerServiceImpl implements CoinManagerService {
     @Override
     public int selectCount(Map<Object, Object> param) {
         return this.coinManagerMapper.selectCount(param);
+    }
+
+    @Override
+    public void insertManagerAndInfo(CoinManager coinManager, CoinInfo coinInfo) {
+        coinManagerMapper.insertSelective(coinManager);
+        coinInfo.setCoinId(coinManager.getId());
+        coinInfoMapper.insertSelective(coinInfo);
     }
 }

@@ -1,8 +1,10 @@
 package com.zh.controller;
 
+import com.zh.entity.CoinInfo;
 import com.zh.entity.CoinManager;
 import com.zh.entity.Manager;
 import com.zh.entity.User;
+import com.zh.service.CoinInfoService;
 import com.zh.service.CoinManagerService;
 import com.zh.service.ManagerService;
 import com.zh.service.UserService;
@@ -33,9 +35,11 @@ public class CoinController {
 
     @Autowired
     private CoinManagerService coinManagerService;
+    @Autowired
+    private CoinInfoService coinInfoService;
 
     /**
-     * 会员管理
+     * 币种管理
      * @return
      */
     @RequestMapping(value = "getCoinList", method = {RequestMethod.GET})
@@ -69,6 +73,14 @@ public class CoinController {
     @RequestMapping(value = "delCoin", method = {RequestMethod.POST})
     public String delUser(CoinManager coinManager) {
         coinManagerService.deleteByPrimaryKey(coinManager.getId());
+        Map map = new HashMap();
+        map.put("coinId", coinManager.getId());
+        List<CoinInfo> list = coinInfoService.selectAll(map);
+        Integer id = list == null || list.size() == 0 ? 0 : list.get(0).getId();
+        if(id == 0){
+            return "false";
+        }
+        coinInfoService.deleteByPrimaryKey(id);
         return "true";
     }
     @ResponseBody
@@ -104,12 +116,12 @@ public class CoinController {
     }
     @ResponseBody
     @RequestMapping("addCoin")
-    public String  fileUpload2(@RequestParam("file") CommonsMultipartFile file, CoinManager coinManager) throws IOException {
+    public String  fileUpload2(@RequestParam("file") CommonsMultipartFile file, CoinManager coinManager, CoinInfo coinInfo) throws IOException {
         String path="E:/"+new Date().getTime()+file.getOriginalFilename();
         coinManager.setLogoUrl(path);
         File newFile=new File(path);
         file.transferTo(newFile);
-        coinManagerService.insertSelective(coinManager);
+        coinManagerService.insertManagerAndInfo(coinManager, coinInfo);
         return "<center>SUCCESS</center>";
     }
 }

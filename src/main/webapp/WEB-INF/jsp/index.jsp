@@ -70,7 +70,10 @@
 		<dt><i class="Hui-iconfont">&#xe60d;</i> 币种管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 		<dd>
 			<ul>
-				<li><a data-href="${pageContext.request.contextPath}/coin/getCoinList.action" data-title="币种列表" href="javascript:;">会员列表</a></li>
+				<li><a data-href="${pageContext.request.contextPath}/coin/getCoinList.action" data-title="币种列表" href="javascript:;">币种列表</a></li>
+			</ul>
+			<ul>
+				<li><a data-href="${pageContext.request.contextPath}/coin/getCoinInfoList.action" data-title="币种信息列表" href="javascript:;">币种信息列表</a></li>
 			</ul>
 		</dd>
 	</dl>

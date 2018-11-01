@@ -19,7 +19,7 @@
 <body>
 <div class="pd-20">
   <div class="Huiform">
-    <form action="${pageContext.request.contextPath}/coin/addCoin.action" method="post"  enctype="multipart/form-data" id="fm">
+    <form action="${pageContext.request.contextPath}/coin/addCoinInfo.action" method="post"  enctype="multipart/form-data" id="fm">
       <table class="table table-bg">
         <tbody>
           <tr>

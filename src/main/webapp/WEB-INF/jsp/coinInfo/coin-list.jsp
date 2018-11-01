@@ -18,59 +18,52 @@
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 币种中心 <span class="c-gray en">&gt;</span> 币种管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
-  <form action="/coin/getCoinList.action" method="get">
+  <form action="/coin/getCoinInfoList.action" method="get">
   <div class="text-c">
-    <input type="text" class="input-text" style="width:250px" placeholder="输入币种名称" value="${name}" id="name" name="name">
-    <input type="text" class="input-text" style="width:250px" placeholder="输入币种d代码" value="${symbol}" id="symbol" name="symbol">
+    <input type="text" class="input-text" style="width:250px" placeholder="输入币种代码" value="${symbol}" id="symbol" name="symbol">
     <button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜币</button>
-
   </div>
   <div class="cl pd-5 bg-1 bk-gray mt-20">
-    <a href="javascript:;" onclick="addUser()" class="btn btn-primary radius"><i class="icon-plus"></i> 添加新币</a></span>
     <span class="r">共有数据：<strong>${count}</strong> 条</span>
   </div>
   <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
         <th width="80">ID</th>
-        <th width="100">币种名称</th>
         <th width="40">币种代码</th>
-        <th width="40">站点名称</th>
-        <th width="150">币种logo图片地址</th>
-        <th width="90">获取交易信息</th>
-        <th width="90">获取地址信息（余额）</th>
-        <th width="90">流通量</th>
-        <th width="90">市值</th>
-        <th width="90">24成交量</th>
-        <th width="90">总发行量</th>
-        <th width="90">全数字货币占比</th>
-        <th width="90">换手率</th>
-        <th width="90">流通率</th>
+        <th width="90">团队信息</th>
+        <th width="90">源码信息</th>
+        <th width="90">reddit</th>
+        <th width="90">twitter</th>
+        <th width="90">facebook</th>
+        <th width="90">主页</th>
+        <th width="90">白皮书</th>
+        <th width="90">区块浏览器</th>
+        <th width="90">币种介绍</th>
         <th width="130">创建时间</th>
-        <th width="100">操作</th>
+        <th width="90">操作</th>
       </tr>
     </thead>
     <tbody>
     <c:forEach items="${data}" var="list">
       <tr class="text-c">
         <td>${list.id}</td>
-        <td>${list.name}</td>
         <td>${list.symbol}</td>
-        <td>${list.websiteSlug}</td>
-        <td><img src="${list.logoUrl}"></td>
-        <td>${list.urlTransaction}</td>
-        <td>${list.urlAddressinfo}</td>
-        <td>${list.circulatingSupply}</td>
-        <td>${list.marketCap}</td>
-        <td>${list.volume24h}</td>
-        <td>${list.maxSupply}</td>
-        <td>${list.markeyRatio}</td>
-        <td>${list.turnoverRate}</td>
-        <td>${list.circulationRate}</td>
-        <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.createtime}" /></td>
+        <td>${list.team_info}</td>
+        <td>${list.github}</td>
+        <td>${list.reddit}</td>
+        <td>${list.twitter}</td>
+        <td>${list.facebook}</td>
+        <td>${list.website}</td>
+        <td>${list.white_paper}</td>
+        <td>${list.explorer}</td>
+        <td>${list.info}</td>
+        <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.createTime}" /></td>
         <td>
+<%--
           <a href="javascript:;" onclick="delUser(${list.id})" class="btn btn-danger radius">删除</a>
-          <a href="javascript:;" onclick="upUser(${list.id})" class="btn btn-primary radius">编辑</a>
+--%>
+          <a href="javascript:;" onclick="upUser(${list.id},'${list.symbol}')" class="btn btn-primary radius">编辑</a>
         </td>
       </tr>
     </c:forEach>
@@ -92,39 +85,17 @@
     pageNavObj.afterClick(pageNavCallBack);
 
     function pageNavCallBack(clickpage){
-        window.location.href = "${pageContext.request.contextPath}/coin/getCoinList.action?page="+(clickpage - 1)+"&rows=10&name="+$("#name").val()+"&symbol="+$("#symbol").val();
+        window.location.href = "${pageContext.request.contextPath}/coin/getCoinInfoList.action?page="+(clickpage - 1)+"&rows=10&symbol="+$("#symbol").val();
     }
 
-    function delUser(id){
-        layer.confirm('确定要删除？', function(){
-            $.post("${pageContext.request.contextPath}/coin/delCoin.action",{id : id}, function(result){
-                layer.msg('删除成功');
-                setTimeout(function(){window.location.reload();},1000)
-            })
-        });
-    }
-
-    function addUser(){
+    function upUser(id, symbol){
         parent.layer.open({
             type: 2,
             title: '添加',
             shadeClose: true,
             shade: 0.8,
             area: ['550px','450px'],
-            content: '${pageContext.request.contextPath}/coin/toAddCoin.action',
-            end: function () {
-                location.reload();
-            }
-        });
-    }
-    function upUser(id){
-        parent.layer.open({
-            type: 2,
-            title: '添加',
-            shadeClose: true,
-            shade: 0.8,
-            area: ['550px','450px'],
-            content: '${pageContext.request.contextPath}/coin/toUpdateCoin.action?id=' + id,
+            content: '${pageContext.request.contextPath}/coin/toUpdateCoinInfo.action?id=' + id + '&symbol='+symbol,
             end: function () {
                 location.reload();
             }
