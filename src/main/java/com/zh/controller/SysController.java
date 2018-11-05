@@ -43,8 +43,9 @@ public class SysController {
         rows = rows == null ? 10 : rows;
         param.put("firstResult", page * rows);
         param.put("maxResult", rows);
-        param.put("key", sysparams.getKeyname());
-        params.put("key", sysparams.getKeyname());
+        param.put("keyname", sysparams.getKeyname());
+        params.put("keyname", sysparams.getKeyname());
+        map.put("keyname", sysparams.getKeyname());
         List<Sysparams> list = sysparamsService.selectPaging(param);
         Integer count = sysparamsService.selectCount(params);
         map.put("data", list);

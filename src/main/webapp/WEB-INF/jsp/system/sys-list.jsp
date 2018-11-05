@@ -20,7 +20,7 @@
 <div class="pd-20">
   <form action="/system/getSysparamsList.action" method="get">
   <div class="text-c">
-    <input type="text" class="input-text" style="width:250px" placeholder="输入KEY" id="keyname" name="keyname">
+    <input type="text" class="input-text" style="width:250px" placeholder="输入KEY" id="keyname" name="keyname" value="${keyname}">
     <button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜索</button>
 
   </div>
