@@ -48,8 +48,8 @@
         <td>${list.keyval}</td>
         <td>${list.remark}</td>
         <td>
-          <c:if test="${list.type==0}">功能开关</c:if>
-          <c:if test="${list.type==1}">参数配置</c:if>
+          <c:if test="${list.type==0}"><span class="label label-secondary radius">功能开关</span></c:if>
+          <c:if test="${list.type==1}"><span class="label label-warning radius">参数配置</span></c:if>
         </td>
         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.createtime}" /></td>
         <td>
@@ -94,7 +94,7 @@
             title: '添加',
             shadeClose: true,
             shade: 0.8,
-            area: ['550px','450px'],
+            area: ['550px','350px'],
             content: '${pageContext.request.contextPath}/system/toAddSysparams.action',
             end: function () {
                 location.reload();
@@ -107,7 +107,7 @@
             title: '添加',
             shadeClose: true,
             shade: 0.8,
-            area: ['550px','450px'],
+            area: ['550px','350px'],
             content: '${pageContext.request.contextPath}/system/toUpdateSysparams.action?id=' + id,
             end: function () {
                 location.reload();

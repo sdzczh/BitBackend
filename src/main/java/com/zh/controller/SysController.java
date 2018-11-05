@@ -73,6 +73,9 @@ public class SysController {
     @ResponseBody
     @RequestMapping(value = "addSysparams", method = {RequestMethod.POST})
     public String addUser(Sysparams sysparams) throws Exception {
+        if(sysparams.getType() == 0){
+            sysparams.setKeyval("0");
+        }
         sysparamsService.insertSelective(sysparams);
         return "true";
     }

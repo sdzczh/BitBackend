@@ -14,7 +14,7 @@
 <!--[if IE 7]>
 <link href="http://www.bootcss.com/p/font-awesome/assets/css/font-awesome-ie7.min.css" rel="stylesheet" type="text/css" />
 <![endif]-->
-<title>添加用户</title>
+<title>添加配置</title>
 </head>
 <body>
 <div class="pd-20">
@@ -23,16 +23,26 @@
       <table class="table table-bg">
         <tbody>
           <tr>
-            <th width="120" class="text-r"><span class="c-red">*</span> 姓名：</th>
-            <td><input type="text" style="width:200px" class="input-text" value="" placeholder="" id="userName" name="userName" datatype="*2-16" nullmsg="姓名不能为空"></td>
+            <th width="120" class="text-r"><span class="c-red">*</span> 变量名：</th>
+            <td><input type="text" style="width:200px" class="input-text" value="" placeholder="" id="keyname" name="keyname" datatype="*2-16" nullmsg="姓名不能为空"></td>
           </tr>
           <tr>
-            <th class="text-r"><span class="c-red">*</span> 手机：</th>
-            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="phone" name="phone"></td>
+            <div class="radio-box" style="margin-left: 30px;">
+              <input type="radio" id="onoff" name="type" checked onclick="divClick();" value="0">
+              <label for="onoff">功能开关（默认为关，如有需要请自行打开）</label>
+            </div>
+            <div class="radio-box">
+              <input type="radio" id="sysparams" name="type"  onclick="divClick();" value="1">
+              <label for="sysparams">参数配置</label>
+            </div>
           </tr>
           <tr>
-            <th class="text-r"><span class="c-red">*</span>用户密码</th>
-            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="userPassword" name="userPassword"></td>
+            <th class="text-r" id="keyspan" style="display: none"><span class="c-red">*</span> 变量值：</th>
+            <td><input type="text" style="width:300px;display: none" class="input-text" value="" placeholder="" id="keyval" name="keyval"></td>
+          </tr>
+          <tr>
+            <th class="text-r"><span class="c-red">*</span>备注：</th>
+            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="remark" name="remark"></td>
           </tr>
           <tr>
             <th></th>
@@ -44,16 +54,53 @@
   </div>
 </div>
 <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/Validform_v5.3.2_min.js"></script> 
-<script type="text/javascript">
-$(".Huiform").Validform(); 
-</script>
 <script>
+  function divClick() {
+      var show="";
+      var apm = document.getElementsByName("type");
+      for(var i=0;i<apm.length;i++){
+          if(apm[i].checked) {
+              show = apm[i].value;
+          }
+      }
+      switch (show){
+          case '0':
+              document.getElementById("keyspan").style.display="none";
+              document.getElementById("keyval").style.display="none";
+              break;
+          case '1':
+              document.getElementById("keyval").style.display="block";
+              document.getElementById("keyspan").style.display="block";
+              break;
+          default:
+              document.getElementById("keyspan").style.display="none";
+              document.getElementById("keyval").style.display="none";
+              break;
+      }
+  }
+
+
     function sub() {
-        var phone = $("#phone").val();
-        var userName = $("#userName").val();
-        var userPassword = $("#userPassword").val();
-        $.post("${pageContext.request.contextPath}/user/addUser.action", {'phone' : phone, 'username' : userName, 'userpassword' : userPassword},
+        var remark = $("#remark").val();
+        var keyname = $("#keyname").val();
+        var apm = document.getElementsByName("type");
+        for(var i=0;i<apm.length;i++){
+            if(apm[i].checked) {
+                var type = apm[i].value;
+            }
+        }
+        if(type == 0){
+            var keyval = "";
+        }else{
+            var keyval = $("#keyval").val();
+        }
+
+        $.post("${pageContext.request.contextPath}/system/addSysparams.action", {
+                'keyname' : keyname,
+                'remark' : remark,
+                'keyval' : keyval,
+                type : type
+            },
         function (result) {
             layer.msg('添加成功');
         })
