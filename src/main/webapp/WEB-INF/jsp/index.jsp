@@ -67,7 +67,7 @@
 		</dd>
 	</dl>
 	<dl id="menu-coin">
-		<dt><i class="Hui-iconfont">&#xe60d;</i> 币种管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dt><i class="Hui-iconfont">&#xe63a;</i> 币种管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 		<dd>
 			<ul>
 				<li><a data-href="${pageContext.request.contextPath}/coin/getCoinList.action" data-title="币种列表" href="javascript:;">币种列表</a></li>
@@ -90,10 +90,16 @@
 			<dd>
 				<ul>
 					<li><a data-href="${pageContext.request.contextPath}/system/getSysparamsList.action" data-title="系统设置" href="javascript:void(0)">系统参数配置</a></li>
-					<li><a data-href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
-					<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
-					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
-					<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
+			</ul>
+		</dd>
+	</dl>
+		<dl id="menu-log">
+			<dt><i class="Hui-iconfont">&#xe616;</i> 日志管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="${pageContext.request.contextPath}/log/getBackloginLogList.action" data-title="后台登录日志" href="javascript:void(0)">后台登录日志</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/log/getUserloginLogList.action" data-title="用户登录日志" href="javascript:void(0)">用户登录日志</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/log/getBackLogList.action" data-title="后台操作日志" href="javascript:void(0)">后台操作日志</a></li>
 			</ul>
 		</dd>
 	</dl>
