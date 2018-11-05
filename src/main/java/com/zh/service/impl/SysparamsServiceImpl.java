@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * 业务逻辑实现类:系统参数 sysparams
  * 
  * @author: autogeneration
- * @date: 2018-10-29 16:10:58
+ * @date: 2018-11-05 11:13:25
  **/ 
 @Service("sysparamsService")
 public class SysparamsServiceImpl implements SysparamsService {

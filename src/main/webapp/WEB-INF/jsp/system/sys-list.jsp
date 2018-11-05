@@ -13,39 +13,29 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <jsp:include page="../../../common/cssjs.jsp"/>
 
-<title>币种管理</title>
+<title>系统配置管理</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 币种中心 <span class="c-gray en">&gt;</span> 币种管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系统参数配置 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
-  <form action="/coin/getCoinList.action" method="get">
+  <form action="/system/getSysparamsList.action" method="get">
   <div class="text-c">
-    <input type="text" class="input-text" style="width:250px" placeholder="输入币种名称" value="${name}" id="name" name="name">
-    <input type="text" class="input-text" style="width:250px" placeholder="输入币种d代码" value="${symbol}" id="symbol" name="symbol">
-    <button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜币</button>
+    <input type="text" class="input-text" style="width:250px" placeholder="输入KEY" id="keyname" name="keyname">
+    <button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜索</button>
 
   </div>
   <div class="cl pd-5 bg-1 bk-gray mt-20">
-    <a href="javascript:;" onclick="addUser()" class="btn btn-primary radius"><i class="icon-plus"></i> 添加新币</a></span>
+    <a href="javascript:;" onclick="addUser()" class="btn btn-primary radius"><i class="icon-plus"></i> 添加配置</a></span>
     <span class="r">共有数据：<strong>${count}</strong> 条</span>
   </div>
-  <table class="table table-border table-bordered table-hover table-bg table-sort" style="table-layout: fixed;">
+  <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
         <th width="80">ID</th>
-        <th width="100">币种名称</th>
-        <th width="40">币种代码</th>
-        <th width="40">站点名称</th>
-        <th width="150">币种logo图片地址</th>
-        <th width="90">获取交易信息</th>
-        <th width="90">获取地址信息（余额）</th>
-        <th width="90">流通量</th>
-        <th width="90">市值</th>
-        <th width="90">24成交量</th>
-        <th width="90">总发行量</th>
-        <th width="90">全数字货币占比</th>
-        <th width="90">换手率</th>
-        <th width="90">流通率</th>
+        <th width="100">变量名</th>
+        <th width="40">变量值</th>
+        <th width="150">备注</th>
+        <th width="150">参数类型</th>
         <th width="130">创建时间</th>
         <th width="100">操作</th>
       </tr>
@@ -54,19 +44,13 @@
     <c:forEach items="${data}" var="list">
       <tr class="text-c">
         <td>${list.id}</td>
-        <td>${list.name}</td>
-        <td>${list.symbol}</td>
-        <td>${list.websiteSlug}</td>
-        <td><img src="${list.logoUrl}" style="width: 30px;height: 30px;"></td>
-        <td>${list.urlTransaction}</td>
-        <td>${list.urlAddressinfo}</td>
-        <td>${list.circulatingSupply}</td>
-        <td>${list.marketCap}</td>
-        <td>${list.volume24h}</td>
-        <td>${list.maxSupply}</td>
-        <td>${list.markeyRatio}</td>
-        <td>${list.turnoverRate}</td>
-        <td>${list.circulationRate}</td>
+        <td>${list.keyname}</td>
+        <td>${list.keyval}</td>
+        <td>${list.remark}</td>
+        <td>
+          <c:if test="${list.type==0}">功能开关</c:if>
+          <c:if test="${list.type==1}">参数配置</c:if>
+        </td>
         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.createtime}" /></td>
         <td>
           <a href="javascript:;" onclick="delUser(${list.id})" class="btn btn-danger radius">删除</a>
@@ -92,12 +76,12 @@
     pageNavObj.afterClick(pageNavCallBack);
 
     function pageNavCallBack(clickpage){
-        window.location.href = "${pageContext.request.contextPath}/coin/getCoinList.action?page="+(clickpage - 1)+"&rows=10&name="+$("#name").val()+"&symbol="+$("#symbol").val();
+        window.location.href = "${pageContext.request.contextPath}/system/getSysparamsList.action?page="+(clickpage - 1)+"&rows=10&keyname="+$("#keyname").val()
     }
 
     function delUser(id){
         layer.confirm('确定要删除？', function(){
-            $.post("${pageContext.request.contextPath}/coin/delCoin.action",{id : id}, function(result){
+            $.post("${pageContext.request.contextPath}/system/delSysparams.action",{id : id}, function(result){
                 layer.msg('删除成功');
                 setTimeout(function(){window.location.reload();},1000)
             })
@@ -111,7 +95,7 @@
             shadeClose: true,
             shade: 0.8,
             area: ['550px','450px'],
-            content: '${pageContext.request.contextPath}/coin/toAddCoin.action',
+            content: '${pageContext.request.contextPath}/system/toAddSysparams.action',
             end: function () {
                 location.reload();
             }
@@ -124,7 +108,7 @@
             shadeClose: true,
             shade: 0.8,
             area: ['550px','450px'],
-            content: '${pageContext.request.contextPath}/coin/toUpdateCoin.action?id=' + id,
+            content: '${pageContext.request.contextPath}/system/toUpdateSysparams.action?id=' + id,
             end: function () {
                 location.reload();
             }

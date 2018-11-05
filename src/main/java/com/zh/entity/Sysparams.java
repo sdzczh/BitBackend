@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Sysparams implements Serializable {
-    private static final long serialVersionUID = -7594036668242646382L;
+    private static final long serialVersionUID = -4419609014933864194L;
 
     private Integer id;
 
@@ -13,6 +13,8 @@ public class Sysparams implements Serializable {
     private String keyval;
 
     private String remark;
+
+    private Integer type;
 
     private Date createtime;
 
@@ -50,6 +52,14 @@ public class Sysparams implements Serializable {
         this.remark = remark == null ? null : remark.trim();
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     public Date getCreatetime() {
         return createtime;
     }
@@ -77,6 +87,7 @@ public class Sysparams implements Serializable {
         sb.append(", keyname=").append(keyname);
         sb.append(", keyval=").append(keyval);
         sb.append(", remark=").append(remark);
+        sb.append(", type=").append(type);
         sb.append(", createtime=").append(createtime);
         sb.append(", updatetime=").append(updatetime);
         sb.append("]");
