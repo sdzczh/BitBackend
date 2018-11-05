@@ -71,6 +71,14 @@ public class SysController {
         return "true";
     }
     @ResponseBody
+    @RequestMapping(value = "updateSysparamOnoff", method = {RequestMethod.POST})
+    public String updateSysparamOnoff(Integer id) throws Exception{
+        Sysparams sysparams = sysparamsService.selectByPrimaryKey(id);
+        sysparams.setKeyval(String.valueOf(1 - Integer.valueOf(sysparams.getKeyval())));
+        sysparamsService.updateByPrimaryKeySelective(sysparams);
+        return "true";
+    }
+    @ResponseBody
     @RequestMapping(value = "addSysparams", method = {RequestMethod.POST})
     public String addUser(Sysparams sysparams) throws Exception {
         if(sysparams.getType() == 0){

@@ -45,7 +45,17 @@
       <tr class="text-c">
         <td>${list.id}</td>
         <td>${list.keyname}</td>
-        <td>${list.keyval}</td>
+        <td>
+          <c:if test="${list.type==0}">
+              <c:if test="${list.keyval==0}">
+                <input class="btn btn-primary-outline radius" type="button" value="开" onclick="changeOnoff(${list.id})">
+              </c:if>
+              <c:if test="${list.keyval==1}">
+                <input class="btn btn-danger-outline radius" type="button" value="关" onclick="changeOnoff(${list.id})">
+              </c:if>
+        </td>
+          </c:if>
+        <c:if test="${list.type==1}">${list.keyval}</c:if>
         <td>${list.remark}</td>
         <td>
           <c:if test="${list.type==0}"><span class="label label-secondary radius">功能开关</span></c:if>
@@ -53,8 +63,10 @@
         </td>
         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.createtime}" /></td>
         <td>
+          <c:if test="${list.type==1}">
+            <a href="javascript:;" onclick="upUser(${list.id})" class="btn btn-primary radius">编辑</a>
+          </c:if>
           <a href="javascript:;" onclick="delUser(${list.id})" class="btn btn-danger radius">删除</a>
-          <a href="javascript:;" onclick="upUser(${list.id})" class="btn btn-primary radius">编辑</a>
         </td>
       </tr>
     </c:forEach>
@@ -68,6 +80,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/laypage/1.2/laypage.js"></script>
+<script>
+    $('#status').on('switch-change', function (e, data) {
+        var $el = $(data.el)
+            , value = data.value;
+        console.log(e, $el, value);
+        alert("!")
+    });
+</script>
 <script type="text/javascript">
     var pageNavObj = null;//用于储存分页对象
     var count = "${count}";
@@ -113,6 +133,13 @@
                 location.reload();
             }
         });
+    }
+
+    function changeOnoff(id) {
+        $.post("${pageContext.request.contextPath}/system/updateSysparamOnoff.action",{id : id}, function(result){
+            layer.msg('修改成功');
+            setTimeout(function(){window.location.reload();},1000)
+        })
     }
 </script>
 </body>

@@ -22,19 +22,19 @@
     <form action="/" method="post">
       <table class="table table-bg">
         <tbody>
-            <input type="hidden" value="${user.id}" name="id" id="id">
-          <tr>
-            <th width="120" class="text-r"><span class="c-red">*</span> 姓名：</th>
-            <td><input type="text" style="width:200px" class="input-text" value="${user.username}" placeholder="" id="userName" name="userName" datatype="*2-16" nullmsg="姓名不能为空"></td>
-          </tr>
-          <tr>
-            <th class="text-r"><span class="c-red">*</span> 手机：</th>
-            <td><input type="text" style="width:300px" class="input-text" value="${user.phone}" placeholder="" id="phone" name="phone"></td>
-          </tr>
-          <tr>
-            <th class="text-r"><span class="c-red">*</span>用户新密码</th>
-            <td><input type="text" style="width:300px" class="input-text" value="" placeholder="" id="userPassword" name="userPassword"></td>
-          </tr>
+            <input type="hidden" value="${sysparams.id}" name="id" id="id">
+            <tr>
+              <th width="120" class="text-r"><span class="c-red">*</span> 变量名：</th>
+              <td><input type="text" style="width:200px" class="input-text" value="${sysparams.keyname}" placeholder="" id="keyname" name="keyname" datatype="*2-16" nullmsg="姓名不能为空"></td>
+            </tr>
+            <tr>
+              <th class="text-r" id="keyspan" ><span class="c-red">*</span> 变量值：</th>
+              <td><input type="text" style="width:300px;" class="input-text" value="${sysparams.keyval}" placeholder="" id="keyval" name="keyval"></td>
+            </tr>
+            <tr>
+              <th class="text-r"><span class="c-red">*</span>备注：</th>
+              <td><input type="text" style="width:300px" class="input-text" value="${sysparams.remark}" placeholder="" id="remark" name="remark"></td>
+            </tr>
           <tr>
             <th></th>
             <td><button class="btn btn-success radius" onclick="sub()" type="button"><i class="icon-ok"></i> 确定</button></td>
