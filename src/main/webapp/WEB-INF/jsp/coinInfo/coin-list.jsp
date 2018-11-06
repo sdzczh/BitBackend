@@ -91,10 +91,10 @@
     function upUser(id, symbol){
         parent.layer.open({
             type: 2,
-            title: '添加',
+            title: '更新',
             shadeClose: true,
             shade: 0.8,
-            area: ['550px','450px'],
+            area: ['650px','850px'],
             content: '${pageContext.request.contextPath}/coin/toUpdateCoinInfo.action?id=' + id + '&symbol='+symbol,
             end: function () {
                 location.reload();

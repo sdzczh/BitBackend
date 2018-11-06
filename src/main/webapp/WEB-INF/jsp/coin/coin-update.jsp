@@ -33,7 +33,10 @@
             </tr>
             <tr>
                 <th class="text-r">新图片logo：</th>
-                <td><input type="file" class="" id="file" name="file" multiple></td>
+                <td>
+                    <input type="hidden" class="" value="${coin.logoUrl}" id="logoUrl" name="logoUrl" readonly="readonly">
+                    <input type="file" class="" id="file" name="file" multiple>
+                </td>
             </tr>
             <tr>
               <th class="text-r"><span class="c-red">*</span>站点名称：</th>

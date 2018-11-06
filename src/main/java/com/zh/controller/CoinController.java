@@ -4,10 +4,7 @@ import com.zh.entity.CoinInfo;
 import com.zh.entity.CoinManager;
 import com.zh.entity.Manager;
 import com.zh.entity.User;
-import com.zh.service.CoinInfoService;
-import com.zh.service.CoinManagerService;
-import com.zh.service.ManagerService;
-import com.zh.service.UserService;
+import com.zh.service.*;
 import com.zh.util.MD5;
 import com.zh.util.StrUtils;
 import org.apache.log4j.Logger;
@@ -37,7 +34,8 @@ public class CoinController {
     private CoinManagerService coinManagerService;
     @Autowired
     private CoinInfoService coinInfoService;
-
+    @Autowired
+    private LogAdminoperService logAdminoperService;
     /**
      * 币种管理
      * @return
@@ -71,7 +69,12 @@ public class CoinController {
      */
     @ResponseBody
     @RequestMapping(value = "delCoin", method = {RequestMethod.POST})
-    public String delUser(CoinManager coinManager) {
+    public String delUser(CoinManager coinManager, HttpSession session) {
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), coinManager.getId(), "删除币种");
         coinManagerService.deleteByPrimaryKey(coinManager.getId());
         Map map = new HashMap();
         map.put("coinId", coinManager.getId());
@@ -85,11 +88,18 @@ public class CoinController {
     }
     @ResponseBody
     @RequestMapping(value = "updateCoin", method = {RequestMethod.POST})
-    public String updateUser(@RequestParam("file") CommonsMultipartFile file, CoinManager coinManager) throws IOException{
-        String path="E:/"+new Date().getTime()+file.getOriginalFilename();
-        coinManager.setLogoUrl(path);
-        File newFile=new File(path);
-        file.transferTo(newFile);
+    public String updateUser(@RequestParam("file") CommonsMultipartFile file, CoinManager coinManager, HttpSession session) throws IOException{
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), coinManager.getId(), "更新币种信息");
+        if(!StrUtils.isBlank(file.getOriginalFilename())) {
+            String path = "E:/" + new Date().getTime() + file.getOriginalFilename();
+            coinManager.setLogoUrl(path);
+            File newFile = new File(path);
+            file.transferTo(newFile);
+        }
         coinManagerService.updateByPrimaryKeySelective(coinManager);
         return "<center>SUCCESS</center>";
     }
@@ -103,7 +113,7 @@ public class CoinController {
     public String toAddUser() {
         return "coin/coin-add";
     }
- @RequestMapping(value = "toa", method = {RequestMethod.GET})
+    @RequestMapping(value = "toa", method = {RequestMethod.GET})
     public String toa() {
         return "coin/a";
     }
@@ -116,7 +126,12 @@ public class CoinController {
     }
     @ResponseBody
     @RequestMapping("addCoin")
-    public String  fileUpload2(@RequestParam("file") CommonsMultipartFile file, CoinManager coinManager, CoinInfo coinInfo) throws IOException {
+    public String  fileUpload2(@RequestParam("file") CommonsMultipartFile file, CoinManager coinManager, CoinInfo coinInfo, HttpSession session) throws IOException {
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), coinManager.getId(), "添加币种");
         String path="E:/"+new Date().getTime()+file.getOriginalFilename();
         coinManager.setLogoUrl(path);
         File newFile=new File(path);

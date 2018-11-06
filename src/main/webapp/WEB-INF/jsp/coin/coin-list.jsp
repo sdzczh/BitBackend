@@ -110,7 +110,7 @@
             title: '添加',
             shadeClose: true,
             shade: 0.8,
-            area: ['550px','450px'],
+            area: ['650px','700px'],
             content: '${pageContext.request.contextPath}/coin/toAddCoin.action',
             end: function () {
                 location.reload();
@@ -120,10 +120,10 @@
     function upUser(id){
         parent.layer.open({
             type: 2,
-            title: '添加',
+            title: '更新',
             shadeClose: true,
             shade: 0.8,
-            area: ['550px','450px'],
+            area: ['650px','730px'],
             content: '${pageContext.request.contextPath}/coin/toUpdateCoin.action?id=' + id,
             end: function () {
                 location.reload();
