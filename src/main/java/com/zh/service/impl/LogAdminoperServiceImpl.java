@@ -66,4 +66,15 @@ public class LogAdminoperServiceImpl implements LogAdminoperService {
     public int selectCount(Map<Object, Object> param) {
         return this.logAdminoperMapper.selectCount(param);
     }
+
+    @Override
+    public void insertLog(String account, Integer operId, String oper) {
+        LogAdminoper logAdminoper = new LogAdminoper();
+        logAdminoper.setAccount(account);
+        logAdminoper.setOper(oper);
+        logAdminoper.setOperid(operId);
+        insertSelective(logAdminoper);
+    }
+
+
 }

@@ -1,8 +1,10 @@
 package com.zh.controller;
 
+import com.zh.entity.LogAdminoper;
 import com.zh.entity.Manager;
 import com.zh.entity.Sysparams;
 import com.zh.entity.User;
+import com.zh.service.LogAdminoperService;
 import com.zh.service.ManagerService;
 import com.zh.service.SysparamsService;
 import com.zh.service.UserService;
@@ -28,11 +30,15 @@ public class SysController {
 
     @Autowired
     private SysparamsService sysparamsService;
+    @Autowired
+    private LogAdminoperService logAdminoperService;
+
+    private static LogAdminoper logAdminoper = new LogAdminoper();
 
 
 
     /**
-     * 会员管理
+     * 系统参数管理
      * @return
      */
     @RequestMapping(value = "getSysparamsList", method = {RequestMethod.GET})
@@ -61,19 +67,33 @@ public class SysController {
      */
     @ResponseBody
     @RequestMapping(value = "delSysparams", method = {RequestMethod.POST})
-    public String delUser(Sysparams sysparams) {
-        sysparamsService.deleteByPrimaryKey(sysparams.getId());
+    public String delUser(Sysparams sysparams, HttpSession session) {
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), sysparams.getId(), "删除系统配置");
         return "true";
     }
     @ResponseBody
     @RequestMapping(value = "updateSyaparams", method = {RequestMethod.POST})
-    public String updateUser(Sysparams sysparams) throws Exception{
+    public String updateUser(Sysparams sysparams, HttpSession session) throws Exception{
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), sysparams.getId(), "修改系统参数");
         sysparamsService.updateByPrimaryKeySelective(sysparams);
         return "true";
     }
     @ResponseBody
     @RequestMapping(value = "updateSysparamOnoff", method = {RequestMethod.POST})
-    public String updateSysparamOnoff(Integer id) throws Exception{
+    public String updateSysparamOnoff(Integer id,HttpSession session) throws Exception{
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), id, "修改系统参数");
         Sysparams sysparams = sysparamsService.selectByPrimaryKey(id);
         sysparams.setKeyval(String.valueOf(1 - Integer.valueOf(sysparams.getKeyval())));
         sysparamsService.updateByPrimaryKeySelective(sysparams);
@@ -81,11 +101,16 @@ public class SysController {
     }
     @ResponseBody
     @RequestMapping(value = "addSysparams", method = {RequestMethod.POST})
-    public String addUser(Sysparams sysparams) throws Exception {
+    public String addUser(Sysparams sysparams, HttpSession session) throws Exception {
         if(sysparams.getType() == 0){
             sysparams.setKeyval("0");
         }
         sysparamsService.insertSelective(sysparams);
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), sysparams.getId(), "添加系统参数");
         return "true";
     }
     @RequestMapping(value = "querySysparamsById", method = {RequestMethod.GET})

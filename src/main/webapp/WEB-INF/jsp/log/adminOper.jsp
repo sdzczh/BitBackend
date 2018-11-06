@@ -37,6 +37,7 @@
       <tr class="text-c">
         <th width="80">ID</th>
         <th width="100">用户名</th>
+        <th width="100">管理表ID</th>
         <th width="100">操作</th>
         <th width="130">创建时间</th>
       </tr>
@@ -46,6 +47,7 @@
       <tr class="text-c">
         <td>${list.id}</td>
         <td>${list.account}</td>
+        <td>${list.operid}</td>
         <td>${list.oper}</td>
         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${list.createtime}" /></td>
       </tr>

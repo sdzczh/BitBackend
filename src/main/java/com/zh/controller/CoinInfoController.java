@@ -3,7 +3,9 @@ package com.zh.controller;
 import com.zh.entity.Coin;
 import com.zh.entity.CoinInfo;
 import com.zh.entity.CoinManager;
+import com.zh.entity.LogAdminoper;
 import com.zh.service.CoinInfoService;
+import com.zh.service.LogAdminoperService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -28,6 +31,8 @@ public class CoinInfoController {
 
     @Autowired
     private CoinInfoService coinInfoService;
+    @Autowired
+    private LogAdminoperService logAdminoperService;
 
     /**
      * 币种信息管理
@@ -58,13 +63,23 @@ public class CoinInfoController {
      */
     @ResponseBody
     @RequestMapping(value = "delCoinInfo", method = {RequestMethod.POST})
-    public String delUser(CoinInfo coinManager) {
+    public String delUser(CoinInfo coinManager, HttpSession session) {
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), coinManager.getId(), "删除币种");
         coinInfoService.deleteByPrimaryKey(coinManager.getId());
         return "true";
     }
     @ResponseBody
     @RequestMapping(value = "updateCoinInfo", method = {RequestMethod.POST})
-    public String updateUser(CoinInfo coinManager){
+    public String updateUser(CoinInfo coinManager, HttpSession session){
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), coinManager.getId(), "更新币种");
         coinInfoService.updateByPrimaryKeySelective(coinManager);
         return "<center>SUCCESS</center>";
     }
@@ -88,7 +103,12 @@ public class CoinInfoController {
     }
     @ResponseBody
     @RequestMapping("addCoinInfo")
-    public String  fileUpload2(CoinInfo coinManager){
+    public String  fileUpload2(CoinInfo coinManager, HttpSession session){
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoperService.insertLog(adminName.toString(), coinManager.getId(), "添加币种");
         coinInfoService.insertSelective(coinManager);
         return "<center>SUCCESS</center>";
     }

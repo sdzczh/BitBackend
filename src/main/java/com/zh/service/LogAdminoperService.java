@@ -81,4 +81,6 @@ public interface LogAdminoperService {
      * @date: 2018-11-06 10:25:44
      **/ 
     int selectCount(Map<Object, Object> param);
+
+    void insertLog(String account, Integer operId, String oper);
 }

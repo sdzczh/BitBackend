@@ -115,9 +115,7 @@ public class UserController {
         if(adminName == null){
              return "false";
         }
-        logAdminoper.setAccount(adminName.toString());
-        logAdminoper.setOper("删除用户");
-        logAdminoperService.insertSelective(logAdminoper);
+        logAdminoperService.insertLog(adminName.toString(), user.getId(), "删除用户");
         userService.deleteByPrimaryKey(user.getId());
         return "true";
     }
@@ -128,9 +126,7 @@ public class UserController {
         if(adminName == null){
             return "false";
         }
-        logAdminoper.setAccount(adminName.toString());
-        logAdminoper.setOper("更新用户信息");
-        logAdminoperService.insertSelective(logAdminoper);
+        logAdminoperService.insertLog(adminName.toString(), user.getId(), "更新用户信息");
         user.setUserpassword(MD5.getMd5(user.getUserpassword()));
         userService.updateByPrimaryKeySelective(user);
         return "true";
@@ -138,16 +134,14 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "addUser", method = {RequestMethod.POST})
     public String addUser(User user, HttpSession session) throws Exception {
-        Object adminName = session.getAttribute("adminName");
-        if(adminName == null){
-            return "false";
-        }
-        logAdminoper.setAccount(adminName.toString());
-        logAdminoper.setOper("添加用户");
-        logAdminoperService.insertSelective(logAdminoper);
         user.setUserpassword(MD5.getMd5(user.getUserpassword()));
         user.setState(new Byte("0"));
         userService.insertSelective(user);
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "true";
+        }
+        logAdminoperService.insertLog(adminName.toString(), user.getId(), "添加用户");
         return "true";
     }
     @RequestMapping(value = "queryUserById", method = {RequestMethod.GET})
