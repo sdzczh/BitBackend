@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.dao.LogAdminloginMapper">
+  <resultMap id="BaseResultMap" type="com.zh.entity.LogAdminlogin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="clientIp" jdbcType="VARCHAR" property="clientip" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, account, clientIp, createtime
+  </sql>
+  <insert id="insert" parameterType="com.zh.entity.LogAdminlogin">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into log_adminlogin (account, clientIp, createtime
+      )
+    values (#{account,jdbcType=VARCHAR}, #{clientip,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zh.entity.LogAdminlogin">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into log_adminlogin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="clientip != null">
+        clientIp,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="clientip != null">
+        #{clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zh.entity.LogAdminlogin">
+    update log_adminlogin
+    set account = #{account,jdbcType=VARCHAR},
+      clientIp = #{clientip,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.LogAdminlogin">
+    update log_adminlogin
+    <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="clientip != null">
+        clientIp = #{clientip,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from log_adminlogin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log_adminlogin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log_adminlogin
+    where 1=1 
+    <if test="account != null">
+       and  account = #{account,jdbcType=VARCHAR}
+    </if>
+    <if test="clientip != null">
+       and  clientIp = #{clientip,jdbcType=VARCHAR}
+    </if>
+    <if test="createtime != null">
+       and  createtime = #{createtime,jdbcType=TIMESTAMP}
+    </if>
+     order by id desc 
+  </select>
+  <select id="selectPaging" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log_adminlogin
+    where 1=1 
+    <if test="account != null">
+       and  account = #{account,jdbcType=VARCHAR}
+    </if>
+    <if test="clientip != null">
+       and  clientIp = #{clientip,jdbcType=VARCHAR}
+    </if>
+    <if test="datemin != null and datemin != ''">
+      and  createtime &gt;=  #{datemin,jdbcType=VARCHAR}
+    </if>
+    <if test="datemax != null and datemax != ''">
+      and  createtime &lt;=  #{datemax,jdbcType=VARCHAR}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    from log_adminlogin 
+    where 1=1 
+    <if test="account != null">
+       and  account = #{account,jdbcType=VARCHAR}
+    </if>
+    <if test="clientip != null">
+       and  clientIp = #{clientip,jdbcType=VARCHAR}
+    </if>
+    <if test="datemin != null and datemin != ''">
+      and  createtime &gt;=  #{datemin,jdbcType=VARCHAR}
+    </if>
+    <if test="datemax != null and datemax != ''">
+      and  createtime &lt;=  #{datemax,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

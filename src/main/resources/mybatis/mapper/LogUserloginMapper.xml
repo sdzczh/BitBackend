@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.dao.LogUserloginMapper">
+  <resultMap id="BaseResultMap" type="com.zh.entity.LogUserlogin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, phone, createtime
+  </sql>
+  <insert id="insert" parameterType="com.zh.entity.LogUserlogin">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into log_userlogin (phone, createtime)
+    values (#{phone,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zh.entity.LogUserlogin">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into log_userlogin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zh.entity.LogUserlogin">
+    update log_userlogin
+    set phone = #{phone,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.LogUserlogin">
+    update log_userlogin
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from log_userlogin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log_userlogin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log_userlogin
+    where 1=1 
+    <if test="phone != null">
+       and  phone = #{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="createtime != null">
+       and  createtime = #{createtime,jdbcType=TIMESTAMP}
+    </if>
+     order by id desc 
+  </select>
+  <select id="selectPaging" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from log_userlogin
+    where 1=1 
+    <if test="phone != null">
+       and  phone = #{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="datemin != null and datemin != ''">
+      and  createtime &gt;=  #{datemin,jdbcType=VARCHAR}
+    </if>
+    <if test="datemax != null and datemax != ''">
+      and  createtime &lt;=  #{datemax,jdbcType=VARCHAR}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    from log_userlogin 
+    where 1=1 
+    <if test="phone != null">
+       and  phone = #{phone,jdbcType=VARCHAR}
+    </if>
+    <if test="datemin != null and datemin != ''">
+      and  createtime &gt;=  #{datemin,jdbcType=VARCHAR}
+    </if>
+    <if test="datemax != null and datemax != ''">
+      and  createtime &lt;=  #{datemax,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>
