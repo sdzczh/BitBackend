@@ -1,9 +1,12 @@
 package com.zh.controller;
 
+import com.zh.entity.LogAdminlogin;
 import com.zh.entity.Manager;
 import com.zh.entity.User;
+import com.zh.service.LogAdminloginService;
 import com.zh.service.ManagerService;
 import com.zh.service.UserService;
+import com.zh.util.GetIP;
 import com.zh.util.MD5;
 import com.zh.util.StrUtils;
 import org.apache.log4j.Logger;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.net.util.IPAddressUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +34,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private ManagerService managerService;
+    @Autowired
+    private LogAdminloginService logAdminloginService;
 
     /**
      * 管理员登录
@@ -37,7 +44,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "login", method = {RequestMethod.POST})
-    public String helloworld(Manager manager, HttpSession session) {
+    public String helloworld(Manager manager, HttpSession session, HttpServletRequest request) {
         if(StrUtils.isBlank(manager.getAccount()) || StrUtils.isBlank(manager.getPassword())){
             session.removeAttribute("result");
             session.setAttribute("result", "用户名或密码不能为空");
@@ -51,6 +58,19 @@ public class UserController {
         }
         session.setAttribute("adminName", "admin");
         session.removeAttribute("result");
+        LogAdminlogin logAdminlogin = new LogAdminlogin();
+        logAdminlogin.setAccount(manager.getAccount());
+        GetIP getIP = new GetIP();
+        logAdminlogin.setClientip(getIP.getIpAddr(request));
+        logAdminloginService.insertSelective(logAdminlogin);
+        return "index";
+    }
+    @RequestMapping(value = "login", method = {RequestMethod.GET})
+    public String toIndex(HttpSession session) {
+        String adminName = session.getAttribute("adminName").toString();
+        if(StrUtils.isBlank(adminName)){
+            return "login";
+        }
         return "index";
     }
 
