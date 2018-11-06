@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * @author: autogeneration
- * @date: 2018-11-05 16:20:13
+ * @date: 2018-11-06 10:25:44
  **/ 
 @Service("logAdminoperService")
 public class LogAdminoperServiceImpl implements LogAdminoperService {

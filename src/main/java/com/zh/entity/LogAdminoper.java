@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class LogAdminoper implements Serializable {
-    private static final long serialVersionUID = -2433003759346549439L;
+    private static final long serialVersionUID = -5888763717762434066L;
 
     private Integer id;
 
     private String account;
+
+    private Integer operid;
 
     private String oper;
 
@@ -28,6 +30,14 @@ public class LogAdminoper implements Serializable {
 
     public void setAccount(String account) {
         this.account = account == null ? null : account.trim();
+    }
+
+    public Integer getOperid() {
+        return operid;
+    }
+
+    public void setOperid(Integer operid) {
+        this.operid = operid;
     }
 
     public String getOper() {
@@ -55,6 +65,7 @@ public class LogAdminoper implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append(", id=").append(id);
         sb.append(", account=").append(account);
+        sb.append(", operid=").append(operid);
         sb.append(", oper=").append(oper);
         sb.append(", createtime=").append(createtime);
         sb.append("]");

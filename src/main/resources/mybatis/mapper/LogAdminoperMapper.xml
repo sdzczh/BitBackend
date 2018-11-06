@@ -4,20 +4,21 @@
   <resultMap id="BaseResultMap" type="com.zh.entity.LogAdminoper">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="operId" jdbcType="INTEGER" property="operid" />
     <result column="oper" jdbcType="VARCHAR" property="oper" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, account, oper, createtime
+    id, account, operId, oper, createtime
   </sql>
   <insert id="insert" parameterType="com.zh.entity.LogAdminoper">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into log_adminoper (account, oper, createtime
-      )
-    values (#{account,jdbcType=VARCHAR}, #{oper,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
-      )
+    insert into log_adminoper (account, operId, oper, 
+      createtime)
+    values (#{account,jdbcType=VARCHAR}, #{operid,jdbcType=INTEGER}, #{oper,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zh.entity.LogAdminoper">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -27,6 +28,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="account != null">
         account,
+      </if>
+      <if test="operid != null">
+        operId,
       </if>
       <if test="oper != null">
         oper,
@@ -39,6 +43,9 @@
       <if test="account != null">
         #{account,jdbcType=VARCHAR},
       </if>
+      <if test="operid != null">
+        #{operid,jdbcType=INTEGER},
+      </if>
       <if test="oper != null">
         #{oper,jdbcType=VARCHAR},
       </if>
@@ -50,6 +57,7 @@
   <update id="updateByPrimaryKey" parameterType="com.zh.entity.LogAdminoper">
     update log_adminoper
     set account = #{account,jdbcType=VARCHAR},
+      operId = #{operid,jdbcType=INTEGER},
       oper = #{oper,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
@@ -59,6 +67,9 @@
     <set>
       <if test="account != null">
         account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="operid != null">
+        operId = #{operid,jdbcType=INTEGER},
       </if>
       <if test="oper != null">
         oper = #{oper,jdbcType=VARCHAR},
@@ -87,10 +98,13 @@
     <if test="account != null">
        and  account = #{account,jdbcType=VARCHAR}
     </if>
+    <if test="operid != null">
+       and  operId = #{operid,jdbcType=INTEGER}
+    </if>
     <if test="oper != null">
        and  oper = #{oper,jdbcType=VARCHAR}
     </if>
-    <if test="createtime != null and createtime != ''">
+    <if test="createtime != null">
        and  createtime = #{createtime,jdbcType=TIMESTAMP}
     </if>
      order by id desc 
@@ -103,26 +117,32 @@
     <if test="account != null">
        and  account = #{account,jdbcType=VARCHAR}
     </if>
+    <if test="operid != null">
+       and  operId = #{operid,jdbcType=INTEGER}
+    </if>
     <if test="oper != null and oper != ''">
-       and  oper like '%' #{oper,jdbcType=VARCHAR}'%'
+      and  oper like '%' #{oper,jdbcType=VARCHAR}'%'
     </if>
     <if test="datemin != null and datemin != ''">
-       and  createtime &gt;=  #{datemin,jdbcType=VARCHAR}
+      and  createtime &gt;=  #{datemin,jdbcType=VARCHAR}
     </if>
     <if test="datemax != null and datemax != ''">
-       and  createtime &lt;=  #{datemax,jdbcType=VARCHAR}
+      and  createtime &lt;=  #{datemax,jdbcType=VARCHAR}
     </if>
      order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
   </select>
   <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
     select count(*) 
     from log_adminoper 
-    where 1=1 
+    where 1=1
     <if test="account != null">
        and  account = #{account,jdbcType=VARCHAR}
     </if>
+    <if test="operid != null">
+       and  operId = #{operid,jdbcType=INTEGER}
+    </if>
     <if test="oper != null and oper != ''">
-       and  oper like '%' #{oper,jdbcType=VARCHAR}'%'
+      and  oper like '%' #{oper,jdbcType=VARCHAR}'%'
     </if>
     <if test="datemin != null and datemin != ''">
       and  createtime &gt;=  #{datemin,jdbcType=VARCHAR}

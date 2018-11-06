@@ -55,7 +55,15 @@ $(".Huiform").Validform();
         var userPassword = $("#userPassword").val();
         $.post("${pageContext.request.contextPath}/user/addUser.action", {'phone' : phone, 'username' : userName, 'userpassword' : userPassword},
         function (result) {
+            if(result == "true"){
             layer.msg('添加成功');
+            }
+            if(result == "false"){
+                layer.msg('添加失败，请重新登录');
+                setTimeout(function(){
+                    window.location.href = "${pageContext.request.contextPath}/user/exit.action"
+                },1000)
+            }
         })
     }
 </script>

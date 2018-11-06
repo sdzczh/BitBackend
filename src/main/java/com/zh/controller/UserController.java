@@ -1,9 +1,11 @@
 package com.zh.controller;
 
 import com.zh.entity.LogAdminlogin;
+import com.zh.entity.LogAdminoper;
 import com.zh.entity.Manager;
 import com.zh.entity.User;
 import com.zh.service.LogAdminloginService;
+import com.zh.service.LogAdminoperService;
 import com.zh.service.ManagerService;
 import com.zh.service.UserService;
 import com.zh.util.GetIP;
@@ -36,6 +38,10 @@ public class UserController {
     private ManagerService managerService;
     @Autowired
     private LogAdminloginService logAdminloginService;
+    @Autowired
+    private LogAdminoperService logAdminoperService;
+
+    private static LogAdminoper logAdminoper = new LogAdminoper();
 
     /**
      * 管理员登录
@@ -104,20 +110,41 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "delUser", method = {RequestMethod.POST})
-    public String delUser(User user) {
+    public String delUser(User user, HttpSession session) {
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+             return "false";
+        }
+        logAdminoper.setAccount(adminName.toString());
+        logAdminoper.setOper("删除用户");
+        logAdminoperService.insertSelective(logAdminoper);
         userService.deleteByPrimaryKey(user.getId());
         return "true";
     }
     @ResponseBody
     @RequestMapping(value = "updateUser", method = {RequestMethod.POST})
-    public String updateUser(User user) throws Exception{
+    public String updateUser(User user, HttpSession session) throws Exception{
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoper.setAccount(adminName.toString());
+        logAdminoper.setOper("更新用户信息");
+        logAdminoperService.insertSelective(logAdminoper);
         user.setUserpassword(MD5.getMd5(user.getUserpassword()));
         userService.updateByPrimaryKeySelective(user);
         return "true";
     }
     @ResponseBody
     @RequestMapping(value = "addUser", method = {RequestMethod.POST})
-    public String addUser(User user) throws Exception {
+    public String addUser(User user, HttpSession session) throws Exception {
+        Object adminName = session.getAttribute("adminName");
+        if(adminName == null){
+            return "false";
+        }
+        logAdminoper.setAccount(adminName.toString());
+        logAdminoper.setOper("添加用户");
+        logAdminoperService.insertSelective(logAdminoper);
         user.setUserpassword(MD5.getMd5(user.getUserpassword()));
         user.setState(new Byte("0"));
         userService.insertSelective(user);

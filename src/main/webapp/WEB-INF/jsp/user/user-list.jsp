@@ -83,8 +83,16 @@
     function delUser(id){
         layer.confirm('确定要删除？', function(){
             $.post("${pageContext.request.contextPath}/user/delUser.action",{id : id}, function(result){
-                layer.msg('删除成功');
-                setTimeout(function(){window.location.reload();},1000)
+                if(result == "true"){
+                    layer.msg('删除成功');
+                    setTimeout(function(){window.location.reload();},1000)
+                }
+                if(result == "false"){
+                    layer.msg('添加失败，请重新登录');
+                    setTimeout(function(){
+                        window.location.href = "${pageContext.request.contextPath}/user/exit.action"
+                    },1000)
+                }
             })
         });
     }
