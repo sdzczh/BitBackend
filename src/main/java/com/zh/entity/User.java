@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
-    private static final long serialVersionUID = 2383858220337774045L;
+    private static final long serialVersionUID = -3592208266266904950L;
 
     private Integer id;
 
@@ -32,7 +32,11 @@ public class User implements Serializable {
 
     private Date logintime;
 
-    private String devicenum;
+    private String deviceInfo;
+
+    private String deviceType;
+
+    private String deviceOs;
 
     private Byte state;
 
@@ -144,12 +148,28 @@ public class User implements Serializable {
         this.logintime = logintime;
     }
 
-    public String getDevicenum() {
-        return devicenum;
+    public String getDeviceInfo() {
+        return deviceInfo;
     }
 
-    public void setDevicenum(String devicenum) {
-        this.devicenum = devicenum == null ? null : devicenum.trim();
+    public void setDeviceInfo(String deviceInfo) {
+        this.deviceInfo = deviceInfo == null ? null : deviceInfo.trim();
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType == null ? null : deviceType.trim();
+    }
+
+    public String getDeviceOs() {
+        return deviceOs;
+    }
+
+    public void setDeviceOs(String deviceOs) {
+        this.deviceOs = deviceOs == null ? null : deviceOs.trim();
     }
 
     public Byte getState() {
@@ -196,7 +216,9 @@ public class User implements Serializable {
         sb.append(", tokencreatetime=").append(tokencreatetime);
         sb.append(", orderpwd=").append(orderpwd);
         sb.append(", logintime=").append(logintime);
-        sb.append(", devicenum=").append(devicenum);
+        sb.append(", deviceInfo=").append(deviceInfo);
+        sb.append(", deviceType=").append(deviceType);
+        sb.append(", deviceOs=").append(deviceOs);
         sb.append(", state=").append(state);
         sb.append(", createtime=").append(createtime);
         sb.append(", updatetime=").append(updatetime);

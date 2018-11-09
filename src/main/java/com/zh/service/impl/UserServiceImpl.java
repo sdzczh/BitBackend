@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * 业务逻辑实现类:用户表 user
  * 
  * @author: autogeneration
- * @date: 2018-10-29 16:25:47
+ * @date: 2018-11-09 11:30:33
  **/ 
 @Service("userService")
 public class UserServiceImpl implements UserService {
