@@ -16,7 +16,7 @@
     <result column="orderPwd" jdbcType="CHAR" property="orderpwd" />
     <result column="loginTime" jdbcType="TIMESTAMP" property="logintime" />
     <result column="device_info" jdbcType="VARCHAR" property="deviceInfo" />
-    <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+    <result column="device_type" jdbcType="INTEGER" property="deviceType" />
     <result column="device_os" jdbcType="VARCHAR" property="deviceOs" />
     <result column="state" jdbcType="TINYINT" property="state" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
@@ -42,7 +42,7 @@
       #{referenceid,jdbcType=INTEGER}, #{idcard,jdbcType=CHAR}, #{idstatus,jdbcType=TINYINT}, 
       #{headpath,jdbcType=VARCHAR}, #{secretkey,jdbcType=CHAR}, #{token,jdbcType=CHAR}, 
       #{tokencreatetime,jdbcType=TIMESTAMP}, #{orderpwd,jdbcType=CHAR}, #{logintime,jdbcType=TIMESTAMP}, 
-      #{deviceInfo,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, #{deviceOs,jdbcType=VARCHAR}, 
+      #{deviceInfo,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, #{deviceOs,jdbcType=VARCHAR}, 
       #{state,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -148,7 +148,7 @@
         #{deviceInfo,jdbcType=VARCHAR},
       </if>
       <if test="deviceType != null">
-        #{deviceType,jdbcType=VARCHAR},
+        #{deviceType,jdbcType=INTEGER},
       </if>
       <if test="deviceOs != null">
         #{deviceOs,jdbcType=VARCHAR},
@@ -179,7 +179,7 @@
       orderPwd = #{orderpwd,jdbcType=CHAR},
       loginTime = #{logintime,jdbcType=TIMESTAMP},
       device_info = #{deviceInfo,jdbcType=VARCHAR},
-      device_type = #{deviceType,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=INTEGER},
       device_os = #{deviceOs,jdbcType=VARCHAR},
       state = #{state,jdbcType=TINYINT},
       createTime = #{createtime,jdbcType=TIMESTAMP},
@@ -229,7 +229,7 @@
         device_info = #{deviceInfo,jdbcType=VARCHAR},
       </if>
       <if test="deviceType != null">
-        device_type = #{deviceType,jdbcType=VARCHAR},
+        device_type = #{deviceType,jdbcType=INTEGER},
       </if>
       <if test="deviceOs != null">
         device_os = #{deviceOs,jdbcType=VARCHAR},
@@ -301,7 +301,7 @@
        and  device_info = #{deviceInfo,jdbcType=VARCHAR}
     </if>
     <if test="deviceType != null">
-       and  device_type = #{deviceType,jdbcType=VARCHAR}
+       and  device_type = #{deviceType,jdbcType=INTEGER}
     </if>
     <if test="deviceOs != null">
        and  device_os = #{deviceOs,jdbcType=VARCHAR}
@@ -321,66 +321,6 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where 1=1
-    <if test="phone != null and phone != ''">
-      and  phone like '%' #{phone,jdbcType=CHAR} '%'
-    </if>
-    <if test="userpassword != null">
-       and  userPassword = #{userpassword,jdbcType=CHAR}
-    </if>
-    <if test="username != null">
-       and  userName = #{username,jdbcType=VARCHAR}
-    </if>
-    <if test="referenceid != null">
-       and  referenceId = #{referenceid,jdbcType=INTEGER}
-    </if>
-    <if test="idcard != null">
-       and  idCard = #{idcard,jdbcType=CHAR}
-    </if>
-    <if test="idstatus != null">
-       and  idStatus = #{idstatus,jdbcType=TINYINT}
-    </if>
-    <if test="headpath != null">
-       and  headPath = #{headpath,jdbcType=VARCHAR}
-    </if>
-    <if test="secretkey != null">
-       and  secretKey = #{secretkey,jdbcType=CHAR}
-    </if>
-    <if test="token != null">
-       and  token = #{token,jdbcType=CHAR}
-    </if>
-    <if test="tokencreatetime != null">
-       and  tokenCreateTime = #{tokencreatetime,jdbcType=TIMESTAMP}
-    </if>
-    <if test="orderpwd != null">
-       and  orderPwd = #{orderpwd,jdbcType=CHAR}
-    </if>
-    <if test="logintime != null">
-       and  loginTime = #{logintime,jdbcType=TIMESTAMP}
-    </if>
-    <if test="deviceInfo != null">
-       and  device_info = #{deviceInfo,jdbcType=VARCHAR}
-    </if>
-    <if test="deviceType != null">
-       and  device_type = #{deviceType,jdbcType=VARCHAR}
-    </if>
-    <if test="deviceOs != null">
-       and  device_os = #{deviceOs,jdbcType=VARCHAR}
-    </if>
-    <if test="state != null">
-       and  state = #{state,jdbcType=TINYINT}
-    </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
-    </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
-    </if>
-     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
-  </select>
-  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
-    select count(*) 
-    from user 
     where 1=1 
     <if test="phone != null and phone != ''">
        and  phone like '%' #{phone,jdbcType=CHAR} '%'
@@ -422,7 +362,67 @@
        and  device_info = #{deviceInfo,jdbcType=VARCHAR}
     </if>
     <if test="deviceType != null">
-       and  device_type = #{deviceType,jdbcType=VARCHAR}
+       and  device_type = #{deviceType,jdbcType=INTEGER}
+    </if>
+    <if test="deviceOs != null">
+       and  device_os = #{deviceOs,jdbcType=VARCHAR}
+    </if>
+    <if test="state != null">
+       and  state = #{state,jdbcType=TINYINT}
+    </if>
+    <if test="createtime != null">
+       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatetime != null">
+       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    from user 
+    where 1=1
+    <if test="phone != null and phone != ''">
+      and  phone like '%' #{phone,jdbcType=CHAR} '%'
+    </if>
+    <if test="userpassword != null">
+       and  userPassword = #{userpassword,jdbcType=CHAR}
+    </if>
+    <if test="username != null">
+       and  userName = #{username,jdbcType=VARCHAR}
+    </if>
+    <if test="referenceid != null">
+       and  referenceId = #{referenceid,jdbcType=INTEGER}
+    </if>
+    <if test="idcard != null">
+       and  idCard = #{idcard,jdbcType=CHAR}
+    </if>
+    <if test="idstatus != null">
+       and  idStatus = #{idstatus,jdbcType=TINYINT}
+    </if>
+    <if test="headpath != null">
+       and  headPath = #{headpath,jdbcType=VARCHAR}
+    </if>
+    <if test="secretkey != null">
+       and  secretKey = #{secretkey,jdbcType=CHAR}
+    </if>
+    <if test="token != null">
+       and  token = #{token,jdbcType=CHAR}
+    </if>
+    <if test="tokencreatetime != null">
+       and  tokenCreateTime = #{tokencreatetime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="orderpwd != null">
+       and  orderPwd = #{orderpwd,jdbcType=CHAR}
+    </if>
+    <if test="logintime != null">
+       and  loginTime = #{logintime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="deviceInfo != null">
+       and  device_info = #{deviceInfo,jdbcType=VARCHAR}
+    </if>
+    <if test="deviceType != null">
+       and  device_type = #{deviceType,jdbcType=INTEGER}
     </if>
     <if test="deviceOs != null">
        and  device_os = #{deviceOs,jdbcType=VARCHAR}

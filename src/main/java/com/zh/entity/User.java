@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
-    private static final long serialVersionUID = -3592208266266904950L;
+    private static final long serialVersionUID = 7729478388653371320L;
 
     private Integer id;
 
@@ -34,7 +34,7 @@ public class User implements Serializable {
 
     private String deviceInfo;
 
-    private String deviceType;
+    private Integer deviceType;
 
     private String deviceOs;
 
@@ -156,12 +156,12 @@ public class User implements Serializable {
         this.deviceInfo = deviceInfo == null ? null : deviceInfo.trim();
     }
 
-    public String getDeviceType() {
+    public Integer getDeviceType() {
         return deviceType;
     }
 
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType == null ? null : deviceType.trim();
+    public void setDeviceType(Integer deviceType) {
+        this.deviceType = deviceType;
     }
 
     public String getDeviceOs() {
