@@ -117,6 +117,7 @@
             }
         });
     }
+
     function upUser(id){
         parent.layer.open({
             type: 2,
