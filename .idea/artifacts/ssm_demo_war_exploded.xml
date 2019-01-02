@@ -4,7 +4,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="ssm-demo" />
+          <element id="module-output" name="BitBackend" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.14.RELEASE" />
@@ -38,7 +38,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/xyg-first-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="ssm-demo/web/Web" />
+      <element id="javaee-facet-resources" facet="BitBackend/web/Web" />
     </root>
   </artifact>
 </component>

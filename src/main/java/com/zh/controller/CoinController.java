@@ -1,9 +1,6 @@
 package com.zh.controller;
 
-import com.zh.entity.CoinInfo;
-import com.zh.entity.CoinManager;
-import com.zh.entity.Manager;
-import com.zh.entity.User;
+import com.zh.entity.*;
 import com.zh.service.*;
 import com.zh.util.MD5;
 import com.zh.util.StrUtils;
@@ -34,6 +31,8 @@ public class CoinController {
     private CoinManagerService coinManagerService;
     @Autowired
     private CoinInfoService coinInfoService;
+    @Autowired
+    private CoinDataService coinDataService;
     @Autowired
     private LogAdminoperService logAdminoperService;
     /**
@@ -138,5 +137,27 @@ public class CoinController {
         file.transferTo(newFile);
         coinManagerService.insertManagerAndInfo(coinManager, coinInfo);
         return "<center>SUCCESS</center>";
+    }
+    /**
+     * 币种数据统计
+     * @return
+     */
+    @RequestMapping(value = "getCoinDataList", method = {RequestMethod.GET})
+    public String getCoinDataList(CoinData coinData, Map<String, Object> map, Integer page, Integer rows) {
+        Map<Object, Object> param = new HashMap();
+        Map<Object, Object> params = new HashMap();
+        page = page == null ? 0 : page;
+        rows = rows == null ? 10 : rows;
+        param.put("firstResult", page * rows);
+        param.put("maxResult", rows);
+        param.put("coin", coinData.getCoin());
+        List<CoinData> list = coinDataService.selectPaging(param);
+        Integer count = coinDataService.selectCount(params);
+        map.put("data", list);
+        map.put("count", count);
+        map.put("page", page);
+        map.put("rows",rows);
+        map.put("coin", coinData.getCoin());
+        return "coin/coinData-list";
     }
 }

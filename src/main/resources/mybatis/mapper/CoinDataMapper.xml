@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.dao.CoinDataMapper">
+  <resultMap id="BaseResultMap" type="com.zh.entity.CoinData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="exchangeId" jdbcType="INTEGER" property="exchangeid" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="price_usdt" jdbcType="VARCHAR" property="priceUsdt" />
+    <result column="price_change" jdbcType="VARCHAR" property="priceChange" />
+    <result column="price_change_percent" jdbcType="VARCHAR" property="priceChangePercent" />
+    <result column="day_high" jdbcType="VARCHAR" property="dayHigh" />
+    <result column="day_low" jdbcType="VARCHAR" property="dayLow" />
+    <result column="day_volume" jdbcType="VARCHAR" property="dayVolume" />
+    <result column="market_cap" jdbcType="VARCHAR" property="marketCap" />
+    <result column="circulation" jdbcType="VARCHAR" property="circulation" />
+    <result column="rank" jdbcType="VARCHAR" property="rank" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, coin, exchangeId, price, price_usdt, price_change, price_change_percent, day_high, 
+    day_low, day_volume, market_cap, circulation, rank
+  </sql>
+  <insert id="insert" parameterType="com.zh.entity.CoinData">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into coin_data (coin, exchangeId, price, 
+      price_usdt, price_change, price_change_percent, 
+      day_high, day_low, day_volume, 
+      market_cap, circulation, rank
+      )
+    values (#{coin,jdbcType=VARCHAR}, #{exchangeid,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, 
+      #{priceUsdt,jdbcType=VARCHAR}, #{priceChange,jdbcType=VARCHAR}, #{priceChangePercent,jdbcType=VARCHAR}, 
+      #{dayHigh,jdbcType=VARCHAR}, #{dayLow,jdbcType=VARCHAR}, #{dayVolume,jdbcType=VARCHAR}, 
+      #{marketCap,jdbcType=VARCHAR}, #{circulation,jdbcType=VARCHAR}, #{rank,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zh.entity.CoinData">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into coin_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coin != null">
+        coin,
+      </if>
+      <if test="exchangeid != null">
+        exchangeId,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="priceUsdt != null">
+        price_usdt,
+      </if>
+      <if test="priceChange != null">
+        price_change,
+      </if>
+      <if test="priceChangePercent != null">
+        price_change_percent,
+      </if>
+      <if test="dayHigh != null">
+        day_high,
+      </if>
+      <if test="dayLow != null">
+        day_low,
+      </if>
+      <if test="dayVolume != null">
+        day_volume,
+      </if>
+      <if test="marketCap != null">
+        market_cap,
+      </if>
+      <if test="circulation != null">
+        circulation,
+      </if>
+      <if test="rank != null">
+        rank,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coin != null">
+        #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeid != null">
+        #{exchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="priceUsdt != null">
+        #{priceUsdt,jdbcType=VARCHAR},
+      </if>
+      <if test="priceChange != null">
+        #{priceChange,jdbcType=VARCHAR},
+      </if>
+      <if test="priceChangePercent != null">
+        #{priceChangePercent,jdbcType=VARCHAR},
+      </if>
+      <if test="dayHigh != null">
+        #{dayHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="dayLow != null">
+        #{dayLow,jdbcType=VARCHAR},
+      </if>
+      <if test="dayVolume != null">
+        #{dayVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCap != null">
+        #{marketCap,jdbcType=VARCHAR},
+      </if>
+      <if test="circulation != null">
+        #{circulation,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zh.entity.CoinData">
+    update coin_data
+    set coin = #{coin,jdbcType=VARCHAR},
+      exchangeId = #{exchangeid,jdbcType=INTEGER},
+      price = #{price,jdbcType=VARCHAR},
+      price_usdt = #{priceUsdt,jdbcType=VARCHAR},
+      price_change = #{priceChange,jdbcType=VARCHAR},
+      price_change_percent = #{priceChangePercent,jdbcType=VARCHAR},
+      day_high = #{dayHigh,jdbcType=VARCHAR},
+      day_low = #{dayLow,jdbcType=VARCHAR},
+      day_volume = #{dayVolume,jdbcType=VARCHAR},
+      market_cap = #{marketCap,jdbcType=VARCHAR},
+      circulation = #{circulation,jdbcType=VARCHAR},
+      rank = #{rank,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.CoinData">
+    update coin_data
+    <set>
+      <if test="coin != null">
+        coin = #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeid != null">
+        exchangeId = #{exchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="priceUsdt != null">
+        price_usdt = #{priceUsdt,jdbcType=VARCHAR},
+      </if>
+      <if test="priceChange != null">
+        price_change = #{priceChange,jdbcType=VARCHAR},
+      </if>
+      <if test="priceChangePercent != null">
+        price_change_percent = #{priceChangePercent,jdbcType=VARCHAR},
+      </if>
+      <if test="dayHigh != null">
+        day_high = #{dayHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="dayLow != null">
+        day_low = #{dayLow,jdbcType=VARCHAR},
+      </if>
+      <if test="dayVolume != null">
+        day_volume = #{dayVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="marketCap != null">
+        market_cap = #{marketCap,jdbcType=VARCHAR},
+      </if>
+      <if test="circulation != null">
+        circulation = #{circulation,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        rank = #{rank,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coin_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coin_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coin_data
+    where 1=1 
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="priceUsdt != null">
+       and  price_usdt = #{priceUsdt,jdbcType=VARCHAR}
+    </if>
+    <if test="priceChange != null">
+       and  price_change = #{priceChange,jdbcType=VARCHAR}
+    </if>
+    <if test="priceChangePercent != null">
+       and  price_change_percent = #{priceChangePercent,jdbcType=VARCHAR}
+    </if>
+    <if test="dayHigh != null">
+       and  day_high = #{dayHigh,jdbcType=VARCHAR}
+    </if>
+    <if test="dayLow != null">
+       and  day_low = #{dayLow,jdbcType=VARCHAR}
+    </if>
+    <if test="dayVolume != null">
+       and  day_volume = #{dayVolume,jdbcType=VARCHAR}
+    </if>
+    <if test="marketCap != null">
+       and  market_cap = #{marketCap,jdbcType=VARCHAR}
+    </if>
+    <if test="circulation != null">
+       and  circulation = #{circulation,jdbcType=VARCHAR}
+    </if>
+    <if test="rank != null">
+       and  rank = #{rank,jdbcType=VARCHAR}
+    </if>
+     order by id desc 
+  </select>
+  <select id="selectPaging" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coin_data
+    where 1=1 
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="priceUsdt != null">
+       and  price_usdt = #{priceUsdt,jdbcType=VARCHAR}
+    </if>
+    <if test="priceChange != null">
+       and  price_change = #{priceChange,jdbcType=VARCHAR}
+    </if>
+    <if test="priceChangePercent != null">
+       and  price_change_percent = #{priceChangePercent,jdbcType=VARCHAR}
+    </if>
+    <if test="dayHigh != null">
+       and  day_high = #{dayHigh,jdbcType=VARCHAR}
+    </if>
+    <if test="dayLow != null">
+       and  day_low = #{dayLow,jdbcType=VARCHAR}
+    </if>
+    <if test="dayVolume != null">
+       and  day_volume = #{dayVolume,jdbcType=VARCHAR}
+    </if>
+    <if test="marketCap != null">
+       and  market_cap = #{marketCap,jdbcType=VARCHAR}
+    </if>
+    <if test="circulation != null">
+       and  circulation = #{circulation,jdbcType=VARCHAR}
+    </if>
+    <if test="rank != null">
+       and  rank = #{rank,jdbcType=VARCHAR}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    from coin_data 
+    where 1=1 
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="priceUsdt != null">
+       and  price_usdt = #{priceUsdt,jdbcType=VARCHAR}
+    </if>
+    <if test="priceChange != null">
+       and  price_change = #{priceChange,jdbcType=VARCHAR}
+    </if>
+    <if test="priceChangePercent != null">
+       and  price_change_percent = #{priceChangePercent,jdbcType=VARCHAR}
+    </if>
+    <if test="dayHigh != null">
+       and  day_high = #{dayHigh,jdbcType=VARCHAR}
+    </if>
+    <if test="dayLow != null">
+       and  day_low = #{dayLow,jdbcType=VARCHAR}
+    </if>
+    <if test="dayVolume != null">
+       and  day_volume = #{dayVolume,jdbcType=VARCHAR}
+    </if>
+    <if test="marketCap != null">
+       and  market_cap = #{marketCap,jdbcType=VARCHAR}
+    </if>
+    <if test="circulation != null">
+       and  circulation = #{circulation,jdbcType=VARCHAR}
+    </if>
+    <if test="rank != null">
+       and  rank = #{rank,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>
