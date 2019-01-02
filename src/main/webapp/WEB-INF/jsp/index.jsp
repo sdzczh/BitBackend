@@ -78,6 +78,9 @@
 			<ul>
 				<li><a data-href="${pageContext.request.contextPath}/coin/getCoinDataList.action" data-title="币种数据统计" href="javascript:;">币种数据统计</a></li>
 			</ul>
+			<ul>
+				<li><a data-href="${pageContext.request.contextPath}/coin/getCoinPrice.action" data-title="币种价格" href="javascript:;">币种价格</a></li>
+			</ul>
 		</dd>
 	</dl>
 	<dl id="menu-count">

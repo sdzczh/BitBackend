@@ -34,6 +34,8 @@ public class CoinController {
     @Autowired
     private CoinDataService coinDataService;
     @Autowired
+    private CoinPriceService coinPriceService;
+    @Autowired
     private LogAdminoperService logAdminoperService;
     /**
      * 币种管理
@@ -159,5 +161,25 @@ public class CoinController {
         map.put("rows",rows);
         map.put("coin", coinData.getCoin());
         return "coin/coinData-list";
+    }
+    /**
+     * 币种价格
+     * @return
+     */
+    @RequestMapping(value = "getCoinPrice", method = {RequestMethod.GET})
+    public String getCoinPrice(Map<String, Object> map, Integer page, Integer rows) {
+        Map<Object, Object> param = new HashMap();
+        Map<Object, Object> params = new HashMap();
+        page = page == null ? 0 : page;
+        rows = rows == null ? 10 : rows;
+        param.put("firstResult", page * rows);
+        param.put("maxResult", rows);
+        List<CoinPrice> list = coinPriceService.selectPaging(param);
+        Integer count = coinPriceService.selectCount(params);
+        map.put("data", list);
+        map.put("count", count);
+        map.put("page", page);
+        map.put("rows",rows);
+        return "coin/coinPrice-list";
     }
 }
