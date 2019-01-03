@@ -92,6 +92,12 @@
 			<ul>
 				<li><a data-href="${pageContext.request.contextPath}/count/getDayStateList.action" data-title="当日数据统计" href="javascript:;">当日数据统计</a></li>
 			</ul>
+            <ul>
+				<li><a data-href="${pageContext.request.contextPath}/count/getPlantFundsList.action" data-title="平台资金流动" href="javascript:;">平台资金流动</a></li>
+			</ul>
+            <ul>
+				<li><a data-href="${pageContext.request.contextPath}/count/getSuperOrderList.action" data-title="超级大单列表" href="javascript:;">超级大单列表</a></li>
+			</ul>
 		</dd>
 	</dl>
 		<dl id="menu-admin">

@@ -1,12 +1,7 @@
 package com.zh.controller;
 
-import com.zh.entity.CapDistribution;
-import com.zh.entity.DayState;
-import com.zh.entity.Manager;
-import com.zh.entity.User;
-import com.zh.service.CapDistributionService;
-import com.zh.service.DayStateService;
-import com.zh.service.ManagerService;
+import com.zh.entity.*;
+import com.zh.service.*;
 import com.zh.service.impl.CapDistributionServiceImpl;
 import com.zh.util.MD5;
 import org.apache.log4j.Logger;
@@ -15,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.plugin.services.PlatformService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +26,10 @@ public class CountController {
     private CapDistributionService capDistributionService;
     @Autowired
     private DayStateService dayStateService;
+    @Autowired
+    private PlatformFundsService platformFundsService;
+    @Autowired
+    private SuperOrderService superOrderService;
 
     /**
      * 资金分布
@@ -53,7 +53,7 @@ public class CountController {
         return "count/capDistribution";
     }
     /**
-     * 资金分布
+     * 当日资金变化
      * @return
      */
     @RequestMapping(value = "getDayStateList", method = {RequestMethod.GET})
@@ -72,6 +72,48 @@ public class CountController {
         map.put("page", page);
         map.put("rows",rows);
         return "count/dayState";
+    }
+    /**
+     * 平台资金流动
+     * @return
+     */
+    @RequestMapping(value = "getPlantFundsList", method = {RequestMethod.GET})
+    public String getPlantFundsList(Map<String, Object> map, Integer page, Integer rows) {
+        Map<Object, Object> param = new HashMap();
+        Map<Object, Object> params = new HashMap();
+        page = page == null ? 0 : page;
+        rows = rows == null ? 10 : rows;
+        param.put("firstResult", page * rows);
+        param.put("maxResult", rows);
+        List<PlatformFunds> list = platformFundsService.selectPaging(param);
+        Integer count = platformFundsService.selectCount(params);
+        map.put("data", list);
+        map.put("count", count);
+        map.put("page", page);
+        map.put("rows",rows);
+        return "count/platFunds";
+    }
+
+    /**
+     * 超级大单列表
+     * @return
+     */
+    @RequestMapping(value = "getSuperOrderList", method = {RequestMethod.GET})
+    public String getSuperOrderList(SuperOrder superOrder, Map<String, Object> map, Integer page, Integer rows) {
+        Map<Object, Object> param = new HashMap();
+        Map<Object, Object> params = new HashMap();
+        page = page == null ? 0 : page;
+        rows = rows == null ? 10 : rows;
+        param.put("firstResult", page * rows);
+        param.put("maxResult", rows);
+        param.put("coin", superOrder.getCoin());
+        List<SuperOrder> list = superOrderService.selectPaging(param);
+        Integer count = superOrderService.selectCount(params);
+        map.put("data", list);
+        map.put("count", count);
+        map.put("page", page);
+        map.put("rows",rows);
+        return "count/superOrder";
     }
 
 

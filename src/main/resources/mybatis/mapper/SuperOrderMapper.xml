@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.dao.SuperOrderMapper">
+  <resultMap id="BaseResultMap" type="com.zh.entity.SuperOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="exchangeId" jdbcType="INTEGER" property="exchangeid" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="side" jdbcType="VARCHAR" property="side" />
+    <result column="total" jdbcType="VARCHAR" property="total" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, coin, exchangeId, price, size, side, total, time
+  </sql>
+  <insert id="insert" parameterType="com.zh.entity.SuperOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into super_order (coin, exchangeId, price, 
+      size, side, total, 
+      time)
+    values (#{coin,jdbcType=VARCHAR}, #{exchangeid,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{side,jdbcType=VARCHAR}, #{total,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zh.entity.SuperOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into super_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coin != null">
+        coin,
+      </if>
+      <if test="exchangeid != null">
+        exchangeId,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="side != null">
+        side,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coin != null">
+        #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeid != null">
+        #{exchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="side != null">
+        #{side,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zh.entity.SuperOrder">
+    update super_order
+    set coin = #{coin,jdbcType=VARCHAR},
+      exchangeId = #{exchangeid,jdbcType=INTEGER},
+      price = #{price,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      side = #{side,jdbcType=VARCHAR},
+      total = #{total,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.SuperOrder">
+    update super_order
+    <set>
+      <if test="coin != null">
+        coin = #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeid != null">
+        exchangeId = #{exchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="side != null">
+        side = #{side,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from super_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from super_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from super_order
+    where 1=1 
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="size != null">
+       and  size = #{size,jdbcType=VARCHAR}
+    </if>
+    <if test="side != null">
+       and  side = #{side,jdbcType=VARCHAR}
+    </if>
+    <if test="total != null">
+       and  total = #{total,jdbcType=VARCHAR}
+    </if>
+    <if test="time != null">
+       and  time = #{time,jdbcType=VARCHAR}
+    </if>
+     order by id desc 
+  </select>
+  <select id="selectPaging" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from super_order
+    where 1=1 
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="size != null">
+       and  size = #{size,jdbcType=VARCHAR}
+    </if>
+    <if test="side != null">
+       and  side = #{side,jdbcType=VARCHAR}
+    </if>
+    <if test="total != null">
+       and  total = #{total,jdbcType=VARCHAR}
+    </if>
+    <if test="time != null">
+       and  time = #{time,jdbcType=VARCHAR}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    from super_order 
+    where 1=1 
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="size != null">
+       and  size = #{size,jdbcType=VARCHAR}
+    </if>
+    <if test="side != null">
+       and  side = #{side,jdbcType=VARCHAR}
+    </if>
+    <if test="total != null">
+       and  total = #{total,jdbcType=VARCHAR}
+    </if>
+    <if test="time != null">
+       and  time = #{time,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>
