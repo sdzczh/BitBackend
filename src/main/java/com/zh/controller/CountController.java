@@ -1,9 +1,11 @@
 package com.zh.controller;
 
 import com.zh.entity.CapDistribution;
+import com.zh.entity.DayState;
 import com.zh.entity.Manager;
 import com.zh.entity.User;
 import com.zh.service.CapDistributionService;
+import com.zh.service.DayStateService;
 import com.zh.service.ManagerService;
 import com.zh.service.impl.CapDistributionServiceImpl;
 import com.zh.util.MD5;
@@ -26,6 +28,8 @@ public class CountController {
 
     @Autowired
     private CapDistributionService capDistributionService;
+    @Autowired
+    private DayStateService dayStateService;
 
     /**
      * 资金分布
@@ -47,6 +51,27 @@ public class CountController {
         map.put("page", page);
         map.put("rows",rows);
         return "count/capDistribution";
+    }
+    /**
+     * 资金分布
+     * @return
+     */
+    @RequestMapping(value = "getDayStateList", method = {RequestMethod.GET})
+    public String getDayStateList(DayState dayState, Map<String, Object> map, Integer page, Integer rows) {
+        Map<Object, Object> param = new HashMap();
+        Map<Object, Object> params = new HashMap();
+        page = page == null ? 0 : page;
+        rows = rows == null ? 10 : rows;
+        param.put("firstResult", page * rows);
+        param.put("maxResult", rows);
+        param.put("coin", dayState.getCoin());
+        List<DayState> list = dayStateService.selectPaging(param);
+        Integer count = dayStateService.selectCount(params);
+        map.put("data", list);
+        map.put("count", count);
+        map.put("page", page);
+        map.put("rows",rows);
+        return "count/dayState";
     }
 
 

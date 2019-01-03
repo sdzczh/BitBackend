@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.dao.OkexDealRecordMapper">
+  <resultMap id="BaseResultMap" type="com.zh.entity.OkexDealRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="coinId" jdbcType="INTEGER" property="coinid" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="volume" jdbcType="VARCHAR" property="volume" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, coinId, price, volume, type, time
+  </sql>
+  <insert id="insert" parameterType="com.zh.entity.OkexDealRecord">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into okex_deal_record (coinId, price, volume, 
+      type, time)
+    values (#{coinid,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, #{volume,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zh.entity.OkexDealRecord">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into okex_deal_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coinid != null">
+        coinId,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="volume != null">
+        volume,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coinid != null">
+        #{coinid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zh.entity.OkexDealRecord">
+    update okex_deal_record
+    set coinId = #{coinid,jdbcType=INTEGER},
+      price = #{price,jdbcType=VARCHAR},
+      volume = #{volume,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      time = #{time,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.OkexDealRecord">
+    update okex_deal_record
+    <set>
+      <if test="coinid != null">
+        coinId = #{coinid,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null">
+        volume = #{volume,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from okex_deal_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from okex_deal_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from okex_deal_record
+    where 1=1 
+    <if test="coinid != null">
+       and  coinId = #{coinid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="volume != null">
+       and  volume = #{volume,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null">
+       and  type = #{type,jdbcType=INTEGER}
+    </if>
+    <if test="time != null">
+       and  time = #{time,jdbcType=VARCHAR}
+    </if>
+     order by id desc 
+  </select>
+  <select id="selectPaging" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from okex_deal_record
+    where 1=1 
+    <if test="coinid != null">
+       and  coinId = #{coinid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="volume != null">
+       and  volume = #{volume,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null">
+       and  type = #{type,jdbcType=INTEGER}
+    </if>
+    <if test="time != null">
+       and  time = #{time,jdbcType=VARCHAR}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    from okex_deal_record 
+    where 1=1 
+    <if test="coinid != null">
+       and  coinId = #{coinid,jdbcType=INTEGER}
+    </if>
+    <if test="price != null">
+       and  price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="volume != null">
+       and  volume = #{volume,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null">
+       and  type = #{type,jdbcType=INTEGER}
+    </if>
+    <if test="time != null">
+       and  time = #{time,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

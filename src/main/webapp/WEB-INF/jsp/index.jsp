@@ -90,7 +90,7 @@
 				<li><a data-href="${pageContext.request.contextPath}/count/getCapDisList.action" data-title="资金分布" href="javascript:;">资金分布</a></li>
 			</ul>
 			<ul>
-				<li><a data-href="${pageContext.request.contextPath}/coin/getCoinInfoList.action" data-title="币种信息列表" href="javascript:;">币种信息列表</a></li>
+				<li><a data-href="${pageContext.request.contextPath}/count/getDayStateList.action" data-title="当日数据统计" href="javascript:;">当日数据统计</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -117,6 +117,7 @@
 					<li><a data-href="${pageContext.request.contextPath}/log/getBackloginLogList.action" data-title="后台登录日志" href="javascript:void(0)">后台登录日志</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/log/getUserloginLogList.action" data-title="用户登录日志" href="javascript:void(0)">用户登录日志</a></li>
 					<li><a data-href="${pageContext.request.contextPath}/log/getBackLogList.action" data-title="后台操作日志" href="javascript:void(0)">后台操作日志</a></li>
+					<li><a data-href="${pageContext.request.contextPath}/log/getOKDealList.action" data-title="OKEX交易记录" href="javascript:void(0)">OKEX交易记录</a></li>
 			</ul>
 		</dd>
 	</dl>

@@ -8,8 +8,8 @@
         <package name="com.zh.entity"/>
     </typeAliases>
 
+
     <mappers>
 
     </mappers>
-
 </configuration>

@@ -13,24 +13,31 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <jsp:include page="../../../common/cssjs.jsp"/>
 
-<title>币种价格</title>
+<title>OKEX交易记录</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 币种中心 <span class="c-gray en">&gt;</span> 币种价格 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 日志 <span class="c-gray en">&gt;</span> OKEX交易记录 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
-  <form action="/coin/getCoinPrice.action" method="get">
-
+  <form action="/log/getOKDealList.action" method="get">
+  <%--<div class="text-c">
+    <select id="coinid" name="coinid" class="btn btn-success">
+      <option value="2">BTC</option>
+      <option value="3">ETH</option>
+    </select>
+    <button type="submit" class="btn btn-success" id="" name=""><i class="icon-search"></i> 搜币</button>
+  </div>--%>
   <div class="cl pd-5 bg-1 bk-gray mt-20">
     <span class="r">共有数据：<strong>${count}</strong> 条</span>
   </div>
-  <table class="table table-border table-bordered table-hover table-bg table-sort" style="table-layout: fixed;">
+  <table class="table table-border table-bordered table-hover table-bg table-sort">
     <thead>
       <tr class="text-c">
-        <th>ID</th>
-        <th>计价币</th>
-        <th>交易币</th>
-        <th>当交易所id</th>
-        <th>当前价格</th>
+        <th width="80">ID</th>
+        <th width="40">币种名称</th>
+        <th width="90">价格</th>
+        <th width="90">总额</th>
+        <th width="90">交易类型</th>
+        <th width="90">时间</th>
       </tr>
     </thead>
     <tbody>
@@ -38,21 +45,18 @@
       <tr class="text-c">
         <td>${list.id}</td>
         <td>
-          <c:if test="${list.c1 == 0}">USDT</c:if>
-          <c:if test="${list.c1 == 1}">CNY</c:if>
-          <c:if test="${list.c1 == 2}">BTC</c:if>
-          <c:if test="${list.c1 == 3}">ETH</c:if>
-        </td>
-        <td>
-          <c:if test="${list.c2 == 0}">USDT</c:if>
-          <c:if test="${list.c2 == 1}">CNY</c:if>
-          <c:if test="${list.c2 == 2}">BTC</c:if>
-          <c:if test="${list.c2 == 3}">ETH</c:if>
-        </td>
-        <td><c:if test="${list.exchangeid == 1}">Okex</c:if>
-            <c:if test="${list.exchangeid == 2}">HuoBi</c:if>
+          <c:if test="${list.coinid == 0}">USDT</c:if>
+          <c:if test="${list.coinid == 1}">CNY</c:if>
+          <c:if test="${list.coinid == 2}">BTC</c:if>
+          <c:if test="${list.coinid == 3}">ETH</c:if>
         </td>
         <td>${list.price}</td>
+        <td>${list.volume}</td>
+        <td>
+          <c:if test="${list.type == 0}">买入</c:if>
+          <c:if test="${list.type == 1}">卖出</c:if>
+        </td>
+        <td>${list.time}</td>
       </tr>
     </c:forEach>
     </tbody>
@@ -66,16 +70,15 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
-    var pageNavObj = null;//用于储存分页对象
+    var pageNavObj;//用于储存分页对象
     var count = "${count}";
     var page = parseInt("${page}") === 0 ? 1 : (parseInt("${page}") + 1);
-    pageNavObj = new PageNavCreate("PageNavId",{ pageCount:count/10+1, currentPage:page, perPageNum:5 });
+    pageNavObj = new PageNavCreate("PageNavId",{ pageCount:count/10+1, currentPage:page, perPageNum:5, });
     pageNavObj.afterClick(pageNavCallBack);
 
     function pageNavCallBack(clickpage){
-        window.location.href = "${pageContext.request.contextPath}/coin/getCoinPrice.action?page="+(clickpage - 1)+"&rows=10&name="+$("#name").val();
+        window.location.href = "${pageContext.request.contextPath}/log/getOKDealList?page="+(clickpage - 1)+"&rows=10&coin="+$("#coinId").val();
     }
-
 </script>
 </body>
 </html>

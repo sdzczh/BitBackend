@@ -1,13 +1,7 @@
 package com.zh.controller;
 
-import com.zh.entity.LogAdminlogin;
-import com.zh.entity.LogAdminoper;
-import com.zh.entity.LogUserlogin;
-import com.zh.entity.Sysparams;
-import com.zh.service.LogAdminloginService;
-import com.zh.service.LogAdminoperService;
-import com.zh.service.LogUserloginService;
-import com.zh.service.SysparamsService;
+import com.zh.entity.*;
+import com.zh.service.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +25,8 @@ public class LogController {
     private LogAdminoperService logAdminoperService;
     @Autowired
     private LogUserloginService logUserloginService;
+    @Autowired
+    private OkexDealRecordService okexDealRecordService;
 
 
 
@@ -108,5 +104,26 @@ public class LogController {
         map.put("page", page);
         map.put("rows",rows);
         return "log/adminOper";
+    }
+    /**
+     * 资金分布
+     * @return
+     */
+    @RequestMapping(value = "getOKDealList", method = {RequestMethod.GET}, produces="text/html;charset=UTF-8")
+    public String getOKDealList(OkexDealRecord okexDealRecord, Map<String, Object> map, Integer page, Integer rows) {
+        Map<Object, Object> param = new HashMap();
+        Map<Object, Object> params = new HashMap();
+        page = page == null ? 0 : page;
+        rows = rows == null ? 10 : rows;
+        param.put("firstResult", page * rows);
+        param.put("maxResult", rows);
+        param.put("coinid", okexDealRecord.getId());
+        List<OkexDealRecord> list = okexDealRecordService.selectPaging(param);
+        Integer count = okexDealRecordService.selectCount(params);
+        map.put("data", list);
+        map.put("count", count);
+        map.put("page", page);
+        map.put("rows",rows);
+        return "log/OkexDeal";
     }
 }

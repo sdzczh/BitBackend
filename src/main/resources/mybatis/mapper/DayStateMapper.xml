@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.dao.DayStateMapper">
+  <resultMap id="BaseResultMap" type="com.zh.entity.DayState">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="exchangeId" jdbcType="INTEGER" property="exchangeid" />
+    <result column="coin" jdbcType="VARCHAR" property="coin" />
+    <result column="day_in" jdbcType="VARCHAR" property="dayIn" />
+    <result column="day_out" jdbcType="VARCHAR" property="dayOut" />
+    <result column="actual" jdbcType="VARCHAR" property="actual" />
+    <result column="ratio" jdbcType="VARCHAR" property="ratio" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exchangeId, coin, day_in, day_out, actual, ratio
+  </sql>
+  <insert id="insert" parameterType="com.zh.entity.DayState">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into day_state (exchangeId, coin, day_in, 
+      day_out, actual, ratio
+      )
+    values (#{exchangeid,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{dayIn,jdbcType=VARCHAR}, 
+      #{dayOut,jdbcType=VARCHAR}, #{actual,jdbcType=VARCHAR}, #{ratio,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zh.entity.DayState">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into day_state
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="exchangeid != null">
+        exchangeId,
+      </if>
+      <if test="coin != null">
+        coin,
+      </if>
+      <if test="dayIn != null">
+        day_in,
+      </if>
+      <if test="dayOut != null">
+        day_out,
+      </if>
+      <if test="actual != null">
+        actual,
+      </if>
+      <if test="ratio != null">
+        ratio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="exchangeid != null">
+        #{exchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="coin != null">
+        #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="dayIn != null">
+        #{dayIn,jdbcType=VARCHAR},
+      </if>
+      <if test="dayOut != null">
+        #{dayOut,jdbcType=VARCHAR},
+      </if>
+      <if test="actual != null">
+        #{actual,jdbcType=VARCHAR},
+      </if>
+      <if test="ratio != null">
+        #{ratio,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zh.entity.DayState">
+    update day_state
+    set exchangeId = #{exchangeid,jdbcType=INTEGER},
+      coin = #{coin,jdbcType=VARCHAR},
+      day_in = #{dayIn,jdbcType=VARCHAR},
+      day_out = #{dayOut,jdbcType=VARCHAR},
+      actual = #{actual,jdbcType=VARCHAR},
+      ratio = #{ratio,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.DayState">
+    update day_state
+    <set>
+      <if test="exchangeid != null">
+        exchangeId = #{exchangeid,jdbcType=INTEGER},
+      </if>
+      <if test="coin != null">
+        coin = #{coin,jdbcType=VARCHAR},
+      </if>
+      <if test="dayIn != null">
+        day_in = #{dayIn,jdbcType=VARCHAR},
+      </if>
+      <if test="dayOut != null">
+        day_out = #{dayOut,jdbcType=VARCHAR},
+      </if>
+      <if test="actual != null">
+        actual = #{actual,jdbcType=VARCHAR},
+      </if>
+      <if test="ratio != null">
+        ratio = #{ratio,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from day_state
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from day_state
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from day_state
+    where 1=1 
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="dayIn != null">
+       and  day_in = #{dayIn,jdbcType=VARCHAR}
+    </if>
+    <if test="dayOut != null">
+       and  day_out = #{dayOut,jdbcType=VARCHAR}
+    </if>
+    <if test="actual != null">
+       and  actual = #{actual,jdbcType=VARCHAR}
+    </if>
+    <if test="ratio != null">
+       and  ratio = #{ratio,jdbcType=VARCHAR}
+    </if>
+     order by id desc 
+  </select>
+  <select id="selectPaging" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from day_state
+    where 1=1 
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="dayIn != null">
+       and  day_in = #{dayIn,jdbcType=VARCHAR}
+    </if>
+    <if test="dayOut != null">
+       and  day_out = #{dayOut,jdbcType=VARCHAR}
+    </if>
+    <if test="actual != null">
+       and  actual = #{actual,jdbcType=VARCHAR}
+    </if>
+    <if test="ratio != null">
+       and  ratio = #{ratio,jdbcType=VARCHAR}
+    </if>
+     order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
+  <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) 
+    from day_state 
+    where 1=1 
+    <if test="exchangeid != null">
+       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    </if>
+    <if test="coin != null">
+       and  coin = #{coin,jdbcType=VARCHAR}
+    </if>
+    <if test="dayIn != null">
+       and  day_in = #{dayIn,jdbcType=VARCHAR}
+    </if>
+    <if test="dayOut != null">
+       and  day_out = #{dayOut,jdbcType=VARCHAR}
+    </if>
+    <if test="actual != null">
+       and  actual = #{actual,jdbcType=VARCHAR}
+    </if>
+    <if test="ratio != null">
+       and  ratio = #{ratio,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>
