@@ -3,7 +3,7 @@
 <mapper namespace="com.zh.dao.DayStateMapper">
   <resultMap id="BaseResultMap" type="com.zh.entity.DayState">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="exchangeId" jdbcType="INTEGER" property="exchangeid" />
+    <result column="exchange_id" jdbcType="INTEGER" property="exchangeId" />
     <result column="coin" jdbcType="VARCHAR" property="coin" />
     <result column="day_in" jdbcType="VARCHAR" property="dayIn" />
     <result column="day_out" jdbcType="VARCHAR" property="dayOut" />
@@ -11,16 +11,16 @@
     <result column="ratio" jdbcType="VARCHAR" property="ratio" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, exchangeId, coin, day_in, day_out, actual, ratio
+    id, exchange_id, coin, day_in, day_out, actual, ratio
   </sql>
   <insert id="insert" parameterType="com.zh.entity.DayState">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into day_state (exchangeId, coin, day_in, 
+    insert into day_state (exchange_id, coin, day_in, 
       day_out, actual, ratio
       )
-    values (#{exchangeid,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{dayIn,jdbcType=VARCHAR}, 
+    values (#{exchangeId,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{dayIn,jdbcType=VARCHAR}, 
       #{dayOut,jdbcType=VARCHAR}, #{actual,jdbcType=VARCHAR}, #{ratio,jdbcType=VARCHAR}
       )
   </insert>
@@ -30,8 +30,8 @@
     </selectKey>
     insert into day_state
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="exchangeid != null">
-        exchangeId,
+      <if test="exchangeId != null">
+        exchange_id,
       </if>
       <if test="coin != null">
         coin,
@@ -50,8 +50,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="exchangeid != null">
-        #{exchangeid,jdbcType=INTEGER},
+      <if test="exchangeId != null">
+        #{exchangeId,jdbcType=INTEGER},
       </if>
       <if test="coin != null">
         #{coin,jdbcType=VARCHAR},
@@ -72,7 +72,7 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.zh.entity.DayState">
     update day_state
-    set exchangeId = #{exchangeid,jdbcType=INTEGER},
+    set exchange_id = #{exchangeId,jdbcType=INTEGER},
       coin = #{coin,jdbcType=VARCHAR},
       day_in = #{dayIn,jdbcType=VARCHAR},
       day_out = #{dayOut,jdbcType=VARCHAR},
@@ -83,8 +83,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.DayState">
     update day_state
     <set>
-      <if test="exchangeid != null">
-        exchangeId = #{exchangeid,jdbcType=INTEGER},
+      <if test="exchangeId != null">
+        exchange_id = #{exchangeId,jdbcType=INTEGER},
       </if>
       <if test="coin != null">
         coin = #{coin,jdbcType=VARCHAR},
@@ -119,8 +119,8 @@
     <include refid="Base_Column_List" />
     from day_state
     where 1=1 
-    <if test="exchangeid != null">
-       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    <if test="exchangeId != null">
+       and  exchange_id = #{exchangeId,jdbcType=INTEGER}
     </if>
     <if test="coin != null">
        and  coin = #{coin,jdbcType=VARCHAR}
@@ -144,8 +144,8 @@
     <include refid="Base_Column_List" />
     from day_state
     where 1=1 
-    <if test="exchangeid != null">
-       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    <if test="exchangeId != null">
+       and  exchange_id = #{exchangeId,jdbcType=INTEGER}
     </if>
     <if test="coin != null">
        and  coin = #{coin,jdbcType=VARCHAR}
@@ -168,8 +168,8 @@
     select count(*) 
     from day_state 
     where 1=1 
-    <if test="exchangeid != null">
-       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    <if test="exchangeId != null">
+       and  exchange_id = #{exchangeId,jdbcType=INTEGER}
     </if>
     <if test="coin != null">
        and  coin = #{coin,jdbcType=VARCHAR}

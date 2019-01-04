@@ -3,11 +3,11 @@ package com.zh.entity;
 import java.io.Serializable;
 
 public class DayState implements Serializable {
-    private static final long serialVersionUID = 3872752032867977086L;
+    private static final long serialVersionUID = -2295037183993886961L;
 
     private Integer id;
 
-    private Integer exchangeid;
+    private Integer exchangeId;
 
     private String coin;
 
@@ -27,12 +27,12 @@ public class DayState implements Serializable {
         this.id = id;
     }
 
-    public Integer getExchangeid() {
-        return exchangeid;
+    public Integer getExchangeId() {
+        return exchangeId;
     }
 
-    public void setExchangeid(Integer exchangeid) {
-        this.exchangeid = exchangeid;
+    public void setExchangeId(Integer exchangeId) {
+        this.exchangeId = exchangeId;
     }
 
     public String getCoin() {
@@ -83,7 +83,7 @@ public class DayState implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append(", id=").append(id);
-        sb.append(", exchangeid=").append(exchangeid);
+        sb.append(", exchangeId=").append(exchangeId);
         sb.append(", coin=").append(coin);
         sb.append(", dayIn=").append(dayIn);
         sb.append(", dayOut=").append(dayOut);
