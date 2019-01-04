@@ -4,6 +4,10 @@
   <resultMap id="BaseResultMap" type="com.zh.entity.CoinInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="coin_id" jdbcType="INTEGER" property="coinId" />
+    <result column="edit_img_url" jdbcType="VARCHAR" property="editImgUrl" />
+    <result column="plate" jdbcType="VARCHAR" property="plate" />
+    <result column="edit_name" jdbcType="VARCHAR" property="editName" />
+    <result column="edit_info" jdbcType="VARCHAR" property="editInfo" />
     <result column="team_info" jdbcType="VARCHAR" property="teamInfo" />
     <result column="github" jdbcType="VARCHAR" property="github" />
     <result column="reddit" jdbcType="VARCHAR" property="reddit" />
@@ -12,28 +16,30 @@
     <result column="website" jdbcType="VARCHAR" property="website" />
     <result column="white_paper" jdbcType="VARCHAR" property="whitePaper" />
     <result column="explorer" jdbcType="VARCHAR" property="explorer" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="info" jdbcType="LONGVARCHAR" property="info" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, coin_id, team_info, github, reddit, twitter, facebook, website, white_paper, 
-    explorer, createTime, updateTime, info
+    id, coin_id, edit_img_url, plate, edit_name, edit_info, team_info, github, reddit, 
+    twitter, facebook, website, white_paper, explorer, create_time, update_time, info
   </sql>
   <insert id="insert" parameterType="com.zh.entity.CoinInfo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into coin_info (coin_id, team_info, github, 
-      reddit, twitter, facebook, 
-      website, white_paper, explorer, 
-      createTime, updateTime, info
-      )
-    values (#{coinId,jdbcType=INTEGER}, #{teamInfo,jdbcType=VARCHAR}, #{github,jdbcType=VARCHAR}, 
-      #{reddit,jdbcType=VARCHAR}, #{twitter,jdbcType=VARCHAR}, #{facebook,jdbcType=VARCHAR}, 
-      #{website,jdbcType=VARCHAR}, #{whitePaper,jdbcType=VARCHAR}, #{explorer,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{info,jdbcType=LONGVARCHAR}
-      )
+    insert into coin_info (coin_id, edit_img_url, plate, 
+      edit_name, edit_info, team_info, 
+      github, reddit, twitter, 
+      facebook, website, white_paper, 
+      explorer, create_time, update_time, 
+      info)
+    values (#{coinId,jdbcType=INTEGER}, #{editImgUrl,jdbcType=VARCHAR}, #{plate,jdbcType=VARCHAR}, 
+      #{editName,jdbcType=VARCHAR}, #{editInfo,jdbcType=VARCHAR}, #{teamInfo,jdbcType=VARCHAR}, 
+      #{github,jdbcType=VARCHAR}, #{reddit,jdbcType=VARCHAR}, #{twitter,jdbcType=VARCHAR}, 
+      #{facebook,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{whitePaper,jdbcType=VARCHAR}, 
+      #{explorer,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{info,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zh.entity.CoinInfo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -43,6 +49,18 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="coinId != null">
         coin_id,
+      </if>
+      <if test="editImgUrl != null">
+        edit_img_url,
+      </if>
+      <if test="plate != null">
+        plate,
+      </if>
+      <if test="editName != null">
+        edit_name,
+      </if>
+      <if test="editInfo != null">
+        edit_info,
       </if>
       <if test="teamInfo != null">
         team_info,
@@ -68,11 +86,11 @@
       <if test="explorer != null">
         explorer,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="createTime != null">
+        create_time,
       </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="updateTime != null">
+        update_time,
       </if>
       <if test="info != null">
         info,
@@ -81,6 +99,18 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="coinId != null">
         #{coinId,jdbcType=INTEGER},
+      </if>
+      <if test="editImgUrl != null">
+        #{editImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="plate != null">
+        #{plate,jdbcType=VARCHAR},
+      </if>
+      <if test="editName != null">
+        #{editName,jdbcType=VARCHAR},
+      </if>
+      <if test="editInfo != null">
+        #{editInfo,jdbcType=VARCHAR},
       </if>
       <if test="teamInfo != null">
         #{teamInfo,jdbcType=VARCHAR},
@@ -106,11 +136,11 @@
       <if test="explorer != null">
         #{explorer,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="info != null">
         #{info,jdbcType=LONGVARCHAR},
@@ -120,6 +150,10 @@
   <update id="updateByPrimaryKey" parameterType="com.zh.entity.CoinInfo">
     update coin_info
     set coin_id = #{coinId,jdbcType=INTEGER},
+      edit_img_url = #{editImgUrl,jdbcType=VARCHAR},
+      plate = #{plate,jdbcType=VARCHAR},
+      edit_name = #{editName,jdbcType=VARCHAR},
+      edit_info = #{editInfo,jdbcType=VARCHAR},
       team_info = #{teamInfo,jdbcType=VARCHAR},
       github = #{github,jdbcType=VARCHAR},
       reddit = #{reddit,jdbcType=VARCHAR},
@@ -128,8 +162,8 @@
       website = #{website,jdbcType=VARCHAR},
       white_paper = #{whitePaper,jdbcType=VARCHAR},
       explorer = #{explorer,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       info = #{info,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -138,6 +172,18 @@
     <set>
       <if test="coinId != null">
         coin_id = #{coinId,jdbcType=INTEGER},
+      </if>
+      <if test="editImgUrl != null">
+        edit_img_url = #{editImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="plate != null">
+        plate = #{plate,jdbcType=VARCHAR},
+      </if>
+      <if test="editName != null">
+        edit_name = #{editName,jdbcType=VARCHAR},
+      </if>
+      <if test="editInfo != null">
+        edit_info = #{editInfo,jdbcType=VARCHAR},
       </if>
       <if test="teamInfo != null">
         team_info = #{teamInfo,jdbcType=VARCHAR},
@@ -163,11 +209,11 @@
       <if test="explorer != null">
         explorer = #{explorer,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="info != null">
         info = #{info,jdbcType=LONGVARCHAR},
@@ -193,6 +239,18 @@
     <if test="coinId != null">
        and  coin_id = #{coinId,jdbcType=INTEGER}
     </if>
+    <if test="editImgUrl != null">
+       and  edit_img_url = #{editImgUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="plate != null">
+       and  plate = #{plate,jdbcType=VARCHAR}
+    </if>
+    <if test="editName != null">
+       and  edit_name = #{editName,jdbcType=VARCHAR}
+    </if>
+    <if test="editInfo != null">
+       and  edit_info = #{editInfo,jdbcType=VARCHAR}
+    </if>
     <if test="teamInfo != null">
        and  team_info = #{teamInfo,jdbcType=VARCHAR}
     </if>
@@ -217,11 +275,11 @@
     <if test="explorer != null">
        and  explorer = #{explorer,jdbcType=VARCHAR}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
     <if test="info != null">
        and  info = #{info,jdbcType=LONGVARCHAR}
@@ -236,6 +294,18 @@
     <if test="coinId != null">
        and  coin_id = #{coinId,jdbcType=INTEGER}
     </if>
+    <if test="editImgUrl != null">
+       and  edit_img_url = #{editImgUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="plate != null">
+       and  plate = #{plate,jdbcType=VARCHAR}
+    </if>
+    <if test="editName != null">
+       and  edit_name = #{editName,jdbcType=VARCHAR}
+    </if>
+    <if test="editInfo != null">
+       and  edit_info = #{editInfo,jdbcType=VARCHAR}
+    </if>
     <if test="teamInfo != null">
        and  team_info = #{teamInfo,jdbcType=VARCHAR}
     </if>
@@ -260,11 +330,11 @@
     <if test="explorer != null">
        and  explorer = #{explorer,jdbcType=VARCHAR}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
     <if test="info != null">
        and  info = #{info,jdbcType=LONGVARCHAR}
@@ -273,13 +343,22 @@
   </select>
   <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
     select count(*) 
-    from coin_info ci LEFT JOIN coin_manager cm ON ci.`coin_id`=cm.`id`
-    where 1=1
-    <if test="symbol != null and symbol != ''">
-      and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
-    </if>
+    from coin_info 
+    where 1=1 
     <if test="coinId != null">
        and  coin_id = #{coinId,jdbcType=INTEGER}
+    </if>
+    <if test="editImgUrl != null">
+       and  edit_img_url = #{editImgUrl,jdbcType=VARCHAR}
+    </if>
+    <if test="plate != null">
+       and  plate = #{plate,jdbcType=VARCHAR}
+    </if>
+    <if test="editName != null">
+       and  edit_name = #{editName,jdbcType=VARCHAR}
+    </if>
+    <if test="editInfo != null">
+       and  edit_info = #{editInfo,jdbcType=VARCHAR}
     </if>
     <if test="teamInfo != null">
        and  team_info = #{teamInfo,jdbcType=VARCHAR}
@@ -305,23 +384,14 @@
     <if test="explorer != null">
        and  explorer = #{explorer,jdbcType=VARCHAR}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
     <if test="info != null">
        and  info = #{info,jdbcType=LONGVARCHAR}
     </if>
-  </select>
-  <select id="selectInfoPaging" parameterType="java.util.Map" resultType="java.util.Map">
-    SELECT ci.id,cm.symbol,ci.info,ci.team_info,ci.github,ci.reddit,ci.twitter,ci.facebook,ci.website,ci.white_paper,ci.explorer,ci.createTime
-    FROM coin_info ci LEFT JOIN coin_manager cm ON ci.`coin_id`=cm.`id`
-    where 1=1
-    <if test="symbol != null and symbol != ''">
-      and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
-    </if>
-    order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
   </select>
 </mapper>

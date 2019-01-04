@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * @author: autogeneration
- * @date: 2018-11-01 09:49:07
+ * @date: 2019-01-04 20:29:24
  **/ 
 @Service("coinInfoService")
 public class CoinInfoServiceImpl implements CoinInfoService {
@@ -60,11 +60,6 @@ public class CoinInfoServiceImpl implements CoinInfoService {
     @Override
     public List<CoinInfo> selectPaging(Map<Object, Object> param) {
         return this.coinInfoMapper.selectPaging(param);
-    }
-
-    @Override
-    public List<Map<String, Object>> selectInfoPaging(Map<Object, Object> param) {
-        return this.coinInfoMapper.selectInfoPaging(param);
     }
 
     @Override

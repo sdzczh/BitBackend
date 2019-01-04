@@ -15,13 +15,12 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * @author: autogeneration
- * @date: 2018-11-01 09:48:51
+ * @date: 2019-01-04 20:28:23
  **/ 
 @Service("coinManagerService")
 public class CoinManagerServiceImpl implements CoinManagerService {
     @Resource
-    private CoinManagerMapper coinManagerMapper;
-    @Resource
+    private CoinManagerMapper coinManagerMapper; @Resource
     private CoinInfoMapper coinInfoMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(CoinManagerServiceImpl.class);

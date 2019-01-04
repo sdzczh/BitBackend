@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * @author: autogeneration
- * @date: 2019-01-02 16:52:40
+ * @date: 2019-01-04 20:27:32
  **/ 
 @Service("coinPriceService")
 public class CoinPriceServiceImpl implements CoinPriceService {

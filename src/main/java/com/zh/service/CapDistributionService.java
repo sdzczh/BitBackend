@@ -7,14 +7,14 @@ import java.util.Map;
 /**
  * 
  * @author: autogeneration
- * @date: 2019-01-02 15:07:42
+ * @date: 2019-01-04 20:05:25
  **/ 
 public interface CapDistributionService {
     /**
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     int insert(CapDistribution record);
 
@@ -22,7 +22,7 @@ public interface CapDistributionService {
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     int insertSelective(CapDistribution record);
 
@@ -30,7 +30,7 @@ public interface CapDistributionService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     int updateByPrimaryKey(CapDistribution record);
 
@@ -38,7 +38,7 @@ public interface CapDistributionService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     int updateByPrimaryKeySelective(CapDistribution record);
 
@@ -46,7 +46,7 @@ public interface CapDistributionService {
      * 删除
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     int deleteByPrimaryKey(Integer id);
 
@@ -54,7 +54,7 @@ public interface CapDistributionService {
      * 按主键查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     CapDistribution selectByPrimaryKey(Integer id);
 
@@ -62,7 +62,7 @@ public interface CapDistributionService {
      * 条件查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     List<CapDistribution> selectAll(Map<Object, Object> param);
 
@@ -70,7 +70,7 @@ public interface CapDistributionService {
      * 分页查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     List<CapDistribution> selectPaging(Map<Object, Object> param);
 
@@ -78,7 +78,7 @@ public interface CapDistributionService {
      * 统计查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 15:07:42
+     * @date: 2019-01-04 20:05:25
      **/ 
     int selectCount(Map<Object, Object> param);
 }

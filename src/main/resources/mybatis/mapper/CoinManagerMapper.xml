@@ -16,13 +16,13 @@
     <result column="markey_ratio" jdbcType="VARCHAR" property="markeyRatio" />
     <result column="turnover_rate" jdbcType="VARCHAR" property="turnoverRate" />
     <result column="circulation_rate" jdbcType="VARCHAR" property="circulationRate" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, symbol, website_slug, logo_url, url_transaction, url_addressInfo, circulating_supply, 
     market_cap, volume_24h, max_supply, markey_ratio, turnover_rate, circulation_rate, 
-    createTime, updateTime
+    create_time, update_time
   </sql>
   <insert id="insert" parameterType="com.zh.entity.CoinManager">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -32,13 +32,13 @@
       logo_url, url_transaction, url_addressInfo, 
       circulating_supply, market_cap, volume_24h, 
       max_supply, markey_ratio, turnover_rate, 
-      circulation_rate, createTime, updateTime
+      circulation_rate, create_time, update_time
       )
     values (#{name,jdbcType=VARCHAR}, #{symbol,jdbcType=VARCHAR}, #{websiteSlug,jdbcType=VARCHAR}, 
       #{logoUrl,jdbcType=VARCHAR}, #{urlTransaction,jdbcType=VARCHAR}, #{urlAddressinfo,jdbcType=VARCHAR}, 
       #{circulatingSupply,jdbcType=VARCHAR}, #{marketCap,jdbcType=VARCHAR}, #{volume24h,jdbcType=VARCHAR}, 
       #{maxSupply,jdbcType=VARCHAR}, #{markeyRatio,jdbcType=VARCHAR}, #{turnoverRate,jdbcType=VARCHAR}, 
-      #{circulationRate,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      #{circulationRate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.zh.entity.CoinManager">
@@ -86,11 +86,11 @@
       <if test="circulationRate != null">
         circulation_rate,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="createTime != null">
+        create_time,
       </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="updateTime != null">
+        update_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -133,11 +133,11 @@
       <if test="circulationRate != null">
         #{circulationRate,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -156,8 +156,8 @@
       markey_ratio = #{markeyRatio,jdbcType=VARCHAR},
       turnover_rate = #{turnoverRate,jdbcType=VARCHAR},
       circulation_rate = #{circulationRate,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.CoinManager">
@@ -202,11 +202,11 @@
       <if test="circulationRate != null">
         circulation_rate = #{circulationRate,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -226,11 +226,11 @@
     <include refid="Base_Column_List" />
     from coin_manager
     where 1=1 
-    <if test="name != null and name != ''">
-       and  name like '%' #{name,jdbcType=VARCHAR} '%'
+    <if test="name != null">
+       and  name = #{name,jdbcType=VARCHAR}
     </if>
-    <if test="symbol != null and symbol != ''">
-       and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
+    <if test="symbol != null">
+       and  symbol = #{symbol,jdbcType=VARCHAR}
     </if>
     <if test="websiteSlug != null">
        and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
@@ -265,11 +265,11 @@
     <if test="circulationRate != null">
        and  circulation_rate = #{circulationRate,jdbcType=VARCHAR}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
      order by id desc 
   </select>
@@ -277,12 +277,12 @@
     select 
     <include refid="Base_Column_List" />
     from coin_manager
-    where 1=1
-    <if test="name != null and name != ''">
-      and  name like '%' #{name,jdbcType=VARCHAR} '%'
+    where 1=1 
+    <if test="name != null">
+       and  name = #{name,jdbcType=VARCHAR}
     </if>
-    <if test="symbol != null and symbol != ''">
-      and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
+    <if test="symbol != null">
+       and  symbol = #{symbol,jdbcType=VARCHAR}
     </if>
     <if test="websiteSlug != null">
        and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
@@ -317,23 +317,23 @@
     <if test="circulationRate != null">
        and  circulation_rate = #{circulationRate,jdbcType=VARCHAR}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
      order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
   </select>
   <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
     select count(*) 
     from coin_manager 
-    where 1=1
-    <if test="name != null and name != ''">
-      and  name like '%' #{name,jdbcType=VARCHAR} '%'
+    where 1=1 
+    <if test="name != null">
+       and  name = #{name,jdbcType=VARCHAR}
     </if>
-    <if test="symbol != null and symbol != ''">
-      and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
+    <if test="symbol != null">
+       and  symbol = #{symbol,jdbcType=VARCHAR}
     </if>
     <if test="websiteSlug != null">
        and  website_slug = #{websiteSlug,jdbcType=VARCHAR}
@@ -368,11 +368,11 @@
     <if test="circulationRate != null">
        and  circulation_rate = #{circulationRate,jdbcType=VARCHAR}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
   </select>
 </mapper>

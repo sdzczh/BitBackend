@@ -3,13 +3,13 @@ package com.zh.entity;
 import java.io.Serializable;
 
 public class CapDistribution implements Serializable {
-    private static final long serialVersionUID = 2770987455926028260L;
+    private static final long serialVersionUID = -5419832799128971973L;
 
     private Integer id;
 
     private String coin;
 
-    private Integer exchangeid;
+    private Integer exchangeId;
 
     private String param;
 
@@ -33,12 +33,12 @@ public class CapDistribution implements Serializable {
         this.coin = coin == null ? null : coin.trim();
     }
 
-    public Integer getExchangeid() {
-        return exchangeid;
+    public Integer getExchangeId() {
+        return exchangeId;
     }
 
-    public void setExchangeid(Integer exchangeid) {
-        this.exchangeid = exchangeid;
+    public void setExchangeId(Integer exchangeId) {
+        this.exchangeId = exchangeId;
     }
 
     public String getParam() {
@@ -74,7 +74,7 @@ public class CapDistribution implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append(", id=").append(id);
         sb.append(", coin=").append(coin);
-        sb.append(", exchangeid=").append(exchangeid);
+        sb.append(", exchangeId=").append(exchangeId);
         sb.append(", param=").append(param);
         sb.append(", type=").append(type);
         sb.append(", amount=").append(amount);

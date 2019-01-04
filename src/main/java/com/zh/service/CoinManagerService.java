@@ -8,14 +8,14 @@ import java.util.Map;
 /**
  * 
  * @author: autogeneration
- * @date: 2018-11-01 09:48:51
+ * @date: 2019-01-04 20:28:23
  **/ 
 public interface CoinManagerService {
     /**
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     int insert(CoinManager record);
 
@@ -23,7 +23,7 @@ public interface CoinManagerService {
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     int insertSelective(CoinManager record);
 
@@ -31,7 +31,7 @@ public interface CoinManagerService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     int updateByPrimaryKey(CoinManager record);
 
@@ -39,7 +39,7 @@ public interface CoinManagerService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     int updateByPrimaryKeySelective(CoinManager record);
 
@@ -47,7 +47,7 @@ public interface CoinManagerService {
      * 删除
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     int deleteByPrimaryKey(Integer id);
 
@@ -55,7 +55,7 @@ public interface CoinManagerService {
      * 按主键查询
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     CoinManager selectByPrimaryKey(Integer id);
 
@@ -63,7 +63,7 @@ public interface CoinManagerService {
      * 条件查询
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     List<CoinManager> selectAll(Map<Object, Object> param);
 
@@ -71,7 +71,7 @@ public interface CoinManagerService {
      * 分页查询
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     List<CoinManager> selectPaging(Map<Object, Object> param);
 
@@ -79,7 +79,7 @@ public interface CoinManagerService {
      * 统计查询
      * 
      * @author: autogeneration
-     * @date: 2018-11-01 09:48:51
+     * @date: 2019-01-04 20:28:23
      **/ 
     int selectCount(Map<Object, Object> param);
 

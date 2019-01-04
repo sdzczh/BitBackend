@@ -3,7 +3,7 @@ package com.zh.entity;
 import java.io.Serializable;
 
 public class CoinPrice implements Serializable {
-    private static final long serialVersionUID = -682384254569369604L;
+    private static final long serialVersionUID = -5846126143479026399L;
 
     private Integer id;
 
@@ -11,7 +11,7 @@ public class CoinPrice implements Serializable {
 
     private Integer c2;
 
-    private Integer exchangeid;
+    private Integer exchangeId;
 
     private String price;
 
@@ -39,12 +39,12 @@ public class CoinPrice implements Serializable {
         this.c2 = c2;
     }
 
-    public Integer getExchangeid() {
-        return exchangeid;
+    public Integer getExchangeId() {
+        return exchangeId;
     }
 
-    public void setExchangeid(Integer exchangeid) {
-        this.exchangeid = exchangeid;
+    public void setExchangeId(Integer exchangeId) {
+        this.exchangeId = exchangeId;
     }
 
     public String getPrice() {
@@ -65,7 +65,7 @@ public class CoinPrice implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", c1=").append(c1);
         sb.append(", c2=").append(c2);
-        sb.append(", exchangeid=").append(exchangeid);
+        sb.append(", exchangeId=").append(exchangeId);
         sb.append(", price=").append(price);
         sb.append("]");
         return sb.toString();

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * @author: autogeneration
- * @date: 2019-01-02 15:07:42
+ * @date: 2019-01-04 20:05:25
  **/ 
 @Service("capDistributionService")
 public class CapDistributionServiceImpl implements CapDistributionService {

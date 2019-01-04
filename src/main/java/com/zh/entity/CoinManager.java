@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class CoinManager implements Serializable {
-    private static final long serialVersionUID = -623013459957313L;
+    private static final long serialVersionUID = -9113271753296009765L;
 
     private Integer id;
 
@@ -34,9 +34,9 @@ public class CoinManager implements Serializable {
 
     private String circulationRate;
 
-    private Date createtime;
+    private Date createTime;
 
-    private Date updatetime;
+    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -150,20 +150,20 @@ public class CoinManager implements Serializable {
         this.circulationRate = circulationRate == null ? null : circulationRate.trim();
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
@@ -187,8 +187,8 @@ public class CoinManager implements Serializable {
         sb.append(", markeyRatio=").append(markeyRatio);
         sb.append(", turnoverRate=").append(turnoverRate);
         sb.append(", circulationRate=").append(circulationRate);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append("]");
         return sb.toString();
     }

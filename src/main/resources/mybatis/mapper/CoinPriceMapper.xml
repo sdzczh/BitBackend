@@ -5,19 +5,19 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="c1" jdbcType="INTEGER" property="c1" />
     <result column="c2" jdbcType="INTEGER" property="c2" />
-    <result column="exchangeId" jdbcType="INTEGER" property="exchangeid" />
+    <result column="exchange_id" jdbcType="INTEGER" property="exchangeId" />
     <result column="price" jdbcType="VARCHAR" property="price" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, c1, c2, exchangeId, price
+    id, c1, c2, exchange_id, price
   </sql>
   <insert id="insert" parameterType="com.zh.entity.CoinPrice">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into coin_price (c1, c2, exchangeId, 
+    insert into coin_price (c1, c2, exchange_id, 
       price)
-    values (#{c1,jdbcType=INTEGER}, #{c2,jdbcType=INTEGER}, #{exchangeid,jdbcType=INTEGER}, 
+    values (#{c1,jdbcType=INTEGER}, #{c2,jdbcType=INTEGER}, #{exchangeId,jdbcType=INTEGER}, 
       #{price,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zh.entity.CoinPrice">
@@ -32,8 +32,8 @@
       <if test="c2 != null">
         c2,
       </if>
-      <if test="exchangeid != null">
-        exchangeId,
+      <if test="exchangeId != null">
+        exchange_id,
       </if>
       <if test="price != null">
         price,
@@ -46,8 +46,8 @@
       <if test="c2 != null">
         #{c2,jdbcType=INTEGER},
       </if>
-      <if test="exchangeid != null">
-        #{exchangeid,jdbcType=INTEGER},
+      <if test="exchangeId != null">
+        #{exchangeId,jdbcType=INTEGER},
       </if>
       <if test="price != null">
         #{price,jdbcType=VARCHAR},
@@ -58,7 +58,7 @@
     update coin_price
     set c1 = #{c1,jdbcType=INTEGER},
       c2 = #{c2,jdbcType=INTEGER},
-      exchangeId = #{exchangeid,jdbcType=INTEGER},
+      exchange_id = #{exchangeId,jdbcType=INTEGER},
       price = #{price,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -71,8 +71,8 @@
       <if test="c2 != null">
         c2 = #{c2,jdbcType=INTEGER},
       </if>
-      <if test="exchangeid != null">
-        exchangeId = #{exchangeid,jdbcType=INTEGER},
+      <if test="exchangeId != null">
+        exchange_id = #{exchangeId,jdbcType=INTEGER},
       </if>
       <if test="price != null">
         price = #{price,jdbcType=VARCHAR},
@@ -101,8 +101,8 @@
     <if test="c2 != null">
        and  c2 = #{c2,jdbcType=INTEGER}
     </if>
-    <if test="exchangeid != null">
-       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    <if test="exchangeId != null">
+       and  exchange_id = #{exchangeId,jdbcType=INTEGER}
     </if>
     <if test="price != null">
        and  price = #{price,jdbcType=VARCHAR}
@@ -120,8 +120,8 @@
     <if test="c2 != null">
        and  c2 = #{c2,jdbcType=INTEGER}
     </if>
-    <if test="exchangeid != null">
-       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    <if test="exchangeId != null">
+       and  exchange_id = #{exchangeId,jdbcType=INTEGER}
     </if>
     <if test="price != null">
        and  price = #{price,jdbcType=VARCHAR}
@@ -138,8 +138,8 @@
     <if test="c2 != null">
        and  c2 = #{c2,jdbcType=INTEGER}
     </if>
-    <if test="exchangeid != null">
-       and  exchangeId = #{exchangeid,jdbcType=INTEGER}
+    <if test="exchangeId != null">
+       and  exchange_id = #{exchangeId,jdbcType=INTEGER}
     </if>
     <if test="price != null">
        and  price = #{price,jdbcType=VARCHAR}

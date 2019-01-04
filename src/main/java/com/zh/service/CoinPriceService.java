@@ -7,14 +7,14 @@ import java.util.Map;
 /**
  * 
  * @author: autogeneration
- * @date: 2019-01-02 16:52:40
+ * @date: 2019-01-04 20:27:32
  **/ 
 public interface CoinPriceService {
     /**
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     int insert(CoinPrice record);
 
@@ -22,7 +22,7 @@ public interface CoinPriceService {
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     int insertSelective(CoinPrice record);
 
@@ -30,7 +30,7 @@ public interface CoinPriceService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     int updateByPrimaryKey(CoinPrice record);
 
@@ -38,7 +38,7 @@ public interface CoinPriceService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     int updateByPrimaryKeySelective(CoinPrice record);
 
@@ -46,7 +46,7 @@ public interface CoinPriceService {
      * 删除
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     int deleteByPrimaryKey(Integer id);
 
@@ -54,7 +54,7 @@ public interface CoinPriceService {
      * 按主键查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     CoinPrice selectByPrimaryKey(Integer id);
 
@@ -62,7 +62,7 @@ public interface CoinPriceService {
      * 条件查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     List<CoinPrice> selectAll(Map<Object, Object> param);
 
@@ -70,7 +70,7 @@ public interface CoinPriceService {
      * 分页查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     List<CoinPrice> selectPaging(Map<Object, Object> param);
 
@@ -78,7 +78,7 @@ public interface CoinPriceService {
      * 统计查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-02 16:52:40
+     * @date: 2019-01-04 20:27:32
      **/ 
     int selectCount(Map<Object, Object> param);
 }

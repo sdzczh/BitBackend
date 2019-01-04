@@ -4,11 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class CoinInfo implements Serializable {
-    private static final long serialVersionUID = 4335708251775149985L;
+    private static final long serialVersionUID = 4482322742335008507L;
 
     private Integer id;
 
     private Integer coinId;
+
+    private String editImgUrl;
+
+    private String plate;
+
+    private String editName;
+
+    private String editInfo;
 
     private String teamInfo;
 
@@ -26,9 +34,9 @@ public class CoinInfo implements Serializable {
 
     private String explorer;
 
-    private Date createtime;
+    private Date createTime;
 
-    private Date updatetime;
+    private Date updateTime;
 
     private String info;
 
@@ -46,6 +54,38 @@ public class CoinInfo implements Serializable {
 
     public void setCoinId(Integer coinId) {
         this.coinId = coinId;
+    }
+
+    public String getEditImgUrl() {
+        return editImgUrl;
+    }
+
+    public void setEditImgUrl(String editImgUrl) {
+        this.editImgUrl = editImgUrl == null ? null : editImgUrl.trim();
+    }
+
+    public String getPlate() {
+        return plate;
+    }
+
+    public void setPlate(String plate) {
+        this.plate = plate == null ? null : plate.trim();
+    }
+
+    public String getEditName() {
+        return editName;
+    }
+
+    public void setEditName(String editName) {
+        this.editName = editName == null ? null : editName.trim();
+    }
+
+    public String getEditInfo() {
+        return editInfo;
+    }
+
+    public void setEditInfo(String editInfo) {
+        this.editInfo = editInfo == null ? null : editInfo.trim();
     }
 
     public String getTeamInfo() {
@@ -112,20 +152,20 @@ public class CoinInfo implements Serializable {
         this.explorer = explorer == null ? null : explorer.trim();
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getInfo() {
@@ -145,6 +185,10 @@ public class CoinInfo implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append(", id=").append(id);
         sb.append(", coinId=").append(coinId);
+        sb.append(", editImgUrl=").append(editImgUrl);
+        sb.append(", plate=").append(plate);
+        sb.append(", editName=").append(editName);
+        sb.append(", editInfo=").append(editInfo);
         sb.append(", teamInfo=").append(teamInfo);
         sb.append(", github=").append(github);
         sb.append(", reddit=").append(reddit);
@@ -153,8 +197,8 @@ public class CoinInfo implements Serializable {
         sb.append(", website=").append(website);
         sb.append(", whitePaper=").append(whitePaper);
         sb.append(", explorer=").append(explorer);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", info=").append(info);
         sb.append("]");
         return sb.toString();
