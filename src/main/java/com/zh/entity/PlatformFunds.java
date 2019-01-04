@@ -3,11 +3,11 @@ package com.zh.entity;
 import java.io.Serializable;
 
 public class PlatformFunds implements Serializable {
-    private static final long serialVersionUID = -4013211595789575664L;
+    private static final long serialVersionUID = 5197154828654742503L;
 
     private Integer id;
 
-    private Integer exchangeid;
+    private Integer exchangeId;
 
     private String in;
 
@@ -21,12 +21,12 @@ public class PlatformFunds implements Serializable {
         this.id = id;
     }
 
-    public Integer getExchangeid() {
-        return exchangeid;
+    public Integer getExchangeId() {
+        return exchangeId;
     }
 
-    public void setExchangeid(Integer exchangeid) {
-        this.exchangeid = exchangeid;
+    public void setExchangeId(Integer exchangeId) {
+        this.exchangeId = exchangeId;
     }
 
     public String getIn() {
@@ -53,7 +53,7 @@ public class PlatformFunds implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append(", id=").append(id);
-        sb.append(", exchangeid=").append(exchangeid);
+        sb.append(", exchangeId=").append(exchangeId);
         sb.append(", in=").append(in);
         sb.append(", out=").append(out);
         sb.append("]");

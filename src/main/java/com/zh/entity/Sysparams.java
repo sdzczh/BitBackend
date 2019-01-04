@@ -4,21 +4,21 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Sysparams implements Serializable {
-    private static final long serialVersionUID = -4419609014933864194L;
+    private static final long serialVersionUID = -2444724375872338396L;
 
     private Integer id;
 
-    private String keyname;
+    private String keyName;
 
-    private String keyval;
+    private String keyVal;
 
     private String remark;
 
     private Integer type;
 
-    private Date createtime;
+    private Date createTime;
 
-    private Date updatetime;
+    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -28,20 +28,20 @@ public class Sysparams implements Serializable {
         this.id = id;
     }
 
-    public String getKeyname() {
-        return keyname;
+    public String getKeyName() {
+        return keyName;
     }
 
-    public void setKeyname(String keyname) {
-        this.keyname = keyname == null ? null : keyname.trim();
+    public void setKeyName(String keyName) {
+        this.keyName = keyName == null ? null : keyName.trim();
     }
 
-    public String getKeyval() {
-        return keyval;
+    public String getKeyVal() {
+        return keyVal;
     }
 
-    public void setKeyval(String keyval) {
-        this.keyval = keyval == null ? null : keyval.trim();
+    public void setKeyVal(String keyVal) {
+        this.keyVal = keyVal == null ? null : keyVal.trim();
     }
 
     public String getRemark() {
@@ -60,20 +60,20 @@ public class Sysparams implements Serializable {
         this.type = type;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
@@ -84,12 +84,12 @@ public class Sysparams implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append(", id=").append(id);
-        sb.append(", keyname=").append(keyname);
-        sb.append(", keyval=").append(keyval);
+        sb.append(", keyName=").append(keyName);
+        sb.append(", keyVal=").append(keyVal);
         sb.append(", remark=").append(remark);
         sb.append(", type=").append(type);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append("]");
         return sb.toString();
     }

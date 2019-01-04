@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class SmsRecord implements Serializable {
-    private static final long serialVersionUID = 6442959913604464557L;
+    private static final long serialVersionUID = -6337318510016682897L;
 
     private Integer id;
 
@@ -18,9 +18,9 @@ public class SmsRecord implements Serializable {
 
     private Byte times;
 
-    private Date createtime;
+    private Date createTime;
 
-    private Date updatetime;
+    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -70,20 +70,20 @@ public class SmsRecord implements Serializable {
         this.times = times;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
@@ -99,8 +99,8 @@ public class SmsRecord implements Serializable {
         sb.append(", state=").append(state);
         sb.append(", code=").append(code);
         sb.append(", times=").append(times);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append("]");
         return sb.toString();
     }

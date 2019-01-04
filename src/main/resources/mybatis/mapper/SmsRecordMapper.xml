@@ -8,22 +8,22 @@
     <result column="state" jdbcType="INTEGER" property="state" />
     <result column="code" jdbcType="CHAR" property="code" />
     <result column="times" jdbcType="TINYINT" property="times" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, phone, type, state, code, times, createTime, updateTime
+    id, phone, type, state, code, times, create_time, update_time
   </sql>
   <insert id="insert" parameterType="com.zh.entity.SmsRecord">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into sms_record (phone, type, state, 
-      code, times, createTime, 
-      updateTime)
+      code, times, create_time, 
+      update_time)
     values (#{phone,jdbcType=CHAR}, #{type,jdbcType=TINYINT}, #{state,jdbcType=INTEGER}, 
-      #{code,jdbcType=CHAR}, #{times,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP})
+      #{code,jdbcType=CHAR}, #{times,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zh.entity.SmsRecord">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -46,11 +46,11 @@
       <if test="times != null">
         times,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="createTime != null">
+        create_time,
       </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="updateTime != null">
+        update_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -69,11 +69,11 @@
       <if test="times != null">
         #{times,jdbcType=TINYINT},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -84,8 +84,8 @@
       state = #{state,jdbcType=INTEGER},
       code = #{code,jdbcType=CHAR},
       times = #{times,jdbcType=TINYINT},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.SmsRecord">
@@ -106,11 +106,11 @@
       <if test="times != null">
         times = #{times,jdbcType=TINYINT},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -145,11 +145,11 @@
     <if test="times != null">
        and  times = #{times,jdbcType=TINYINT}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
      order by id desc 
   </select>
@@ -173,11 +173,11 @@
     <if test="times != null">
        and  times = #{times,jdbcType=TINYINT}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
      order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
   </select>
@@ -200,11 +200,11 @@
     <if test="times != null">
        and  times = #{times,jdbcType=TINYINT}
     </if>
-    <if test="createtime != null">
-       and  createTime = #{createtime,jdbcType=TIMESTAMP}
+    <if test="createTime != null">
+       and  create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
-    <if test="updatetime != null">
-       and  updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    <if test="updateTime != null">
+       and  update_time = #{updateTime,jdbcType=TIMESTAMP}
     </if>
   </select>
 </mapper>

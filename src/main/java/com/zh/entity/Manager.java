@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Manager implements Serializable {
-    private static final long serialVersionUID = 8404117145590251513L;
+    private static final long serialVersionUID = 3832099953950757900L;
 
     private Integer id;
 

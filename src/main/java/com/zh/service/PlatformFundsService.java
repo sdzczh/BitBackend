@@ -7,14 +7,14 @@ import java.util.Map;
 /**
  * 
  * @author: autogeneration
- * @date: 2019-01-03 14:12:07
+ * @date: 2019-01-04 21:01:51
  **/ 
 public interface PlatformFundsService {
     /**
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     int insert(PlatformFunds record);
 
@@ -22,7 +22,7 @@ public interface PlatformFundsService {
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     int insertSelective(PlatformFunds record);
 
@@ -30,7 +30,7 @@ public interface PlatformFundsService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     int updateByPrimaryKey(PlatformFunds record);
 
@@ -38,7 +38,7 @@ public interface PlatformFundsService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     int updateByPrimaryKeySelective(PlatformFunds record);
 
@@ -46,7 +46,7 @@ public interface PlatformFundsService {
      * 删除
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     int deleteByPrimaryKey(Integer id);
 
@@ -54,7 +54,7 @@ public interface PlatformFundsService {
      * 按主键查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     PlatformFunds selectByPrimaryKey(Integer id);
 
@@ -62,7 +62,7 @@ public interface PlatformFundsService {
      * 条件查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     List<PlatformFunds> selectAll(Map<Object, Object> param);
 
@@ -70,7 +70,7 @@ public interface PlatformFundsService {
      * 分页查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     List<PlatformFunds> selectPaging(Map<Object, Object> param);
 
@@ -78,7 +78,7 @@ public interface PlatformFundsService {
      * 统计查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:12:07
+     * @date: 2019-01-04 21:01:51
      **/ 
     int selectCount(Map<Object, Object> param);
 }

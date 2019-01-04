@@ -322,8 +322,8 @@
     <include refid="Base_Column_List" />
     from user
     where 1=1 
-    <if test="phone != null and phone != ''">
-       and  phone like '%' #{phone,jdbcType=CHAR} '%'
+    <if test="phone != null">
+       and  phone = #{phone,jdbcType=CHAR}
     </if>
     <if test="userpassword != null">
        and  userPassword = #{userpassword,jdbcType=CHAR}
@@ -381,9 +381,9 @@
   <select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
     select count(*) 
     from user 
-    where 1=1
-    <if test="phone != null and phone != ''">
-      and  phone like '%' #{phone,jdbcType=CHAR} '%'
+    where 1=1 
+    <if test="phone != null">
+       and  phone = #{phone,jdbcType=CHAR}
     </if>
     <if test="userpassword != null">
        and  userPassword = #{userpassword,jdbcType=CHAR}

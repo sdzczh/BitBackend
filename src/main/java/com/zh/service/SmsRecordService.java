@@ -7,14 +7,14 @@ import java.util.Map;
 /**
  * 
  * @author: autogeneration
- * @date: 2018-10-29 16:10:48
+ * @date: 2019-01-04 21:02:12
  **/ 
 public interface SmsRecordService {
     /**
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     int insert(SmsRecord record);
 
@@ -22,7 +22,7 @@ public interface SmsRecordService {
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     int insertSelective(SmsRecord record);
 
@@ -30,7 +30,7 @@ public interface SmsRecordService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     int updateByPrimaryKey(SmsRecord record);
 
@@ -38,7 +38,7 @@ public interface SmsRecordService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     int updateByPrimaryKeySelective(SmsRecord record);
 
@@ -46,7 +46,7 @@ public interface SmsRecordService {
      * 删除
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     int deleteByPrimaryKey(Integer id);
 
@@ -54,7 +54,7 @@ public interface SmsRecordService {
      * 按主键查询
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     SmsRecord selectByPrimaryKey(Integer id);
 
@@ -62,7 +62,7 @@ public interface SmsRecordService {
      * 条件查询
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     List<SmsRecord> selectAll(Map<Object, Object> param);
 
@@ -70,7 +70,7 @@ public interface SmsRecordService {
      * 分页查询
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     List<SmsRecord> selectPaging(Map<Object, Object> param);
 
@@ -78,7 +78,7 @@ public interface SmsRecordService {
      * 统计查询
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:10:48
+     * @date: 2019-01-04 21:02:12
      **/ 
     int selectCount(Map<Object, Object> param);
 }

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * @author: autogeneration
- * @date: 2018-10-29 16:01:58
+ * @date: 2019-01-04 21:00:30
  **/ 
 @Service("managerService")
 public class ManagerServiceImpl implements ManagerService {

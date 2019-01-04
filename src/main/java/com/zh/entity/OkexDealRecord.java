@@ -3,7 +3,7 @@ package com.zh.entity;
 import java.io.Serializable;
 
 public class OkexDealRecord implements Serializable {
-    private static final long serialVersionUID = 3788022456614302609L;
+    private static final long serialVersionUID = -8178880557359709152L;
 
     private Integer id;
 

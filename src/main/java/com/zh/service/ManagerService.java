@@ -7,14 +7,14 @@ import java.util.Map;
 /**
  * 
  * @author: autogeneration
- * @date: 2018-10-29 16:01:58
+ * @date: 2019-01-04 21:00:30
  **/ 
 public interface ManagerService {
     /**
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     int insert(Manager record);
 
@@ -22,7 +22,7 @@ public interface ManagerService {
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     int insertSelective(Manager record);
 
@@ -30,7 +30,7 @@ public interface ManagerService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     int updateByPrimaryKey(Manager record);
 
@@ -38,7 +38,7 @@ public interface ManagerService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     int updateByPrimaryKeySelective(Manager record);
 
@@ -46,7 +46,7 @@ public interface ManagerService {
      * 删除
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     int deleteByPrimaryKey(Integer id);
 
@@ -54,7 +54,7 @@ public interface ManagerService {
      * 按主键查询
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     Manager selectByPrimaryKey(Integer id);
 
@@ -62,7 +62,7 @@ public interface ManagerService {
      * 条件查询
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     List<Manager> selectAll(Map<Object, Object> param);
 
@@ -70,7 +70,7 @@ public interface ManagerService {
      * 分页查询
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     List<Manager> selectPaging(Map<Object, Object> param);
 
@@ -78,7 +78,7 @@ public interface ManagerService {
      * 统计查询
      * 
      * @author: autogeneration
-     * @date: 2018-10-29 16:01:58
+     * @date: 2019-01-04 21:00:30
      **/ 
     int selectCount(Map<Object, Object> param);
 

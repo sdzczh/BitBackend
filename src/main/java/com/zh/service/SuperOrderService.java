@@ -7,14 +7,14 @@ import java.util.Map;
 /**
  * 
  * @author: autogeneration
- * @date: 2019-01-03 14:54:05
+ * @date: 2019-01-04 21:02:33
  **/ 
 public interface SuperOrderService {
     /**
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     int insert(SuperOrder record);
 
@@ -22,7 +22,7 @@ public interface SuperOrderService {
      * 添加
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     int insertSelective(SuperOrder record);
 
@@ -30,7 +30,7 @@ public interface SuperOrderService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     int updateByPrimaryKey(SuperOrder record);
 
@@ -38,7 +38,7 @@ public interface SuperOrderService {
      * 更新
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     int updateByPrimaryKeySelective(SuperOrder record);
 
@@ -46,7 +46,7 @@ public interface SuperOrderService {
      * 删除
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     int deleteByPrimaryKey(Integer id);
 
@@ -54,7 +54,7 @@ public interface SuperOrderService {
      * 按主键查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     SuperOrder selectByPrimaryKey(Integer id);
 
@@ -62,7 +62,7 @@ public interface SuperOrderService {
      * 条件查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     List<SuperOrder> selectAll(Map<Object, Object> param);
 
@@ -70,7 +70,7 @@ public interface SuperOrderService {
      * 分页查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     List<SuperOrder> selectPaging(Map<Object, Object> param);
 
@@ -78,7 +78,7 @@ public interface SuperOrderService {
      * 统计查询
      * 
      * @author: autogeneration
-     * @date: 2019-01-03 14:54:05
+     * @date: 2019-01-04 21:02:33
      **/ 
     int selectCount(Map<Object, Object> param);
 }

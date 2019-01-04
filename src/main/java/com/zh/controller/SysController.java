@@ -49,9 +49,9 @@ public class SysController {
         rows = rows == null ? 10 : rows;
         param.put("firstResult", page * rows);
         param.put("maxResult", rows);
-        param.put("keyname", sysparams.getKeyname());
-        params.put("keyname", sysparams.getKeyname());
-        map.put("keyname", sysparams.getKeyname());
+        param.put("keyname", sysparams.getKeyName());
+        params.put("keyname", sysparams.getKeyName());
+        map.put("keyname", sysparams.getKeyName());
         List<Sysparams> list = sysparamsService.selectPaging(param);
         Integer count = sysparamsService.selectCount(params);
         map.put("data", list);
@@ -95,7 +95,7 @@ public class SysController {
         }
         logAdminoperService.insertLog(adminName.toString(), id, "修改系统参数");
         Sysparams sysparams = sysparamsService.selectByPrimaryKey(id);
-        sysparams.setKeyval(String.valueOf(1 - Integer.valueOf(sysparams.getKeyval())));
+        sysparams.setKeyVal(String.valueOf(1 - Integer.valueOf(sysparams.getKeyVal())));
         sysparamsService.updateByPrimaryKeySelective(sysparams);
         return "true";
     }
@@ -103,7 +103,7 @@ public class SysController {
     @RequestMapping(value = "addSysparams", method = {RequestMethod.POST})
     public String addUser(Sysparams sysparams, HttpSession session) throws Exception {
         if(sysparams.getType() == 0){
-            sysparams.setKeyval("0");
+            sysparams.setKeyVal("0");
         }
         sysparamsService.insertSelective(sysparams);
         Object adminName = session.getAttribute("adminName");

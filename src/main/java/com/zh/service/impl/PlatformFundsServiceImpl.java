@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * @author: autogeneration
- * @date: 2019-01-03 14:12:07
+ * @date: 2019-01-04 21:01:51
  **/ 
 @Service("platformFundsService")
 public class PlatformFundsServiceImpl implements PlatformFundsService {
