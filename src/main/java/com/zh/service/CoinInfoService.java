@@ -81,4 +81,6 @@ public interface CoinInfoService {
      * @date: 2019-01-04 20:29:24
      **/ 
     int selectCount(Map<Object, Object> param);
+
+    List<Map<String, Object>> selectInfoPaging(Map<Object, Object> param);
 }

@@ -394,4 +394,13 @@
        and  info = #{info,jdbcType=LONGVARCHAR}
     </if>
   </select>
+  <select id="selectInfoPaging" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT ci.id,cm.symbol,ci.info,ci.team_info,ci.github,ci.reddit,ci.twitter,ci.facebook,ci.website,ci.white_paper,ci.explorer,ci.createTime
+    FROM coin_info ci LEFT JOIN coin_manager cm ON ci.`coin_id`=cm.`id`
+    where 1=1
+    <if test="symbol != null and symbol != ''">
+      and  symbol like '%' #{symbol,jdbcType=VARCHAR} '%'
+    </if>
+    order by id desc limit #{firstResult,jdbcType=INTEGER},#{maxResult,jdbcType=INTEGER}
+  </select>
 </mapper>

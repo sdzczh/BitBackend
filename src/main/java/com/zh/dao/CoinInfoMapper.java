@@ -22,4 +22,6 @@ public interface CoinInfoMapper {
     List<CoinInfo> selectPaging(Map<Object, Object> param);
 
     int selectCount(Map<Object, Object> param);
+
+    List<Map<String, Object>> selectInfoPaging(Map<Object, Object> param);
 }

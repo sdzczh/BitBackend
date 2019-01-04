@@ -3,11 +3,11 @@ package com.zh.entity;
 import java.io.Serializable;
 
 public class OkexDealRecord implements Serializable {
-    private static final long serialVersionUID = 8816365054407957877L;
+    private static final long serialVersionUID = 3788022456614302609L;
 
     private Integer id;
 
-    private Integer coinid;
+    private Integer coinId;
 
     private String price;
 
@@ -25,12 +25,12 @@ public class OkexDealRecord implements Serializable {
         this.id = id;
     }
 
-    public Integer getCoinid() {
-        return coinid;
+    public Integer getCoinId() {
+        return coinId;
     }
 
-    public void setCoinid(Integer coinid) {
-        this.coinid = coinid;
+    public void setCoinId(Integer coinId) {
+        this.coinId = coinId;
     }
 
     public String getPrice() {
@@ -73,7 +73,7 @@ public class OkexDealRecord implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append(", id=").append(id);
-        sb.append(", coinid=").append(coinid);
+        sb.append(", coinId=").append(coinId);
         sb.append(", price=").append(price);
         sb.append(", volume=").append(volume);
         sb.append(", type=").append(type);

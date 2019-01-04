@@ -3,22 +3,22 @@
 <mapper namespace="com.zh.dao.OkexDealRecordMapper">
   <resultMap id="BaseResultMap" type="com.zh.entity.OkexDealRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="coinId" jdbcType="INTEGER" property="coinid" />
+    <result column="coin_id" jdbcType="INTEGER" property="coinId" />
     <result column="price" jdbcType="VARCHAR" property="price" />
     <result column="volume" jdbcType="VARCHAR" property="volume" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="time" jdbcType="VARCHAR" property="time" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, coinId, price, volume, type, time
+    id, coin_id, price, volume, type, time
   </sql>
   <insert id="insert" parameterType="com.zh.entity.OkexDealRecord">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into okex_deal_record (coinId, price, volume, 
+    insert into okex_deal_record (coin_id, price, volume, 
       type, time)
-    values (#{coinid,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, #{volume,jdbcType=VARCHAR}, 
+    values (#{coinId,jdbcType=INTEGER}, #{price,jdbcType=VARCHAR}, #{volume,jdbcType=VARCHAR}, 
       #{type,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zh.entity.OkexDealRecord">
@@ -27,8 +27,8 @@
     </selectKey>
     insert into okex_deal_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="coinid != null">
-        coinId,
+      <if test="coinId != null">
+        coin_id,
       </if>
       <if test="price != null">
         price,
@@ -44,8 +44,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="coinid != null">
-        #{coinid,jdbcType=INTEGER},
+      <if test="coinId != null">
+        #{coinId,jdbcType=INTEGER},
       </if>
       <if test="price != null">
         #{price,jdbcType=VARCHAR},
@@ -63,7 +63,7 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.zh.entity.OkexDealRecord">
     update okex_deal_record
-    set coinId = #{coinid,jdbcType=INTEGER},
+    set coin_id = #{coinId,jdbcType=INTEGER},
       price = #{price,jdbcType=VARCHAR},
       volume = #{volume,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
@@ -73,8 +73,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zh.entity.OkexDealRecord">
     update okex_deal_record
     <set>
-      <if test="coinid != null">
-        coinId = #{coinid,jdbcType=INTEGER},
+      <if test="coinId != null">
+        coin_id = #{coinId,jdbcType=INTEGER},
       </if>
       <if test="price != null">
         price = #{price,jdbcType=VARCHAR},
@@ -106,8 +106,8 @@
     <include refid="Base_Column_List" />
     from okex_deal_record
     where 1=1 
-    <if test="coinid != null">
-       and  coinId = #{coinid,jdbcType=INTEGER}
+    <if test="coinId != null">
+       and  coin_id = #{coinId,jdbcType=INTEGER}
     </if>
     <if test="price != null">
        and  price = #{price,jdbcType=VARCHAR}
@@ -128,8 +128,8 @@
     <include refid="Base_Column_List" />
     from okex_deal_record
     where 1=1 
-    <if test="coinid != null">
-       and  coinId = #{coinid,jdbcType=INTEGER}
+    <if test="coinId != null">
+       and  coin_id = #{coinId,jdbcType=INTEGER}
     </if>
     <if test="price != null">
        and  price = #{price,jdbcType=VARCHAR}
@@ -149,8 +149,8 @@
     select count(*) 
     from okex_deal_record 
     where 1=1 
-    <if test="coinid != null">
-       and  coinId = #{coinid,jdbcType=INTEGER}
+    <if test="coinId != null">
+       and  coin_id = #{coinId,jdbcType=INTEGER}
     </if>
     <if test="price != null">
        and  price = #{price,jdbcType=VARCHAR}

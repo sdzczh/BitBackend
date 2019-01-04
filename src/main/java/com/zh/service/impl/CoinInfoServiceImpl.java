@@ -66,4 +66,9 @@ public class CoinInfoServiceImpl implements CoinInfoService {
     public int selectCount(Map<Object, Object> param) {
         return this.coinInfoMapper.selectCount(param);
     }
+    @Override
+    public List<Map<String, Object>> selectInfoPaging(Map<Object, Object> param) {
+        return this.coinInfoMapper.selectInfoPaging(param);
+    }
+
 }
